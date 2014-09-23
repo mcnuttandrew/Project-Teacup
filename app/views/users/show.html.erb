@@ -1,7 +1,7 @@
 <h1> This is the show page for <%= @user.username%></h1>
 
 <% if @user.id != current_user.id%>
-	<% if current_user.followees.include?(@user)%>
+	<% if current_user.follows?(@user)%>
 		<%= link_to "Unfollow", user_followship_url(@user.id), method: :delete%>
 	<%else%>
 		<%= link_to "Follow", user_followship_url(@user.id), method: :post%>

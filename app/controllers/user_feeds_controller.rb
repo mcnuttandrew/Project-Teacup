@@ -1,9 +1,6 @@
 class UserFeedsController < ApplicationController
   def show
-    @posts = current_user.posts
-    current_user.followees.each do |fol|
-      @posts.concat(fol.posts)
-    end
+    @feed = current_user.get_feed(20)
     render :feed
   end    
 end

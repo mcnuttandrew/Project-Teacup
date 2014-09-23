@@ -34,6 +34,21 @@ class User < ActiveRecord::Base
     self.session_token
   end
   
+  def get_feed(quantity = nil)
+    @feed_content = Post
+      .joins(:user)
+      .joins("LEFT OUTER JOIN followships ON users.id = followships.followee_id")
+      .where("posts.user_id = :id OR followships.follower_id = :id", id: self.id)
+      .order("posts.created_at DESC")
+      .uniq
+    @feed_content
+    
+  end
+  
+  def follows?(user)
+    followees.include?(user)
+  end
+  
   private
   def ensure_session_token
     self.session_token ||= SecureRandom.urlsafe_base64(16)

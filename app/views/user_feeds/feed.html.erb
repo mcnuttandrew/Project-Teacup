@@ -1,0 +1,15 @@
+<h1> <%=current_user.username%>'s Feed</h1> 
+
+<ul>
+	<%@feed.each do |post|%>
+		<li>
+			<ul>
+			 <li><%= post.content%></li>
+			 <li><%= post.user.username%></li>
+			 <li><%= post.created_at%></li>
+		 </ul>
+		</li>
+	<%end%>
+</ul>
+
+<%= link_to "index", users_url%>

@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resource :user_feed, only: [:show]
   resource :session, only: [:create, :new, :destroy]
   resources :users, only: [:create, :new, :show, :index] do
     resource :followship, only: [:create, :destroy]

@@ -1,0 +1,13 @@
+<h1> This is the show page for <%= current_user.username%></h1>
+
+<% if current_user.posts %>
+	<ul>
+	<% current_user.posts.each do |post| %>
+		<li> <%=post.content%>
+				<%= button_to "X", post_url(post), method: :delete%>
+		</li>
+	<% end %>
+	</ul>
+<%end%>
+<%=render 'posts/form'%>
+

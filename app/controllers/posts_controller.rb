@@ -23,10 +23,9 @@ class PostsController < ApplicationController
     
   def show
     @post = Post.find_by_id(params[:id])
-    render :show
+    render :show 
   end
   
-  #just shows current users posts?
   def index
     @posts = Post.all
     render :index

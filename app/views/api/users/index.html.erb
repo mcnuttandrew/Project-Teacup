@@ -2,6 +2,6 @@
 <h2> Current user is: <%= current_user.username%> </h2>
 <ul>
 	<%@users.each do |user|%>
-		<li> <%= link_to user.username, user_url(user)%></li>
+		<li> <%= link_to user.username, api_user_url(user)%></li>
 	<%end %>
 </ul>

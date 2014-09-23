@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   
   resources :comments, except: [:create, :edit, :update]
   
-  #custom route for feed
+  
 end

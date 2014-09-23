@@ -1,0 +1,15 @@
+<% if post.comments %>
+	<ul>
+	<% post.comments.each do |com| %>
+		<li> 
+			<ul>
+				<li><%=com.content%></li>
+				<%if com.user_id === current_user.id%>
+					<li><%= button_to "Delete Comment", comment_url(com.id), method: :delete%></li>
+				<%end%>
+				<li> com.user.username</li>
+			</ul>
+		</li>
+	<% end %>
+	</ul>
+<%end%>

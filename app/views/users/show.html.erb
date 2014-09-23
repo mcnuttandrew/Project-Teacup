@@ -1,13 +1,30 @@
-<h1> This is the show page for <%= current_user.username%></h1>
+<h1> This is the show page for <%= @user.username%></h1>
 
-<% if current_user.posts %>
+<% if @user.id != current_user.id%>
+	<% if current_user.followees.include?(@user)%>
+		<%= link_to "Unfollow", user_followship_url(@user.id), method: :delete%>
+	<%else%>
+		<%= link_to "Follow", user_followship_url(@user.id), method: :post%>
+	<%end%>
+<%end%>
+
+<%= link_to "Index", users_url%>
+
+<% if @user.posts %>
 	<ul>
-	<% current_user.posts.each do |post| %>
+	<% @user.posts.each do |post| %>
 		<li> <%=post.content%>
-				<%= button_to "X", post_url(post), method: :delete%>
+				<% if post.user_id == current_user.id%>
+					<%= button_to "X", post_url(post), method: :delete%>
+				<%end%>
+				<%=render 'comments/form', post: post%>
+				<%=render 'comments/index', post: post%>
 		</li>
 	<% end %>
 	</ul>
 <%end%>
-<%=render 'posts/form'%>
+
+<%if  @user.id == current_user.id%>
+	<%=render 'posts/form'%>
+<%end%>
 

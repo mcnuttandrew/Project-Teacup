@@ -1,5 +1,15 @@
 Teacup.Collections.Users = Backbone.Collection.extend({
-	url: "/api/users",
+	initialize: function(id) {
+		this.id = id;
+	},
+	
+	url: function() {
+		if(this.id){ 
+			return "/api/users/" + this.id
+		} else {
+			return "/api/users"
+		}
+	},
 	model: Teacup.Models.User,
 	
 	

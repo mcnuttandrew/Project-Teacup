@@ -1,5 +1,7 @@
 Teacup.Models.User = Backbone.Model.extend({
-	urlRoot: "/api/users",
+	urlRoot: function() {
+		return "/api/users"//"/" + this.id
+	},
 	
 	posts: function(){
 		this._posts = this._posts || new Teacup.Collections.Posts([], {posts: this})

@@ -1,0 +1,11 @@
+<h1> You are following </h1>
+<ul>
+<% for(var i = 0; i < followingUsers.length; i++){%>
+		<li> <%= followingUsers[i].get('username')%></li>
+		<li> 
+			<%if (relationshipStatuses[i]){%>
+				Follows You
+			<%}%>
+		</li>
+<% }%>
+</ul>

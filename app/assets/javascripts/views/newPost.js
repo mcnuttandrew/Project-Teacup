@@ -1,14 +1,21 @@
 Teacup.Views.newPost = Backbone.View.extend({
 	template: JST["posts/new"],
-	tagName: "li",
 	
 	events: {
-		"submit form.post-submit": "submit"
+		"submit form.post-submit": "submit",
+		"click .following-btn": "followingRedirect",
+		"click .followers-btn": "followersRedirect"
 	},
 	
 	render: function(){
-		var renderedContent = this.template({collection: this.collection});
+		// debugger;
+		var currentUserId = $("#currentUser").data().id;
+		var renderedContent = this.template({
+			collection: Teacup.Collections.users,
+			user: Teacup.Collections.users.getOrFetch(currentUserId)
+		});
 		this.$el.html(renderedContent);
+		// debugger;
 		return this;
 	},
 	
@@ -27,7 +34,15 @@ Teacup.Views.newPost = Backbone.View.extend({
 				$(".errors").append(response.responseJSON);
 			}
 		});
+		
 	},
 
+	followingRedirect: function(){
+		Backbone.history.navigate("/following", {trigger: true})
+	},
+	
+	followersRedirect: function(){
+		Backbone.history.navigate("/followers", {trigger: true})
+	},
 	
 })

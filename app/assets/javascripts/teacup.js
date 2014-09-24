@@ -5,6 +5,6 @@ window.Teacup = {
   Routers: {},
   initialize: function() {
 		new Teacup.Routers.Router($("#main"));
-		Backbone.history.start(); 
+		Backbone.history.start();
   }
 };

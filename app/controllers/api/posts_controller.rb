@@ -8,7 +8,7 @@ module Api
     def create
       @post = current_user.posts.new(post_params)
       if @post.save
-        redirect_to user_url(current_user)
+        render json: @post
       else
         flash.now[:errors] = @post.errors.full_messages
         render :new
@@ -18,7 +18,8 @@ module Api
     def destroy
       @post = Post.find_by_id(params[:id])
       @post.destroy
-      redirect_to user_url(current_user)
+      render json: @post
+      # redirect_to user_url(current_user)
     end
     
     def show

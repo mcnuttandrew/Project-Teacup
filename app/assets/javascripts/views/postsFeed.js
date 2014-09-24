@@ -3,21 +3,25 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	
 	initialize: function(){
 		
+		//new
 		var postNewView = new Teacup.Views.newPost({collection: this.collection});
-		this.addSubview(".posts", postNewView);
-		
+		this.addSubview(".newcontent", postNewView);
+		//feed
 		this.collection.each(this.addPost.bind(this));
-
 	},
 	
 	render: function(){
+		
 		var currentUserId = $("#currentUser").data().id;
 		var renderedContent = this.template({
 			collection: this.collection,
 			user: Teacup.Collections.users.getOrFetch(currentUserId)
 		});
+		
 		this.$el.html(renderedContent);
+		
 		this.attachSubviews();
+		debugger;
 		return this;
 	}	,
 	

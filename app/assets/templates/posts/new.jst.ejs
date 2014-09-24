@@ -1,6 +1,7 @@
-<h1> <%= user.get('username')%> </h1>
-<button class="btn following-btn"> Following <%= collection.length%> </button>
-<button class="btn followers-btn"> Followers <%= collection.length%> </button>
+<h1> <a href="#/users/<%= user.get('id')%>"><%= user.get('username')%></a> </h1>
+ 
+<button class="btn following-btn"> Following <%= followingCount %> </button>
+<button class="btn followers-btn"> Followers <%= followerCount %> </button>
 <form class="post-submit">
 	<input id="content" name="content" type="text" placeholder="Post a new tweet"></input>
 	<br>

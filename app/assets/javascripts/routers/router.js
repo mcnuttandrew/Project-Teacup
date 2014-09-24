@@ -7,35 +7,28 @@ Teacup.Routers.Router = Backbone.Router.extend({
 		"": "home",
 		"following": "following",
 		"followers": "followers",
-		"user/:id": "show"
+		"users/:id": "show"
 	},
 	
 	home: function() {
-		var that = this;
 		Teacup.Collections.users.fetch();
 		Teacup.Collections.posts.fetch();
 		var feedView = new Teacup.Views.postsFeed({
 			userCollection: Teacup.Collections.users,
 			postCollection: Teacup.Collections.posts
 		});
-		that._swapView(feedView);
+		this._swapView(feedView);
 	}, 
 
-	// show: function(id){
-// 		debugger;
-// 		var that = this;
-// 		var _model = Teacup.Collections.users.getOrFetch(id);
-// 		Teacup.Collections.posts.fetch({
-// 			success: function(){
-// 				var rP = Teacup.Collections.posts.where({user_id: parseInt(id, 10)});
-// 				var userView = new Teacup.Views.userShow({
-// 					collection: rP,
-// 					model: _model
-// 				});
-// 				that._swapView(userView);
-// 			}
-// 		})
-// 	},
+	show: function(id){
+		Teacup.Collections.posts.fetch();
+		// Teacup.Collections.posts.where({user_id: parseInt(id, 10)});
+		var userView = new Teacup.Views.userShow({
+			collection: Teacup.Collections.posts,
+			model: Teacup.Collections.users.getOrFetch(id)
+		});
+		this._swapView(userView);
+	},
 
 	following: function() {
 		var that = this;

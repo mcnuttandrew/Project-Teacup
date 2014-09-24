@@ -2,16 +2,22 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	template: JST['posts/feedShow'],
 	
 	initialize: function(options){
+		//build custom connections
 		this.postCollection = options.postCollection;
 		this.userCollection = options.userCollection;
-		// add/remove listeners;
 		
+		// add/remove listeners;
 		this.listenTo(this.postCollection, "add", this.addPost);
  		this.listenTo(this.postCollection, "remove", this.removePost);
 		this.listenTo(this.userCollection, "sync", this.render);
 		this.listenTo(this.postCollection, "sync", this.render);
+		
 		//new
-		var postNewView = new Teacup.Views.newPost({collection: this.userCollection});
+		var currentUserId = $("#currentUser").data().id;
+		var postNewView = new Teacup.Views.newPost({
+			model: Teacup.Collections.users.getOrFetch(currentUserId),
+			collection: this.postCollection
+		});
 		this.addSubview(".newcontent", postNewView);
 		//feed
 		this.postCollection.each(this.addPost.bind(this));

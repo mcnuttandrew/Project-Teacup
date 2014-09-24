@@ -1,4 +1,18 @@
-<li><h4><%=post.get('content')%> 
-	<button class="btn removeTweet">X</button>
-</h4></li>
-<li > <h6>Posted by <%= user.get('username')%> </h6></li>
+<li>
+	<h4><%=post.get('content')%> 
+		<%if($("#currentUser").data().id === user.get('id')){%> 
+			<button class="btn removeTweet">X</button>
+		<%}%> 
+	</h4>
+</li>
+<li>
+	<h6>
+		Posted by
+		<a href="#/users/<%= user.get('id')%>">
+			<%= user.get('username')%>
+		</a>
+	</h6>
+</li>
+<li>
+	<a href="#" > Comments </a>
+</li>

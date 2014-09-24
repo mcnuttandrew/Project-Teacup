@@ -2,7 +2,7 @@ Teacup.Views.newPost = Backbone.View.extend({
 	template: JST["posts/new"],
 	
 	initialize: function(){
-		this.listenTo(this.collection, "change", this.render);
+		this.listenTo(this.model, "change", this.render);
 	},
 	
 	events: {
@@ -12,11 +12,18 @@ Teacup.Views.newPost = Backbone.View.extend({
 	},
 	
 	render: function(){
-		// debugger;
-		var currentUserId = $("#currentUser").data().id;
+		var followerCount = 0;
+		var followingCount = 0;
+		if(this.model.get('followed')){
+			 var followingCount = this.model.get('followed').length; 
+		} 
+		if(this.model.get('followers')){
+			 var followerCount = this.model.get('followers').length; 
+		} 
 		var renderedContent = this.template({
-			collection: this.collection,
-			user: Teacup.Collections.users.getOrFetch(currentUserId)
+			user: this.model,
+			followerCount: followerCount,
+			followingCount: followingCount
 		});
 		this.$el.html(renderedContent);
 		// debugger;

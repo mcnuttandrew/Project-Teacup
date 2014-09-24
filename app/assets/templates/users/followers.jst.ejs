@@ -1,7 +1,11 @@
 <h1> Followers </h1>
 <ul>
 <% for(var i = 0; i < followedUsers.length; i++){%>
-		<li> <%= followedUsers[i].get('username')%></li>
+		<li>
+			<a href="#/users/<%= followedUsers[i].get('id')%>">
+				<%= followedUsers[i].get('username')%>
+			</a>
+		</li>
 		<li> 
 			<%if (relationshipStatuses[i]){%>
 				You Follow

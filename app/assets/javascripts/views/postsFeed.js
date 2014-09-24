@@ -1,24 +1,26 @@
 Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	template: JST['posts/feedShow'],
 	
-	initialize: function(){
+	initialize: function(options){
+		this.postCollection = options.postCollection;
+		this.userCollection = options.userCollection;
 		// add/remove listeners;
-		this.listenTo(this.collection, "add", this.addPost);
-		this.listenTo(this.collection, "remove", this.removePost);
-		this.listenTo(this.collection, "sync", this.render);
+		
+		this.listenTo(this.postCollection, "add", this.addPost);
+ 		this.listenTo(this.postCollection, "remove", this.removePost);
+		this.listenTo(this.userCollection, "sync", this.render);
+		this.listenTo(this.postCollection, "sync", this.render);
 		//new
-		var postNewView = new Teacup.Views.newPost({collection: this.collection});
+		var postNewView = new Teacup.Views.newPost({collection: this.userCollection});
 		this.addSubview(".newcontent", postNewView);
 		//feed
-		this.collection.each(this.addPost.bind(this));
+		this.postCollection.each(this.addPost.bind(this));
 	},
 	
 	
 	
 	render: function(){		
-		var renderedContent = this.template({
-			collection: this.collection,
-		});
+		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		this.attachSubviews();
 		return this;

@@ -6,25 +6,26 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	routes: {
 		"": "home",
 		"following": "following",
-		"followers": "followers"
-		// "user/:id": "show"
+		"followers": "followers",
+		"user/:id": "show"
 	},
 	
 	home: function() {
 		var that = this;
-		Teacup.Collections.users.fetch()
-		// setTimeout(function() {Teacup.Collections.posts.fetch({success: function(){
-		// 	var feedView = new Teacup.Views.postsFeed({
-		// 		collection: Teacup.Collections.posts
-		// 	});
-		// 	that._swapView(feedView);
-		// }})}, 0);
+		Teacup.Collections.users.fetch();
+		Teacup.Collections.posts.fetch();
+		var feedView = new Teacup.Views.postsFeed({
+			userCollection: Teacup.Collections.users,
+			postCollection: Teacup.Collections.posts
+		});
+		that._swapView(feedView);
 	}, 
 
-	show: function(id){
-		var that = this;
-		var _model = Teacup.Collections.users.getOrFetch(id);
-		// Teacup.Collections.posts.fetch({
+	// show: function(id){
+// 		debugger;
+// 		var that = this;
+// 		var _model = Teacup.Collections.users.getOrFetch(id);
+// 		Teacup.Collections.posts.fetch({
 // 			success: function(){
 // 				var rP = Teacup.Collections.posts.where({user_id: parseInt(id, 10)});
 // 				var userView = new Teacup.Views.userShow({
@@ -34,7 +35,7 @@ Teacup.Routers.Router = Backbone.Router.extend({
 // 				that._swapView(userView);
 // 			}
 // 		})
-	},
+// 	},
 
 	following: function() {
 		var that = this;

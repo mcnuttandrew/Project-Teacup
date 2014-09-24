@@ -1,6 +1,10 @@
 Teacup.Views.newPost = Backbone.View.extend({
 	template: JST["posts/new"],
 	
+	initialize: function(){
+		this.listenTo(this.collection, "change", this.render);
+	},
+	
 	events: {
 		"submit form.post-submit": "submit",
 		"click .following-btn": "followingRedirect",
@@ -11,7 +15,7 @@ Teacup.Views.newPost = Backbone.View.extend({
 		// debugger;
 		var currentUserId = $("#currentUser").data().id;
 		var renderedContent = this.template({
-			collection: Teacup.Collections.users,
+			collection: this.collection,
 			user: Teacup.Collections.users.getOrFetch(currentUserId)
 		});
 		this.$el.html(renderedContent);

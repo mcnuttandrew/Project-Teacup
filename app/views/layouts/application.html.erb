@@ -2,30 +2,16 @@
 <html>
 <head>
   <title>Specter</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
+	<%= stylesheet_link_tag 'application' %>
+	<%= javascript_include_tag 'application' %>
+	<%= csrf_meta_tags %>
 </head>
 <body>
+<div id="currentUser" data-id="<%= current_user.id unless !current_user %>"></div>
 
-<%if flash[:errors]%>
-	<ul id="errors">
-	<%flash[:errors].each do |error|%>
-		<li><%=error %> </li>
-	<%end%>
-	</ul>
-<%end%>
+<%= render partial: "layouts/header" %>
 
 <%= yield %>
-
-<% verb = (logged_in? ? "Sign Out" : "Sign In")%>
-<% location = (logged_in? ? session_url : new_session_url)%>
-<% action = (logged_in? ? :delete : :get )%>
-
-<!-- AR: no need for request.original_url -->
-<% unless request.original_url == new_session_url %>
-	<%= button_to verb, location, method: action %>
-<% end %>
 
 </body>
 </html>

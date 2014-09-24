@@ -3,6 +3,9 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	
 	initialize: function(){
 		
+		var postNewView = new Teacup.Views.newPost({collection: this.collection});
+		this.addSubview(".posts", postNewView);
+		
 		this.collection.each(this.addPost.bind(this));
 
 	},

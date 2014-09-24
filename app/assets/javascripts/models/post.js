@@ -1,5 +1,5 @@
 Teacup.Models.Post = Backbone.Model.extend({
-	urlRoot: "/api/user_feed",
+	urlRoot: "/api/posts",
 	
 	user: function(){
 	  if(!this._user) {

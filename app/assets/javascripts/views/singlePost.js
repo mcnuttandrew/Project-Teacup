@@ -1,7 +1,7 @@
 Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	template: JST['posts/single'],
 	tagName: "ul",
-	className: "bg-info",
+	className: "bg-info col-xs-7",
 	
 	events: {
 		"click .btn": "removeTweet"

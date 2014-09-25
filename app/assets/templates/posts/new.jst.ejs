@@ -6,19 +6,33 @@
 <div class="row">
 	<div class="col-xs-11">
 		<div class="row">
-			<div class="col-xs-6 col-xs-offset-1" style="word-wrap:break-word">
+			<div class="col-xs-12 col-xs-offset-1" style="word-wrap:break-word">
 				<h1>
 					<a href="#/users/<%= user.get('id')%>"><%= user.get('username')%></a>
 				</h1>
 			</div>
-			<div class="col-xs-4">
-				<br>
+			<div class="col-xs-12 text-center" style="word-wrap:break-word">
+					<div class="col-xs-6">
+						<a href="#/followers">
+							<h4> Followers:</h4>
+							<h2> 		
+								<%=user.followerCount()%>
+							</h2>
+						 </a>
+					</div>
+					<div class="col-xs-6"> 
+						<a href="#/following">
+							<h4>Following:</h4>
+							<h2>
+								<%=user.followingCount()%>
+							 </h2>
+						</a>
+					</div>
 				
-				<button class="btn btn-info btn-small following-btn" type="button"> Following <%= followingCount %> </button>
-				<button class="btn btn-info btn-small followers-btn" type="button"> Followers <%= followerCount %> </button>
 		  </div>
 		</div>
 		<div class="col-xs-12">
+			CHARS LEFT <strong class="chars-left">250</strong>
 		<form class="post-submit" class="input-large">
 			<textarea id="content" name="content" type="text"
 			 class="form-control" placeholder="post a tweet"></textarea>

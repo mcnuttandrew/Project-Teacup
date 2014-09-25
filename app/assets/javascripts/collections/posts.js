@@ -2,6 +2,11 @@ Teacup.Collections.Posts = Backbone.Collection.extend({
 	model: Teacup.Models.Post,
 	url: "/api/user_feed",
 	
+	initialize: function(models, options){
+		// debugger;
+		if(options){this.user = options.user}
+	},
+	
 	getOrFetch: function(id){
 		var posts = this;
 		var post = this.get(id);

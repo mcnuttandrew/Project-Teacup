@@ -8,23 +8,16 @@ Teacup.Views.newPost = Backbone.View.extend({
 	events: {
 		"submit form.post-submit": "submit",
 		"click .following-btn": "followingRedirect",
-		"click .followers-btn": "followersRedirect"
+		"click .followers-btn": "followersRedirect",
+		"keypress #content": "charsCount"
 	},
 	
 	render: function(){
-		var followerCount = 0;
-		var followingCount = 0;
-		//move to user model
-		if(this.model.get('followed')){
-			 var followingCount = this.model.get('followed').length; 
-		} 
-		if(this.model.get('followers')){
-			 var followerCount = this.model.get('followers').length; 
-		} 
+		
 		var renderedContent = this.template({
 			user: this.model,
-			followerCount: followerCount,
-			followingCount: followingCount
+			// followerCount: followerCount,
+			// followingCount: followingCount
 		});
 		this.$el.html(renderedContent);
 		// debugger;
@@ -48,13 +41,11 @@ Teacup.Views.newPost = Backbone.View.extend({
 		});
 		
 	},
-	//move to links
-	followingRedirect: function(){
-		Backbone.history.navigate("/following", {trigger: true})
-	},
 	
-	followersRedirect: function(){
-		Backbone.history.navigate("/followers", {trigger: true})
-	},
+	charsCount: function(event){
+		numLeft = (250-event.target.textLength)+'';
+		this.$el.find("strong").empty();
+		this.$el.find("strong").text( numLeft);
+	}
 	
 })

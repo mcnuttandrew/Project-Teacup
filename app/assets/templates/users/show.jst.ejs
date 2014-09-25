@@ -1,31 +1,33 @@
 <div class="row">
 	<div class="col-xs-3 col-xs-offset-1">
-		<h1> <%= user.get('username')%> </h1>
+		<div class="col-xs-8 col-xs-offset-2 ">
+			<img src="assets/placeholder.jpeg"  class="img-circle img-responsive">
+		</div>
+		<h1> <%= user.get('username')%>
 		<% if(currentUserId !== user.get('id')) {%>
 			<% if(follows){%>
-				<button class="unfollow btn"> Unfollow</button>
+				<button class="unfollow btn btn-info"> Unfollow</button>
 			<% } else {%>
-				<button class="follow btn"> Follow</button>
+				<button class="follow btn btn-info"> Follow</button>
 			<% } %>
-		<% } %>
+		<% } %> </h1>
 		<br>
-		followed by: 
-		<ul>
-			<% if(user.get('followers')){%>
-				<% _(user.get('followers')).each(function(follower){%>
-					<li> <%=follower.username%></li>
-				<% }) %>
-			<%}%>
-		</ul>
+		<h4>
+			<div class="col-xs-5 text-center">
+				Followers: 		
+				 <%=user.followerCount()%>
+			</div>
+			<div class="col-xs-5  text-center">
+				Following: 		
+				<%=user.followingCount()%>
+			</div>
+		</h4>
+	
 	
 	</div>
-	<div class="col-xs-6">
-		<ul>
-			<% if(user.get('tweets')){%>
-				<% _(user.get('tweets')).each(function(tweet){%>
-					<li> <%=tweet.content%></li>
-				<% }) %>
-			<%}%>
-		</ul>
+		<h1 class="" bg-info""> Posts </h1>
+	<div class="col-xs-4">
+		<div class="posts">
+		</div>
 	</div>
 </div>

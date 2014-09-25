@@ -8,15 +8,23 @@
 				<button class="follow btn"> Follow</button>
 			<% } %>
 		<% } %>
+		<br>
+		followed by: 
+		<ul>
+			<% if(user.get('followers')){%>
+				<% _(user.get('followers')).each(function(follower){%>
+					<li> <%=follower.username%></li>
+				<% }) %>
+			<%}%>
+		</ul>
+	
 	</div>
 	<div class="col-xs-6">
 		<ul>
-			<%if(collection.length > 0){%>
-				<%for(var i = 0; i < collection.length; i++ ){%>
-					<li><%=collection[i].get('content') %></li>
-				<%}%>
-			<%} else {%>
-				<li>No Tweets Here</li>
+			<% if(user.get('tweets')){%>
+				<% _(user.get('tweets')).each(function(tweet){%>
+					<li> <%=tweet.content%></li>
+				<% }) %>
 			<%}%>
 		</ul>
 	</div>

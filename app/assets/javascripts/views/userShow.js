@@ -1,9 +1,12 @@
 Teacup.Views.userShow = Backbone.View.extend({
 	template: JST["users/show"],
 	
-	initialize: function(){
-		this.listenTo(this.collection, "sync", this.render);
+	initialize: function(options){
+		this.currentUser = options.currentUser;
+
 		this.listenTo(this.model, "sync", this.render);
+		this.listenTo(this.currentUser, "sync", this.render);
+		this.listenTo(this.model, "change", this.render);
 	},
 	
 	events: {
@@ -12,35 +15,31 @@ Teacup.Views.userShow = Backbone.View.extend({
 	},
 	
 	render: function(){
-		var selectedPosts = this.collection;
-		if(selectedPosts.length > 0){
-			selectedPosts = this.collection.where({user_id: this.model.id});
-		}
-		var currentUserId = $("#currentUser").data().id;
-		var mark = false;
-		if(this.model.get('followed') ){
-			this.model.get('followed').forEach(function(follower){
-				if(follower.id === currentUserId){
-					mark = true;
-				}
-			})
+		if(this.currentUser){
+			console.log(this.currentUser.follows(this.model));
+			var renderedContent = this.template({
+				user: this.model,
+				follows: this.currentUser.follows(this.model),
+				currentUserId: this.currentUser.id
+			});
 		};
-		var renderedContent = this.template({
-			collection: selectedPosts,
-			user: this.model,
-			follows: mark,
-			currentUserId: currentUserId
-		});
 		this.$el.html(renderedContent);
 		return this;
 	},
 	
 	followUser: function(){
-		// this.model.
+		$.ajax({ url: ('api/users/'+this.model.id+'/followship'), type: 'POST' });
+		this.model.attributes.followers.push(this.currentUser);
+		this.render();
 	},
 	
 	unfollowUser: function(){
-		// this.model.
+		$.ajax({ url: ('api/users/'+this.model.id+'/followship'), type: 'DELETE' })
+		var inde = this.model.attributes.followers.indexOf(this.currentUser);
+		if(inde > -1){
+			this.model.attributes.followers.splice(inde);
+		}
+		this.render();
 	},
 	
 })

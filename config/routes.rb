@@ -13,6 +13,5 @@ Rails.application.routes.draw do
       resources :comments, only: [:create]
     end
     resources :comments, except: [:create, :edit, :update]
-  end
-  
+  end  
 end

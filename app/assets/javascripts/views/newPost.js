@@ -14,6 +14,7 @@ Teacup.Views.newPost = Backbone.View.extend({
 	render: function(){
 		var followerCount = 0;
 		var followingCount = 0;
+		//move to user model
 		if(this.model.get('followed')){
 			 var followingCount = this.model.get('followed').length; 
 		} 
@@ -39,7 +40,6 @@ Teacup.Views.newPost = Backbone.View.extend({
 		newPost.save({}, {
 			success: function(){
 				that.collection.add(newPost);
-				that.render();
 			},
 			error: function(response){
 				$(".errors").append(response.responseJSON);
@@ -47,7 +47,7 @@ Teacup.Views.newPost = Backbone.View.extend({
 		});
 		
 	},
-
+	//move to links
 	followingRedirect: function(){
 		Backbone.history.navigate("/following", {trigger: true})
 	},

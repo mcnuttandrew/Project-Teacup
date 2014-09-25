@@ -9,8 +9,8 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 		// add/remove listeners;
 		this.listenTo(this.postCollection, "add", this.addPost);
  		this.listenTo(this.postCollection, "remove", this.removePost);
-		this.listenTo(this.userCollection, "sync", this.render);
-		this.listenTo(this.postCollection, "sync", this.render);
+		this.listenToOnce(this.userCollection, "sync", this.render);
+		this.listenToOnce(this.postCollection, "sync", this.render);
 		
 		//new
 		var currentUserId = $("#currentUser").data().id;
@@ -30,13 +30,18 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 		this.$el.html(renderedContent);
 		this.attachSubviews();
 		return this;
-	}	,
+	},
 	
 	
 	addPost: function(post) {
 		var PostsShow = new Teacup.Views.singlePost({model: post});
-		this.addSubview(".posts", PostsShow);
+		this.addSubviewBefore(".posts", PostsShow);
 	},
+	
+	// addPostWithSync: function(post) {
+	// 	this.postCollection = Teacup.Collections.posts.fetch();
+	// 	this.addPost(post);
+	// },
 	
 	removePost: function(post){
 		var subview = _.find(

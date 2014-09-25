@@ -1,3 +1,4 @@
+/*
 Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	template: JST['posts/single'],
 	tagName: "ul",
@@ -7,7 +8,7 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	},
 	
 	initialize: function(){
-			// this.comments.each(this.addComment.bind(this));
+			this.comments.each(this.addComment.bind(this));
 	},
 	
 	render: function(){	
@@ -26,18 +27,5 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	},
 	
 	
-	// addComment: function(post) {
-	// 	var CommentsShow = new Teacup.Views.singleComment({model: post});
-	// 	this.addSubview(".posts", CommentsShow);
-	// },
 	
-	removeComment: function(post){
-		var subview = _.find(
-			this.subviews(".posts"), function(subview){
-				return subview.model === post;
-			}
-		);
-		this.removeSubview(".posts", subview);
-	}
-	
-})
+})*/

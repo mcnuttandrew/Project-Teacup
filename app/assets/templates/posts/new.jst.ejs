@@ -2,10 +2,15 @@
  
 <button class="btn following-btn"> Following <%= followingCount %> </button>
 <button class="btn followers-btn"> Followers <%= followerCount %> </button>
-<form class="post-submit">
-	<input id="content" name="content" type="text" placeholder="Post a new tweet"></input>
-	<br>
-	LOCATION
-	<br>
-	<button class="btn">Submit </button>
-</form>
+<div class="row">
+	<div class="col-xs-12">
+		<form class="post-submit" class="input-large">
+			<input id="content" name="content" type="text"
+			 class="form-control" placeholder="post a tweet"></input>
+			<br>
+			LOCATION
+			<br>
+			<button class="btn">Submit </button>
+		</form>
+	</div>
+</div>

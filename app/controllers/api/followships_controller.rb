@@ -5,10 +5,17 @@ module Api
       redirect_to request.referrer
     end
   
+    def show
+      @follows = Followship.find(followship_params)
+      # fail3
+      render json: @follows
+    end
+  
     def destroy
       @follow = current_user.out_follows.find_by(followee_id: params[:user_id])
       @follow.destroy!
-      redirect_to request.referrer 
+      render json: @follow
+      # redirect_to request.referrer
     end
   
     private

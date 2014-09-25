@@ -4,13 +4,10 @@ Teacup.Models.User = Backbone.Model.extend({
 	},
 	
 	posts: function(){
-		// this._posts = this._posts || new Teacup.Collections.Posts([], {posts: this})
-		// return this._posts;
-	  if(!this._posts) {
-	       this._posts = new Teacup.Collections.Posts([], { user: this });
-	     }
-
-	     return this._posts;
+		if(!this._posts) {
+			this._posts = new Teacup.Collections.Posts([], { user: this });
+		}
+	  return this._posts;
 	},
 	
 	parse: function(payload){

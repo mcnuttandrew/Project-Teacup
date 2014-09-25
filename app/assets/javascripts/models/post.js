@@ -1,18 +1,19 @@
 Teacup.Models.Post = Backbone.Model.extend({
 	urlRoot: "/api/posts",
 	
-	user: function(){
-	  if(!this._user) {
-	       this._user = new Teacup.Collections.Users([], { post: this });
-	     }
-     return this._user;
+	comments: function(){
+		if(!this._comments) {
+			this._comments = new Teacup.Collections.Comments([], { post: this });
+		}
+		return this._comments;
 	},
 
 	parse: function(response){
-	    if (response.user) {
-	      this.user().set( response.user, {parse: true});
-	      delete response.user;
+	    if (response.comments) {
+	      this.comments().set( response.comments, {parse: true});
+	      delete response.comments;
 	    }
 	    return response;
 	  },
+		
 })

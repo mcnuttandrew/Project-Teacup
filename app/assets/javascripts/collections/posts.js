@@ -8,13 +8,14 @@ Teacup.Collections.Posts = Backbone.Collection.extend({
 	},
 	
 	getOrFetch: function(id){
+		console.log("getOrFetching: " + id)
 		var posts = this;
 		var post = this.get(id);
 		if(!post){
-			post = new Teacup.Models.Post({id: id})
+			post = new Teacup.Models.Post({ id: id })
 			post.fetch({
 				success: function(){
-					this.add(post);
+					posts.add(post);
 				}
 			});
 		} else {

@@ -1,4 +1,6 @@
 Teacup.Models.Comment = Backbone.Model.extend({
-	urlRoot: "/api/posts",
+	urlRoot: function(){
+		return "/api/posts/" + this.attributes.post_id + "/comments"
+	},
 	
 })

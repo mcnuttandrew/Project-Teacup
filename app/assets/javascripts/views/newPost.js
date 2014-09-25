@@ -7,17 +7,14 @@ Teacup.Views.newPost = Backbone.View.extend({
 	
 	events: {
 		"submit form.post-submit": "submit",
-		"click .following-btn": "followingRedirect",
-		"click .followers-btn": "followersRedirect",
-		"keypress #content": "charsCount"
+		"keypress #content": "charsCount",
+		"keypress #latitude": "latitude"
 	},
 	
 	render: function(){
 		
 		var renderedContent = this.template({
 			user: this.model,
-			// followerCount: followerCount,
-			// followingCount: followingCount
 		});
 		this.$el.html(renderedContent);
 		// debugger;
@@ -44,8 +41,17 @@ Teacup.Views.newPost = Backbone.View.extend({
 	
 	charsCount: function(event){
 		numLeft = (250-event.target.textLength)+'';
-		this.$el.find("strong").empty();
-		this.$el.find("strong").text( numLeft);
+		console.log(event.currentTarget);
+		this.$el.find(".chars-left").empty();
+		this.$el.find(".chars-left").text(numLeft);
+	},
+	
+	latitude: function(event){
+		// debugger;
+		 numLeft = ($(event.currentTarget).serializeJSON());
+		 console.log(numLeft.latitude);
+		// this.$el.find(".chars-left").empty();
+		// this.$el.find(".chars-left").text(numLeft);
 	}
 	
 })

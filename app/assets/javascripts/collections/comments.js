@@ -1,7 +1,7 @@
-Teacup.Collections.Posts = Backbone.Collection.extend({
-	model: Teacup.Models.Post,
+Teacup.Collections.Comments = Backbone.Collection.extend({
+	model: Teacup.Models.Comment,
 	url: function () {
-		return "/api/posts/" + this.id;
+		return "/api/comments/" + this.id;
 	},
 	
 	getOrFetch: function(id){
@@ -21,4 +21,4 @@ Teacup.Collections.Posts = Backbone.Collection.extend({
 	}
 })
 
-Teacup.Collections.comments = new Teacup.Collections.Posts();
+Teacup.Collections.comments = new Teacup.Collections.Comments();

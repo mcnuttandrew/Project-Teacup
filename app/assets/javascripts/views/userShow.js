@@ -31,6 +31,7 @@ Teacup.Views.userShow = Backbone.View.extend({
 		$.ajax({ url: ('api/users/'+this.model.id+'/followship'), type: 'POST' });
 		this.model.attributes.followers.push(this.currentUser);
 		this.render();
+		Backbone.history.navigate("/users/" + this.model.id, {trigger: true})
 	},
 	
 	unfollowUser: function(){
@@ -40,6 +41,7 @@ Teacup.Views.userShow = Backbone.View.extend({
 			this.model.attributes.followers.splice(inde);
 		}
 		this.render();
+		Backbone.history.navigate("/users/" + this.model.id, {trigger: true})
 	},
 	
 })

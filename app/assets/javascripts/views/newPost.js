@@ -40,6 +40,7 @@ Teacup.Views.newPost = Backbone.View.extend({
 		newPost.save({}, {
 			success: function(){
 				that.collection.add(newPost);
+				that.render;
 			},
 			error: function(response){
 				$(".errors").append(response.responseJSON);

@@ -11,11 +11,13 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 			collection: this.model.comments(),
 			model: this.model
 		});
-		this.addSubview(".comments-list", commentNewView);
+		this.addSubview(".commment-form", commentNewView);
+		if(this.model.get('latitude') && this.model.get('longitude')){
+			this.buildMap(this.model.get('latitude'), this.model.get('longitude'));
+		}
 	},
 
 	render: function(){
-		// Teacup.Collections.users.getOrFetch(this.model.user_id),
 		var renderedContent = this.template({
 			user: Teacup.Collections.users.getOrFetch(this.model.user_id),
 			post: this.model
@@ -27,7 +29,6 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 
 	
 	addComment: function(comment) {
-		console.log("COMMMMMMENT")
 		var CommentsShow = new Teacup.Views.singleComment({ model: comment });
 		this.addSubview(".comments-list", CommentsShow);
 	},
@@ -39,5 +40,12 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 			}
 		);
 		this.removeSubview(".comments-list", subview);
-	}
+	},
+	
+	buildMap: function(latitude, longitude){
+		// this.removeMap(latitude, longitude);
+		$(".mapPost").empty();
+		var newMapView = new Teacup.Views.newMap({latitude: latitude, longitude: longitude})
+		this.addSubview(".mapPost", newMapView);
+	},
 })

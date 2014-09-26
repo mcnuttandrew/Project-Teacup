@@ -3,7 +3,7 @@
 		<div class="col-xs-8 col-xs-offset-2 ">
 			<img src="assets/placeholder.jpeg"  class="img-circle img-responsive">
 		</div>
-		<h1> <%= user.get('username')%>
+		<h1 class="text-center"> <%= user.get('username')%>
 		<% if(currentUserId !== user.get('id')) {%>
 			<% if(follows){%>
 				<button class="unfollow btn btn-info"> Unfollow</button>
@@ -14,18 +14,16 @@
 		<br>
 		<h4>
 			<div class="col-xs-5 text-center">
-				Followers: 		
-				 <%=user.followerCount()%>
+				Following: <%=user.followingCount()%>
 			</div>
 			<div class="col-xs-5  text-center">
-				Following: 		
-				<%=user.followingCount()%>
+				 Followers: <%=user.followerCount()%>
 			</div>
 		</h4>
 	
 	
 	</div>
-		<h1 class="" bg-info""> Posts </h1>
+		<h1> Posts </h1>
 	<div class="col-xs-4">
 		<div class="posts">
 		</div>

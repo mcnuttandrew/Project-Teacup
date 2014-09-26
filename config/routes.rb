@@ -10,8 +10,8 @@ Rails.application.routes.draw do
       resource :followship, only: [:create, :destroy]
     end
     resources :posts, except: [:edit, :update] do
-      resources :comments, only: [:create]
+      resources :comments, only: [:create, :destroy]
     end
-    resources :comments, except: [:create, :edit, :update]
+    resources :comments, except: [:create, :destroy, :edit, :update]
   end  
 end

@@ -1,5 +1,8 @@
 <h5> 
 	<%= comment.get('content')%> 
 	<strong >Posted By 
-	<%= comment.get('user_id')%></strong>
+	<%= comment.get('username')%></strong>
 </h5>
+<%if(comment.get('user_id') === $("#currentUser").data().id) {%>
+	<button class="btn btn-info btn-mini" id="remove-comment"> X </button>
+<%} %>

@@ -24,7 +24,6 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	},
 	
 	render: function() {	
-		console.log("rendering posts feed")	
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		this.attachSubviews();
@@ -47,14 +46,12 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	
 	expandPost: function(event){
 		$(".expansionSlot").empty();
-		// this.removeExpansionView();
 		var targetPost = event.currentTarget.getAttribute('data-id');
 		var post = Teacup.Collections.posts.getOrFetch(targetPost);
 		var postExpand = new Teacup.Views.singleExpand({
 			model: post
 		});
-		this.addSubview(".expansionSlot", postExpand);
-		// this.render()
+		this.addSubview(".expansionSlot", postExpand);	
 	},
 	
 	removeExpansionView: function(post){

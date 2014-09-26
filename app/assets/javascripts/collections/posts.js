@@ -3,12 +3,10 @@ Teacup.Collections.Posts = Backbone.Collection.extend({
 	url: "/api/user_feed",
 	
 	initialize: function(models, options){
-		// debugger;
 		if(options){this.user = options.user}
 	},
 	
 	getOrFetch: function(id){
-		console.log("getOrFetching: " + id)
 		var posts = this;
 		var post = this.get(id);
 		if(!post){

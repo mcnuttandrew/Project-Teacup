@@ -12,7 +12,7 @@ module Api
   
     def destroy
       @comment = Comment.find_by_id(params[:id])
-      return_address = @comment.post.user_id
+      # return_address = @comment.post.user_id
       @comment.destroy
       render json: @comment
     end

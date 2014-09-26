@@ -1,16 +1,14 @@
-<li>
+<li class="expandPost"  data-id="<%=post.id%>">
 	<h4><%=post.get('content')%> 
-		<%if($("#currentUser").data().id === user.get('id')){%> 
-			<button class="btn removeTweet">X</button>
-		<%}%> 
-		<button class="btn expandPost" data-id="<%=post.id%>">O</button>
+
 	</h4>
-</li>
-<li>
 	<h6>
 		Posted by
 		<a href="#/users/<%= user.get('id')%>">
 			<%= user.get('username')%>
 		</a>
+		<%if($("#currentUser").data().id === user.get('id')){%> 
+			<button class="removeTweet">delete post</button>
+		<%}%>
 	</h6>
 </li>

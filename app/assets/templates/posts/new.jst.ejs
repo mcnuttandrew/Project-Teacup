@@ -7,20 +7,12 @@
 <div class="row">
 	<div class="col-xs-11">
 		<div class="row">
-			<div class="col-xs-12 col-xs-offset-1" style="word-wrap:break-word">
-				<h1>
+			<div class="col-xs-12 col-xs-offset-1 " style="word-wrap:break-word">
+				<h1 class="text-center">
 					<a href="#/users/<%= user.get('id')%>"><%= user.get('username')%></a>
 				</h1>
 			</div>
 			<div class="col-xs-12 text-center" style="word-wrap:break-word">
-					<div class="col-xs-6">
-						<a href="#/followers">
-							<h4> Followers:</h4>
-							<h2> 		
-								<%=user.followerCount()%>
-							</h2>
-						 </a>
-					</div>
 					<div class="col-xs-6"> 
 						<a href="#/following">
 							<h4>Following:</h4>
@@ -29,24 +21,38 @@
 							 </h2>
 						</a>
 					</div>
-				
+					<div class="col-xs-6">
+						<a href="#/followers">
+							<h4> Followers:</h4>
+							<h2> 		
+								<%=user.followerCount()%>
+							</h2>
+						 </a>
+					</div>
 		  </div>
 		</div>
-		<div class="col-xs-12">
+
+		<div class="col-xs-12 text-center">
+			
 			<strong>CHARS LEFT</strong> <strong class="chars-left">250</strong>
 		<form class="post-submit" class="input-large">
 			<textarea id="content" name="content" type="text"
 			 class="form-control" placeholder="post a tweet"></textarea>
-			<img src="http://maps.google.com/maps/api/staticmap?center=33.873415,-115.900992&zoom=9&markers=33.873415,-115.900992&size=500x300&sensor=TRUE_OR_FALSE"  class="img-responsive">
-			
-			<textarea id="latitude" name="latitude" type="search"
-			 class="form-control" placeholder="latitude"></textarea>
-			 
- 			<input id="longitude" name="longitude" type="text"
- 			 class="form-control" placeholder="longitude">
+			<!-- <img src="http://maps.google.com/maps/api/staticmap?center=33.873415,-115.900992&zoom=9&markers=33.873415,-115.900992&size=500x300&sensor=TRUE_OR_FALSE"  class="img-responsive"> -->
+
+			<strong> WHERE WERE YOU </strong>
+			<div "location-subform">
+				<strong>LATITUDE</strong>
+				<input id="latitude" name="latitude" type="search"
+				 class="form-control" value="33.873415">
+				<strong> LONGITUDE</strong>
+	 			<input id="longitude" name="longitude" type="text"
+	 			 class="form-control" value="-115.900992">
+			 </div>
 			 
 			<button class="btn  btn-info">Submit </button>
 		</form>
+				<div class="map"></div>
 			</div>
 	</div>
 </div>

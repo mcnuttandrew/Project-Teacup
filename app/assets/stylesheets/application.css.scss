@@ -16,3 +16,20 @@
 
 
 @import "bootstrap";
+
+li.expandPost{
+	margin: 1%;
+}
+
+li.expandPost:hover{
+	border: thin solid black;
+	margin: -1%;
+	padding: -1%;
+}
+
+ul.posts {
+	border: thin solid red;
+	list-style-type: none;
+	padding: 0;
+	maring: 0;
+}

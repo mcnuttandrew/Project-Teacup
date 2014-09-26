@@ -19,7 +19,6 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	},
 	
 	render: function(){
-		// debugger;
 		if(this.currentUser){
 			var renderedContent = this.template({
 				user: this.model,
@@ -34,7 +33,10 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	},
 	
 	addPost: function(post){
-		var PostsShow = new Teacup.Views.singlePost({model: post});
+		var PostsShow = new Teacup.Views.singlePost({
+			model: post,
+			postOwner: this.model
+		});
 		this.addSubviewBefore(".posts", PostsShow);
 	},
 	

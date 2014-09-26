@@ -15,6 +15,7 @@
 //= require jquery.serializejson
 //= require underscore
 //= require backbone
+//= require backbone.bootstrap-modal
 //= require bootstrap
 //= require teacup
 //= require_tree ../templates

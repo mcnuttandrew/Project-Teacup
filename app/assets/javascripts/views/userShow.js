@@ -6,6 +6,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 
 		this.listenTo(this.model, "sync", this.render);
 		this.listenTo(this.currentUser, "sync", this.render);
+		this.listenToOnce(this.collection, "sync", this.render);
 		this.listenTo(this.model, "change", this.render);
 		this.listenTo(this.model.posts(), "add", this.addPost);
 
@@ -15,7 +16,9 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	events: {
 		"click .follow": "followUser",
 		"click .unfollow": "unfollowUser",
-		"click .expandPost": "expandPost"
+		"click .expandPost": "expandPost",
+		"click .following": "openFollowingModal",
+		"click .followers": "openFollowersModal"
 	},
 	
 	render: function(){
@@ -87,6 +90,32 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			postOwner: this.model
 		});
 		this.addSubview(".expansionSlot", postExpand);
+	},
+	
+	openFollowingModal: function() {
+		var view = new Teacup.Views.followingView({
+			model: Teacup.Collections.users.getOrFetch(this.model.id),
+			collection: this.collection
+		});
+		var title = Teacup.Collections.users.getOrFetch(this.model.id).get('username') + " follows"
+		var modal = new Backbone.BootstrapModal({
+			content: view,
+			title: title,
+			animate: true
+		}).open();
+	},
+	
+	openFollowersModal: function() {
+		var view = new Teacup.Views.followersView({
+			model: Teacup.Collections.users.getOrFetch(this.model.id),
+			collection: this.collection
+		});
+		var title = Teacup.Collections.users.getOrFetch(this.model.id).get('username') + " is followed by"
+		var modal = new Backbone.BootstrapModal({
+			content: view,
+			title: title,
+			animate: true
+		}).open();
 	}
 	
 })

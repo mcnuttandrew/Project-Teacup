@@ -5,8 +5,8 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	
 	routes: {
 		"": "home",
-		"following": "following",
-		"followers": "followers",
+		// "following/:id": "following",
+	// 	"followers/:id": "followers",
 		"users/:id": "show"
 	},
 	
@@ -21,33 +21,36 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	}, 
 
 	show: function(id){
-		// Teacup.Collections.users.fetch();
+		Teacup.Collections.users.fetch();
 		var userView = new Teacup.Views.userShow({
-			currentUser: Teacup.Collections.users.getOrFetch($("#currentUser").data().id),
 			model: Teacup.Collections.users.getOrFetch(id),
+			currentUser: Teacup.Collections.users.getOrFetch($("#currentUser").data().id),
+			collection: Teacup.Collections.users
 		});
 		this._swapView(userView);
 	},
 
-	following: function() {
-		var that = this;
-		Teacup.Collections.users.fetch({success: function(){
-			var followView = new Teacup.Views.followingView({
-				collection: Teacup.Collections.users
-			});
-			that._swapView(followView);
-		}})
-	},
-	
-	followers: function() {
-		var that = this;
-		Teacup.Collections.users.fetch({success: function(){
-			var followView = new Teacup.Views.followersView({
-				collection: Teacup.Collections.users
-			});
-			that._swapView(followView);
-		}})
-	},
+	// following: function(id) {
+// 		var that = this;
+// 		Teacup.Collections.users.fetch({success: function(){
+// 			var followView = new Teacup.Views.followingView({
+// 				model: Teacup.Collections.users.getOrFetch(id),
+// 				collection: Teacup.Collections.users
+// 			});
+// 			that._swapView(followView);
+// 		}})
+// 	},
+//
+// 	followers: function(id) {
+// 		var that = this;
+// 		Teacup.Collections.users.fetch({success: function(){
+// 			var followView = new Teacup.Views.followersView({
+// 				model: Teacup.Collections.users.getOrFetch(id),
+// 				collection: Teacup.Collections.users
+// 			});
+// 			that._swapView(followView);
+// 		}})
+// 	},
 	
 	_swapView: function(view){
 		this.currentView && this.currentView.remove();

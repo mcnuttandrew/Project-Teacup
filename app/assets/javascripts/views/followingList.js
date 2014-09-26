@@ -1,34 +1,31 @@
-Teacup.Views.followingView = Backbone.CompositeView.extend({
+Teacup.Views.followingView = Backbone.View.extend({
 	template: JST["users/following"],
 
 	render: function() {
-		var that = this
-		
-		var curUser = this.collection.getOrFetch($("#currentUser").data().id);
-		var followingUsersIds = curUser.get('followed');
+		var followingUsersIds = this.model.get('followed');
 		var followingUsers = [];
 		for(var i = 0; i < followingUsersIds.length; i++){
 			followingUsers.push(this.collection.getOrFetch(followingUsersIds[i]));
 		}
-		var relationshipStatuses = this.findRelationships(curUser, followingUsers);
+		var relationshipStatuses = this.findRelationships(followingUsers);
 		
-		var renderedContent = that.template({
+		var renderedContent = this.template({
+			user: this.model,
 			followingUsers: followingUsers,
 			relationshipStatuses: relationshipStatuses
 		});
-		that.$el.html(renderedContent);
-		// that.attachSubviews();
-
+		this.$el.html(renderedContent);
 		return this;
 	},
 	
 	
-	findRelationships: function(curUser, followingUsers){
-		var relationshipStatuses = []
+	findRelationships: function(followingUsers){
+		var relationshipStatuses = [];
+		var that = this;
 		for(var i = 0; i< followingUsers.length; i++){
 			var mark = false;
 			followingUsers[i].get('followed').forEach(function(user){
-				if(curUser.get('id') === user.id){ mark = true}
+				if(that.model.get('id') === user.id){ mark = true}
 			})
 
 			if(mark){

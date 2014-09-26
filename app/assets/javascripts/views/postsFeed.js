@@ -20,7 +20,9 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	},
 	
 	events: {
-		"click .expandPost": "expandPost"
+		"click .expandPost": "expandPost",
+		"click .following": "openFollowingModal",
+		"click .followers": "openFollowersModal",
 	},
 	
 	render: function() {	
@@ -64,5 +66,32 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 			this.removeSubview(".expansionSlot", subview);
 		}
 	},
+	
+
+	openFollowingModal: function() {
+		var view = new Teacup.Views.followingView({
+			model: Teacup.Collections.users.getOrFetch($("#currentUser").data().id),
+			collection: this.userCollection
+		});
+		var title = Teacup.Collections.users.getOrFetch($("#currentUser").data().id).get('username') + " follows"
+		var modal = new Backbone.BootstrapModal({
+			content: view,
+			title: title,
+			animate: true
+		}).open(function(){ console.log('clicked OK') });
+	},
+	
+	openFollowersModal: function() {
+		var view = new Teacup.Views.followersView({
+			model: Teacup.Collections.users.getOrFetch($("#currentUser").data().id),
+			collection: this.userCollection
+		});
+		var title = Teacup.Collections.users.getOrFetch($("#currentUser").data().id).get('username') + " is followed by"
+		var modal = new Backbone.BootstrapModal({
+			content: view,
+			title: title,
+			animate: true
+		}).open();
+	}
 	
 })

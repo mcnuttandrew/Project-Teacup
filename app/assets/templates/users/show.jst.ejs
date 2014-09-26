@@ -11,13 +11,13 @@
 				<button class="follow btn btn-info"> Follow</button>
 			<% } %>
 		<% } %> </h1>
-		<br>
+		<!-- <br> -->
 		<h4>
-			<div class="col-xs-5 text-center">
-				Following: <%=user.followingCount()%>
+			<div class="col-xs-6 text-center">
+				<button class="btn btn-info following"> Following: <%=user.followingCount()%></button>
 			</div>
-			<div class="col-xs-5  text-center">
-				 Followers: <%=user.followerCount()%>
+			<div class="col-xs-6 text-center">
+				 <button class="btn btn-info followers"> Followers: <%=user.followerCount()%></button
 			</div>
 		</h4>
 	

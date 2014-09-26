@@ -1,15 +1,23 @@
-<h1> You are following </h1>
-<ul>
-<% for(var i = 0; i < followingUsers.length; i++){%>
+
+<%if(followingUsers.length===0){%>
+	<h4> <%= user.get('username')%> is not following anyone </h4>
+<%} else {%>
+	<ul>
+	<% for(var i = 0; i < followingUsers.length; i++){%>
 		<li>
+			<h2>
 			<a href="#/users/<%= followingUsers[i].get('id')%>">
 				<%= followingUsers[i].get('username')%>
 			</a>
+		</h2>
 		</li>
-		<li> 
-			<%if (relationshipStatuses[i]){%>
-				Follows You
-			<%}%>
-		</li>
-<% }%>
-</ul>
+		<%if (relationshipStatuses[i]){%>
+			<ul>
+				<li>
+					Follows <%= user.get('username')%>
+				</li>
+			</ul>
+		<%}%>
+	<% }%>
+	</ul>
+<%}%>

@@ -3,11 +3,14 @@ Teacup.Views.newComment = Backbone.View.extend({
 	
 	initialize: function(){
 		// console.log(this.model.id)
-		// this.hackCONSTANT = this.model.id
+		this.hackCONSTANT = this.model.id
 		this.listenTo(this.collection, "change", this.render);
+		this.listenTo(this.model, "change:id", function () {
+			console.log("MODEL ID CHANGED")
+		})
 		window.nv = this;
 		console.log("initializing a new comment view: " + this.cid)
-		console.log("initializing a new comment view: " + this.model.id)
+		console.log("initializing a new comment view: " + this.model.cid)
 	},
 	
 	events: {
@@ -16,11 +19,11 @@ Teacup.Views.newComment = Backbone.View.extend({
 	
 	render: function() {
 		console.log("rendering a new comment view: " + this.cid)
-		console.log("rendering a new comment view: " + this.model.id)
+		console.log("rendering a new comment view: " + this.model.cid)
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		setTimeout(function () {
-			console.log("0 ms after rendering a new comment view: " + window.nv.model.id)
+			console.log("0 ms after rendering a new comment view: " + window.nv.model.cid)
 		}, 1000)
 		return this;
 	},
@@ -28,12 +31,12 @@ Teacup.Views.newComment = Backbone.View.extend({
 	submit: function(event) {
 		//renders
 		console.log("submiting a new comment view: " + this.cid)
-		console.log("submiting a new comment view: " + this.model.id)
+		console.log("submiting a new comment view: " + this.model.cid)
 		event.preventDefault();
 		var formData = $(event.currentTarget).serializeJSON();
 		var that = this;
-		// var newComment = new Teacup.Models.Comment({post_id: this.hackCONSTANT});
-		var newComment = new Teacup.Models.Comment({ post_id: this.model.id });
+		var newComment = new Teacup.Models.Comment({post_id: this.hackCONSTANT});
+		// var newComment = new Teacup.Models.Comment({ post_id: this.model.id });
 		newComment.set(formData);
 		newComment.save({}, {
 			success: function(){

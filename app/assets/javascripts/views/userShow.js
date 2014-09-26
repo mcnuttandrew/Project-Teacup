@@ -14,7 +14,8 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	
 	events: {
 		"click .follow": "followUser",
-		"click .unfollow": "unfollowUser"
+		"click .unfollow": "unfollowUser",
+		"click .expandPost": "expandPost"
 	},
 	
 	render: function(){
@@ -74,5 +75,16 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			}
 		})
 	},
+	
+	expandPost: function(event){
+		$(".expansionSlot").empty();
+		var targetPost = event.currentTarget.getAttribute('data-id');
+		var post = Teacup.Collections.posts.getOrFetch(targetPost);
+		var postExpand = new Teacup.Views.singleExpand({
+			model: post,
+			postOwner: this.model
+		});
+		this.addSubview(".expansionSlot", postExpand);
+	}
 	
 })

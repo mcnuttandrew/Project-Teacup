@@ -2,16 +2,23 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	template: JST['posts/single'],
 	tagName: "ul",
 	
+	initialize: function(options){
+		this.postOwner = options.postOwner
+	},
+	
 	events: {
 		"click .removeTweet": "removeTweet",
 	},
 	
 	render: function(){	
 		console.log("rendering single post")
-		var curUser = Teacup.Collections.users.getOrFetch(this.model.get('user_id'));
+		if(!this.postOwner){
+			this.postOwner = Teacup.Collections.users.getOrFetch(this.model.get('user_id'));
+		}
+		console.log(this.postOwner);
 		var renderedContent = this.template({
 			post: this.model,
-			user: curUser
+			user: this.postOwner
 		});
 		this.attachSubviews();
 		this.$el.html(renderedContent);

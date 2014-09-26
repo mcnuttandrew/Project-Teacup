@@ -7,7 +7,6 @@ module Api
       @comment.save
 
       flash.now[:errors]= @comment.errors.full_messages
-      # redirect_to user_url(@post.user_id) 
       render json: @comment
     end
   
@@ -15,7 +14,6 @@ module Api
       @comment = Comment.find_by_id(params[:id])
       return_address = @comment.post.user_id
       @comment.destroy
-      # redirect_to user_url(return_address)/
       render json: @comment
     end
     

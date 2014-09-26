@@ -12,7 +12,8 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 		var currentUserId = $("#currentUser").data().id;
 		var postNewView = new Teacup.Views.newPost({
 			model: Teacup.Collections.users.getOrFetch(currentUserId),
-			collection: this.postCollection
+			collection: this.postCollection,
+			userCollection: this.userCollection
 		});
 		this.addSubview(".newcontent", postNewView);
 				
@@ -21,8 +22,8 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	
 	events: {
 		"click .expandPost": "expandPost",
-		"click .following": "openFollowingModal",
-		"click .followers": "openFollowersModal",
+		// "click .following": "openFollowingModal",
+		// "click .followers": "openFollowersModal",
 	},
 	
 	render: function() {	
@@ -84,7 +85,7 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 			content: view,
 			title: title,
 			animate: true
-		}).open(function(){ console.log('clicked OK') });
+		}).open();
 	},
 	
 	openFollowersModal: function() {

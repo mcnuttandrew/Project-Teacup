@@ -2,6 +2,10 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 	template: JST['posts/expand'],
 	className: "col-xs-3  bg-danger",
 
+	events: {
+		"click .mapPost": "mapModal"
+	},
+
 	initialize: function(){
 		this.listenTo(this.model , "sync", this.render)
 		this.listenTo(this.model.comments(), "add", this.addComment );
@@ -43,9 +47,26 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 	},
 	
 	buildMap: function(latitude, longitude){
-		// this.removeMap(latitude, longitude);
 		$(".mapPost").empty();
 		var newMapView = new Teacup.Views.newMap({latitude: latitude, longitude: longitude})
 		this.addSubview(".mapPost", newMapView);
 	},
+	
+	mapModal: function() {
+		// var view = new Teacup.Views.newMap({
+		var user = Teacup.Collections.users.getOrFetch(this.model.user_id);
+		var view = new Teacup.Views.postView({
+			// postView
+			// latitude: this.model.get('latitude'),
+			// longitude: this.model.get('longitude')
+			model: this.model,
+			user: user
+		});
+		this.modal = new Backbone.BootstrapModal({
+			content: view,
+			title: this.model.get('content'),
+			animate: true
+		}).open();
+	}
+	
 })

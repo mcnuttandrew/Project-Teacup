@@ -18,13 +18,17 @@
 @import "bootstrap";
 
 li.expandPost{
-	margin: 1%;
+	margin: 0%;
+	float: top;
 }
 
 li.expandPost:hover{
 	border: thin solid black;
-	margin: -1%;
-	padding: -1%;
+	background-color: gray;
+//	margin: -1%;
+//	width: 100%;
+	
+//	padding: -1%;
 }
 
 ul.posts {
@@ -32,4 +36,33 @@ ul.posts {
 	list-style-type: none;
 	padding: 0;
 	maring: 0;
+}
+
+.main-posts li {
+	margin: 1%;
+	display: inline-block;
+	float: left;
+	border: thin solid gray;
+	height: 180px;
+	width: 180px;
+	overflow: scroll;
+//	background: black;
+	font-color: white;
+}
+
+.main-posts h6 {
+	border: thin solid red;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.main-posts h4 {
+	font-size: 1.25em;
+	border: thin solid red;
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+.main-posts * {
+	text-align: justify;
 }

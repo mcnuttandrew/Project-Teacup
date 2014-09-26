@@ -4,12 +4,12 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	},
 	
 	routes: {
-		"": "home",
-		"users/:id": "show"
+		"home": "home",
+		"users/:id": "show",
+		"" : "main"
 	},
 	
 	home: function() {
-		
 		Teacup.Collections.posts.fetch();
 		Teacup.Collections.users.fetch();
 		var feedView = new Teacup.Views.postsFeed({
@@ -17,6 +17,16 @@ Teacup.Routers.Router = Backbone.Router.extend({
 			postCollection: Teacup.Collections.posts
 		});
 		this._swapView(feedView);
+	}, 
+	
+	main: function() {
+		Teacup.Collections.masterPosts.fetch();
+		Teacup.Collections.users.fetch();
+		var anonView = new Teacup.Views.mainView({
+			userCollection: Teacup.Collections.users,
+			postCollection: Teacup.Collections.masterPosts
+		});
+		this._swapView(anonView);
 	}, 
 
 	show: function(id){

@@ -12,5 +12,5 @@ end
 
 tweets = @user.posts
 json.tweets(tweets) do |tweet|
-  json.(tweet, :id, :content, :created_at, :updated_at)
+  json.(tweet, :id, :content, :user_id, :latitude, :longitude, :created_at, :updated_at)
 end

@@ -3,7 +3,8 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	// tagName: "li",
 	
 	initialize: function(options){
-		this.postOwner = options.postOwner;
+		this.user = options.user;
+		
 	},
 	
 	events: {
@@ -11,18 +12,15 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	},
 	
 	render: function(){	
-		// debugger;
-		// console.log(this.postOwner);
-		if(! this.postOwner){
-			this.postOwner = Teacup.Collections.users.getOrFetch(this.model.get('user_id'));
-		}
-		var renderedContent = this.template({
-			post: this.model,
-			user: this.postOwner
-		});
-		this.attachSubviews();
-		this.$el.html(renderedContent);
-	
+		var that = this;
+		setTimeout(function(){
+			var renderedContent = that.template({
+				post: that.model,
+				user: that.user
+			});
+			that.attachSubviews();
+			that.$el.html(renderedContent);
+		}, 0)
 		return this;
 	},
 	

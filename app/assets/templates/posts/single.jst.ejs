@@ -6,6 +6,7 @@
 		Posted by
 		<a href="#/users/<%= user.get('id')%>">
 			<%= user.get('username')%>
+			<%= post.get('username')%> 
 		</a>
 		<%if($("#currentUser").data().id === user.get('id')){%> 
 			<button class="removeTweet">delete post</button>

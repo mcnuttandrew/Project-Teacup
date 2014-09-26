@@ -3,10 +3,12 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	
 	initialize: function(options){
 		this.currentUser = options.currentUser;
+		this.userCollection = options.userCollection;
 
 		this.listenTo(this.model, "sync", this.render);
 		this.listenTo(this.currentUser, "sync", this.render);
-		this.listenToOnce(this.collection, "sync", this.render);
+		this.listenToOnce(this.userCollection, "sync", this.render);
+		
 		this.listenTo(this.model, "change", this.render);
 		this.listenTo(this.model.posts(), "add", this.addPost);
 
@@ -22,7 +24,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	},
 	
 	render: function(){
-		if(this.currentUser){
+		if(this.currentUser && this.model.get('username')){
 			var renderedContent = this.template({
 				user: this.model,
 				follows: this.currentUser.follows(this.model),
@@ -38,7 +40,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	addPost: function(post){
 		var PostsShow = new Teacup.Views.singlePost({
 			model: post,
-			postOwner: this.model
+			user: this.model
 		});
 		this.addSubviewBefore(".posts", PostsShow);
 	},
@@ -95,27 +97,32 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	openFollowingModal: function() {
 		var view = new Teacup.Views.followingView({
 			model: Teacup.Collections.users.getOrFetch(this.model.id),
-			collection: this.collection
+			collection: this.userCollection
 		});
 		var title = Teacup.Collections.users.getOrFetch(this.model.id).get('username') + " follows"
-		var modal = new Backbone.BootstrapModal({
+		this.modal = new Backbone.BootstrapModal({
 			content: view,
 			title: title,
 			animate: true
 		}).open();
+		
+		$('a').click(function(){
+			debugger;
+		  modal.close();
+		})
 	},
 	
 	openFollowersModal: function() {
 		var view = new Teacup.Views.followersView({
 			model: Teacup.Collections.users.getOrFetch(this.model.id),
-			collection: this.collection
+			collection: this.userCollection
 		});
 		var title = Teacup.Collections.users.getOrFetch(this.model.id).get('username') + " is followed by"
-		var modal = new Backbone.BootstrapModal({
+		this.modal = new Backbone.BootstrapModal({
 			content: view,
 			title: title,
 			animate: true
 		}).open();
-	}
+	},
 	
 })

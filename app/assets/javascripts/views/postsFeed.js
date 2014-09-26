@@ -92,6 +92,7 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 			title: title,
 			animate: true
 		}).open();
+		
 	}
 	
 })

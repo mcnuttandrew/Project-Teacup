@@ -7,10 +7,13 @@ Teacup.Views.singleComment = Backbone.CompositeView.extend({
 	},
 
 	render: function(){
-		var renderedContent = this.template({
-			comment: this.model,
-		});
-		this.$el.html(renderedContent);
+		var that = this
+		// setTimeout(function(){
+			var renderedContent = that.template({
+				comment: that.model,
+			});
+			that.$el.html(renderedContent);
+		// }, 1)
 		return this;
 	},
 	

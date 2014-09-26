@@ -15,7 +15,7 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 			collection: this.postCollection
 		});
 		this.addSubview(".newcontent", postNewView);
-		
+				
 		this.postCollection.each(this.addPost.bind(this));
 	},
 	
@@ -33,8 +33,14 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	},
 	
 	addPost: function(post) {
-		var PostsShow = new Teacup.Views.singlePost({model: post});
-		this.addSubviewBefore(".posts", PostsShow);
+
+		var poster = this.userCollection.getOrFetch(post.attributes.user_id);
+		var that = this;
+		var PostsShow = new Teacup.Views.singlePost({
+			model: post,
+			user: poster
+		});
+		that.addSubviewBefore(".posts", PostsShow);
 	},
 	
 	removePost: function(post){

@@ -11,7 +11,6 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 		
 		this.listenTo(this.model, "change", this.render);
 		this.listenTo(this.model.posts(), "add", this.addPost);
-
 		this.model.posts().each(this.addPost.bind(this));
 	},
 	
@@ -38,6 +37,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	},
 	
 	addPost: function(post){
+		
 		var PostsShow = new Teacup.Views.singlePost({
 			model: post,
 			user: this.model
@@ -124,5 +124,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			animate: true
 		}).open();
 	},
+	
+	
 	
 })

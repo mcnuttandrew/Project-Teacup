@@ -5,14 +5,13 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	
 	routes: {
 		"": "home",
-		// "following/:id": "following",
-	// 	"followers/:id": "followers",
 		"users/:id": "show"
 	},
 	
 	home: function() {
-		Teacup.Collections.users.fetch();
+		
 		Teacup.Collections.posts.fetch();
+		Teacup.Collections.users.fetch();
 		var feedView = new Teacup.Views.postsFeed({
 			userCollection: Teacup.Collections.users,
 			postCollection: Teacup.Collections.posts
@@ -30,28 +29,6 @@ Teacup.Routers.Router = Backbone.Router.extend({
 		this._swapView(userView);
 	},
 
-	// following: function(id) {
-// 		var that = this;
-// 		Teacup.Collections.users.fetch({success: function(){
-// 			var followView = new Teacup.Views.followingView({
-// 				model: Teacup.Collections.users.getOrFetch(id),
-// 				collection: Teacup.Collections.users
-// 			});
-// 			that._swapView(followView);
-// 		}})
-// 	},
-//
-// 	followers: function(id) {
-// 		var that = this;
-// 		Teacup.Collections.users.fetch({success: function(){
-// 			var followView = new Teacup.Views.followersView({
-// 				model: Teacup.Collections.users.getOrFetch(id),
-// 				collection: Teacup.Collections.users
-// 			});
-// 			that._swapView(followView);
-// 		}})
-// 	},
-	
 	_swapView: function(view){
 		this.currentView && this.currentView.remove();
 		this.currentView = view;

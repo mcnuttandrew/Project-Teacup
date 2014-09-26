@@ -4,6 +4,7 @@
 			<img src="assets/placeholder.jpeg"  class="img-circle img-responsive">
 		</div>
 		<h1 class="text-center"> <%= user.get('username')%>
+			<br>
 		<% if(currentUserId !== user.get('id')) {%>
 			<% if(follows){%>
 				<button class="unfollow btn btn-info"> Unfollow</button>

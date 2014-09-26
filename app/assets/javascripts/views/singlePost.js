@@ -4,7 +4,7 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 	
 	initialize: function(options){
 		this.user = options.user;
-		
+		this.listenTo(this.user, "sync", this.render);
 	},
 	
 	events: {
@@ -20,8 +20,10 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 			});
 			that.attachSubviews();
 			that.$el.html(renderedContent);
-		}, 0)
-		return this;
+		}, 0);
+		
+		
+		return that;
 	},
 	
 	removeTweet: function(){

@@ -20,6 +20,8 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		this.addSubview(".new-content", postNewView);
 		
 		this.postCollection.each(this.addPost.bind(this));
+		
+
 	},
 	
 	events: {
@@ -27,9 +29,11 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	},
 	
 	render: function(){
+		this.numberOfPosts = 0;
 		var renderedContent = this.template({})
 		this.$el.html(renderedContent)
 		this.attachSubviews();
+		// debugger;
 		return this;
 	},
 	
@@ -37,7 +41,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		if(this.numberOfPosts < 9) {
 			var poster = this.userCollection.getOrFetch(post.attributes.user_id);
 			var that = this;
-			var PostsShow = new Teacup.Views.singlePost({
+			var PostsShow = new Teacup.Views.compressedPost({
 				model: post,
 				user: poster
 			});
@@ -70,6 +74,9 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 			title: post.get('content'),
 			animate: true
 		}).open();
+	},
+	
+	replaceSquare: function(location, model){
 	}
 	
 })

@@ -45,24 +45,29 @@ ul.posts {
 	border: thin solid gray;
 	height: 180px;
 	width: 180px;
-	overflow: scroll;
+	overflow: hidden;
 //	background: black;
 	font-color: white;
 }
 
-.main-posts h6 {
-	border: thin solid red;
+.main-posts h4 {
+	font-size: 3.5em;
 	display: inline-block;
 	vertical-align: bottom;
 }
 
-.main-posts h4 {
-	font-size: 1.25em;
-	border: thin solid red;
-	display: inline-block;
-	vertical-align: bottom;
-}
+
 
 .main-posts * {
-	text-align: justify;
+//	text-align: justify;
+}
+
+.posts {
+	max-height: 500px;
+	overflow-y: scroll;
+}
+
+.comments-list {
+	max-height: 200px;
+	overflow-y: scroll;
 }

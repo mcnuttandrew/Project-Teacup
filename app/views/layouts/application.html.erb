@@ -5,7 +5,8 @@
 	<%= stylesheet_link_tag 'application' %>
 	<%= javascript_include_tag 'application' %>
 	<%= csrf_meta_tags %>
-
+	<script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+	
 </head>
 <body>
 <div id="currentUser" data-id="<%= current_user.id unless !current_user %>"></div>

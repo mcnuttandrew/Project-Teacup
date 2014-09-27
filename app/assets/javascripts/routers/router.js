@@ -27,6 +27,7 @@ Teacup.Routers.Router = Backbone.Router.extend({
 			postCollection: Teacup.Collections.masterPosts
 		});
 		this._swapView(anonView);
+		// setInterval(console.log("batman"), 1000);
 	}, 
 
 	show: function(id){

@@ -15,12 +15,13 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 	events: {
 		"submit form.post-submit": "submit",
 		"keypress #content": "charsCount",
-		"keypress #latitude": "latitude",
-		"keypress #longitude": "longitude",
+		"keypress #geocoderInput": "geocoderFill",
 		"click .following": "openFollowingModal",
 		"click .followers": "openFollowersModal",
 		"click .preview": "mapModal"
 	},
+	
+	
 	
 	render: function(){
 		var renderedContent = this.template({
@@ -36,8 +37,8 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		var formData = $(event.currentTarget).serializeJSON();
 		var that = this;
 		var newPost = new Teacup.Models.Post();
-		// console.log(formData);
-		debugger;
+		formData.latitude = this.coords.latitude;
+		formData.longitude = this.coords.longitude;
 		newPost.set(formData);
 		newPost.save(formData, {
 			success: function(){
@@ -57,14 +58,13 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		this.$el.find(".chars-left").text(numLeft);
 	},
 	
-	latitude: function(event){
-		this.coords.latitude = $(event.currentTarget).serializeJSON().latitude;
-		// this.buildMap(this.coords.latitude, this.coords.longitude);
-	},
-	
-	longitude: function(event){
-		this.coords.longitude = $(event.currentTarget).serializeJSON().longitude;
-		// this.buildMap(this.coords.latitude, this.coords.longitude);
+	geocoderFill: function(){
+		var that = this;
+		$("#geocoderInput").geocomplete({details: ".post-submit"}).bind("geocode:result",
+		 function(event, result){
+			 that.coords.longitude = result.geometry.location.k;
+			 that.coords.longitude = result.geometry.location.B;
+  	});
 	},
 	
 	buildMap: function(latitude, longitude){
@@ -111,6 +111,8 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		}).open();
 		
 	}
+	
+	
 	
 	
 })

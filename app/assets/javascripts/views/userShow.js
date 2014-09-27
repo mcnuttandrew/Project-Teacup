@@ -11,6 +11,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 		
 		this.listenTo(this.model, "change", this.render);
 		this.listenTo(this.model.posts(), "add", this.addPost);
+		this.listenTo(this.model.posts(), "remove", this.removePost);
 		this.model.posts().each(this.addPost.bind(this));
 	},
 	
@@ -43,6 +44,15 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			user: this.model
 		});
 		this.addSubviewBefore(".posts", PostsShow);
+	},
+	
+	removePost: function(post){
+		var subview = _.find(
+			this.subviews(".posts"), function(subview){
+				return subview.model === post;
+			}
+		);
+		this.removeSubview(".posts", subview);
 	},
 	
 	followUser: function(){

@@ -7,7 +7,6 @@ Teacup.Views.newMap = Backbone.View.extend({
 	},
 	
 	render: function(){
-		// debugger;
 		var renderedContent = this.template({
 			latitude: this.latitude,
 			longitude: this.longitude

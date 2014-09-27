@@ -16,12 +16,9 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 			collection: this.postCollection,
 			userCollection: this.userCollection
 		});
-		this.numberOfPosts = 0;
 		this.addSubview(".new-content", postNewView);
-		
+		this.postSize = 0;
 		this.postCollection.each(this.addPost.bind(this));
-		
-
 	},
 	
 	events: {
@@ -29,7 +26,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	},
 	
 	render: function(){
-		this.numberOfPosts = 0;
+		this.postSize = 0;
 		var renderedContent = this.template({})
 		this.$el.html(renderedContent)
 		this.attachSubviews();
@@ -38,17 +35,28 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	},
 	
 	addPost: function(post) {
-		if(this.numberOfPosts < 9) {
-			var poster = this.userCollection.getOrFetch(post.attributes.user_id);
-			var that = this;
-			var PostsShow = new Teacup.Views.compressedPost({
-				model: post,
-				user: poster
+		//fills up the main feed to a maximum size,
+		//at the maximum it swaps out the model of a random view
+		if((! this.subviews()[".main-posts"])
+			 || this.subviews()[".main-posts"].length < 9 || this.postSize < 9) {
+				this.postSize +=1;
+				var poster = this.userCollection.getOrFetch(post.attributes.user_id);
+				var that = this;
+				var PostsShow = new Teacup.Views.compressedPost({
+					model: post,
+					user: poster
+				});
+				that.addSubviewBefore(".main-posts", PostsShow);
+		} else if(this.subviews()[".main-posts"].length === 9){
+			var subview = this.subviews()[".main-posts"][Math.floor(Math.random() * 9)]
+			$(subview.$el).fadeOut(1000, function(){
+				subview.model = post
+				subview.render();
+				$(subview.$el).fadeIn(1000);
 			});
-			that.addSubviewBefore(".main-posts", PostsShow);
-			this.numberOfPosts += 1;
 		}
 	},
+	
 	
 	removePost: function(post){
 		var subview = _.find(
@@ -56,7 +64,8 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 				return subview.model === post;
 			}
 		);
-		this.removeSubview(".main-posts", subview);
+		var that  = this;
+		that.removeSubview(".main-posts", subview);
 	},
 	
 	postModal: function(event) {

@@ -20,7 +20,12 @@ Teacup.Collections.MasterPosts = Backbone.Collection.extend({
 			post.fetch();
 		}
 		return post;
+	},
+	
+	swapItems : function(index1, index2) {
+		this.models[index1] = this.models.splice(index2, 1, this.models[index1])[0];
 	}
+			
 })
 
 Teacup.Collections.masterPosts = new Teacup.Collections.MasterPosts();

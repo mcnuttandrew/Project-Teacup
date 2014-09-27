@@ -25,10 +25,6 @@ li.expandPost{
 li.expandPost:hover{
 	border: thin solid black;
 	background-color: gray;
-//	margin: -1%;
-//	width: 100%;
-	
-//	padding: -1%;
 }
 
 ul.posts {
@@ -36,6 +32,7 @@ ul.posts {
 	list-style-type: none;
 	padding: 0;
 	maring: 0;
+	width: 350px;
 }
 
 .main-posts li {
@@ -49,17 +46,16 @@ ul.posts {
 //	background: black;
 	font-color: white;
 }
+.main-posts{
+	height: 700px;
+	width: 700px;
+
+}
 
 .main-posts h4 {
 	font-size: 3.5em;
 	display: inline-block;
 	vertical-align: bottom;
-}
-
-
-
-.main-posts * {
-//	text-align: justify;
 }
 
 .posts {
@@ -70,4 +66,8 @@ ul.posts {
 .comments-list {
 	max-height: 200px;
 	overflow-y: scroll;
+}
+
+.new-content .newcontent{
+	width: 275px;
 }

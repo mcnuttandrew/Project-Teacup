@@ -4,6 +4,7 @@ Teacup.Views.compressedPost = Backbone.CompositeView.extend({
 	
 	initialize: function(options){
 		this.user = options.user;
+		this.color = options.color; 
 		this.listenTo(this.user, "sync", this.render);
 	},
 	

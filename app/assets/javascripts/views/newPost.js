@@ -40,9 +40,16 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		formData.latitude = this.coords.latitude;
 		formData.longitude = this.coords.longitude;
 		newPost.set(formData);
+		// debugger;
 		newPost.save(formData, {
 			success: function(){
-				that.collection.add(newPost);
+				//special cases for when on dashboard (true path) vs main feed
+				if($(".main-posts").length === 0){
+					that.collection.add(newPost);
+				} else {
+					// that.collection.remove(that.collection.models[8]);
+					that.collection.add(newPost);
+				}
 				that.render();
 			},
 			error: function(response){
@@ -62,7 +69,7 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		var that = this;
 		$("#geocoderInput").geocomplete({details: ".post-submit"}).bind("geocode:result",
 		 function(event, result){
-			 that.coords.longitude = result.geometry.location.k;
+			 that.coords.latitude = result.geometry.location.k;
 			 that.coords.longitude = result.geometry.location.B;
   	});
 	},

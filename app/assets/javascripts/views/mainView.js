@@ -17,7 +17,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 			userCollection: this.userCollection
 		});
 		this.addSubview(".new-content", postNewView);
-		this.postSize = 0;
+		this.postSize = 1;
 		this.postCollection.each(this.addPost.bind(this));
 	},
 	
@@ -35,22 +35,27 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	},
 	
 	addPost: function(post) {
+		console.log(this.subviews()[".main-posts"], this.postSize)
 		//fills up the main feed to a maximum size,
 		//at the maximum it swaps out the model of a random view
-		if((! this.subviews()[".main-posts"])
-			 || this.subviews()[".main-posts"].length < 9 || this.postSize < 9) {
+		if(! this.subviews()[".main-posts"]
+			 || this.subviews()[".main-posts"].length < 9 
+			 || (this.postSize > 0 && this.postSize < 9) ) {
 				this.postSize +=1;
 				var poster = this.userCollection.getOrFetch(post.attributes.user_id);
 				var that = this;
 				var PostsShow = new Teacup.Views.compressedPost({
+					color: this.getColor(),
 					model: post,
 					user: poster
 				});
 				that.addSubviewBefore(".main-posts", PostsShow);
-		} else if(this.subviews()[".main-posts"].length === 9){
+		} else {//if(this.subviews()[".main-posts"].length === 9 || this.postSize === 9){
 			var subview = this.subviews()[".main-posts"][Math.floor(Math.random() * 9)]
+			var that = this;
 			$(subview.$el).fadeOut(1000, function(){
 				subview.model = post
+				subview.color = that.getColor();
 				subview.render();
 				$(subview.$el).fadeIn(1000);
 			});
@@ -67,6 +72,12 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		var that  = this;
 		that.removeSubview(".main-posts", subview);
 	},
+	
+	getColor: function(){
+		var colors = ["#FF0000", "#00FF00", "#FF00FF", "#FFFF00", "#00FFFF"];
+		return colors[Math.floor(Math.random() * 5)];
+	},
+	
 	
 	postModal: function(event) {
 		// debugger;

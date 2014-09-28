@@ -17,7 +17,8 @@ Teacup.Views.compressedPost = Backbone.CompositeView.extend({
 		setTimeout(function(){
 			var renderedContent = that.template({
 				post: that.model,
-				user: that.user
+				user: that.user,
+				color: that.color
 			});
 			that.attachSubviews();
 			that.$el.html(renderedContent);

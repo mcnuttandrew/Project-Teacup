@@ -3,11 +3,12 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 	className: "col-xs-3  expansion",
 
 	events: {
-		"click .mapPost": "mapModal"
+		"click .expandpost": "mapModal",
 	},
 
 	initialize: function(){
 		this.listenTo(this.model , "sync", this.render)
+		this.listenTo(this.model , "sync", this.metaMap)
 		this.listenTo(this.model.comments(), "add", this.addComment );
 		this.listenTo(this.model.comments(), "remove", this.removeComment );
 		this.model.comments().each(this.addComment.bind(this));
@@ -16,8 +17,24 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 			model: this.model
 		});
 		this.addSubview(".commment-form", commentNewView);
+		
+	},
+	
+	metaMap: function(){
+		// debugger;
 		if(this.model.get('latitude') && this.model.get('longitude')){
-			this.buildMap(this.model.get('latitude'), this.model.get('longitude'));
+			if(this.model.get('dream_latitude') && this.model.get('longitude')){
+				// debugger;
+				this.buildMap(
+					this.model.get('latitude'), 
+					this.model.get('longitude'),
+					this.model.get('dream_latitude'), 
+					this.model.get('dream_longitude')
+				);
+			} else {
+				this.buildMap(this.model.get('latitude'), this.model.get('longitude'));
+			}
+
 		}
 	},
 
@@ -46,19 +63,25 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 		this.removeSubview(".comments-list", subview);
 	},
 	
-	buildMap: function(latitude, longitude){
+	buildMap: function(latitude, longitude, dreamLatitude, dreamLongitude){
 		$(".mapPost").empty();
-		var newMapView = new Teacup.Views.newMap({latitude: latitude, longitude: longitude})
+		var newMapView;
+		if(dreamLatitude && dreamLongitude){
+			newMapView = new Teacup.Views.newMap({
+				latitude: latitude,
+				longitude: longitude,
+				dreamLatitude: dreamLatitude,
+				dreamLongitude: dreamLongitude
+			})
+		} else {
+			newMapView = new Teacup.Views.newMap({latitude: latitude, longitude: longitude})
+		}
 		this.addSubview(".mapPost", newMapView);
 	},
 	
 	mapModal: function() {
-		// var view = new Teacup.Views.newMap({
 		var user = Teacup.Collections.users.getOrFetch(this.model.user_id);
 		var view = new Teacup.Views.postView({
-			// postView
-			// latitude: this.model.get('latitude'),
-			// longitude: this.model.get('longitude')
 			model: this.model,
 			user: user
 		});
@@ -68,6 +91,5 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 			animate: true
 		}).open();
 		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
-	}
-	
+	},
 })

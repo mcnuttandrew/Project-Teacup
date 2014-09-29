@@ -25,6 +25,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 				url: ('api/main_feed/single'), 
 				type: 'GET',
 				success: function(post){
+					// debugger;
 					that.postCollection.add(post);
 				}
 			});
@@ -33,7 +34,6 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	
 	events: {
 		"click .expandPost": "postModal",
-		// "change #modal-open": "modalColor"
 	},
 	
 	render: function(){
@@ -94,7 +94,6 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	
 	
 	postModal: function(event) {
-		// debugger;
 		var targetPost = event.currentTarget.getAttribute('data-id');
 		var targetColor = event.currentTarget.getAttribute('data-color');
 		var post = this.postCollection.getOrFetch(targetPost);
@@ -112,19 +111,5 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		}).open();
 		$(this.modal.$el.children().children()[0]).css("backgroundColor", targetColor);
 	},
-	
-	modalColor: function(){
-		debugger;
-	},
-	
-	replaceSquare: function(location, model){
-		// openModal: function() {
-		//         var view = new ModalView();
-		//         var modal = new Backbone.BootstrapModal({
-		//             content: view,
-		//             title: 'modal header',
-		//             animate: true
-		//         }).open(function(){ console.log('clicked OK') });
-	}
 	
 })

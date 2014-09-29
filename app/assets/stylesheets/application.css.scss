@@ -148,7 +148,7 @@ ul.posts, .posts {
 	border-radius: 10%;
 }
 .main-posts{
-	margin-top: 1%;
+	margin-top: 5%;
 	height: 700px;
 	width: 700px;
 
@@ -241,5 +241,18 @@ button.cancel-button {
 .sign-up-wrapper{
 	background: black;
 	min-height: 400px;
+}
+
+.expansion .map-wrapper{
+	height: 200px;
+}
+
+.modal .map-wrapper{
+	height: 350px;
+	width: 100%;
+}
+
+h3.expandpost:hover {
+	color:red;
 }
 

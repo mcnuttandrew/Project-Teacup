@@ -14,11 +14,24 @@ Teacup.Views.postView = Backbone.CompositeView.extend({
 			model: this.model
 		});
 		this.addSubview(".main-comments-form", commentNewView);
-		this.buildMap();
+		if(this.model.get('dream_latitude')){
+			this.buildMap(
+				this.model.get('latitude'), 
+				this.model.get('longitude'),
+				this.model.get('dream_latitude'), 
+				this.model.get('dream_longitude')
+			);
+		} else {
+			this.buildMap(
+				this.model.get('latitude'), 
+				this.model.get('longitude')
+			);
+		}
 	},
 	
 	
 	render: function(){
+		
 		var that = this;
 		var renderedContent = that.template({
 			model: this.model
@@ -28,11 +41,12 @@ Teacup.Views.postView = Backbone.CompositeView.extend({
 		return that;
 	},
 	
-	
-	buildMap: function(){
+	buildMap: function(lat, long, dreamLat, dreamLong){
 		var postMap = new Teacup.Views.newMap({
-			latitude: this.model.get('latitude'),
-			longitude: this.model.get('longitude')
+			latitude: lat,
+			longitude: long,
+			dreamLatitude: dreamLat,
+			dreamLongitude: dreamLong
 		});
 		this.addSubview(".post-blowup-map", postMap);
 	},

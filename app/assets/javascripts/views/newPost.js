@@ -8,7 +8,9 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		this.listenToOnce(this.userCollection, "sync", this.render);
 		
 		
-		this.coords = {latitude: 33.873415, longitude: -115.900992 }
+		this.coords = {latitude: 0, longitude: 0 }
+		this.dreamCoords = {latitude: Math.PI, longitude: Math.PI }
+
 		this.buildMap(this.coords.latitude, this.coords.longitude);
 	},
 	
@@ -16,6 +18,7 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		"submit form.post-submit": "submit",
 		"keypress #content": "charsCount",
 		"keypress #geocoderInput": "geocoderFill",
+		"keypress #geocoderInputDream": "geocoderFillDream",
 		"click .following": "openFollowingModal",
 		"click .followers": "openFollowersModal",
 		"click .preview": "mapModal"
@@ -24,11 +27,14 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 	
 	
 	render: function(){
+		this.getGeolocation();
 		var renderedContent = this.template({
 			user: this.model,
 		});
 		this.attachSubviews();
 		this.$el.html(renderedContent);
+		this.coords = {latitude: 0, longitude: 0 }
+		this.dreamCoords = {latitude: 0, longitude: 0 }
 		return this;
 	},
 	
@@ -39,8 +45,17 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		var newPost = new Teacup.Models.Post();
 		formData.latitude = this.coords.latitude;
 		formData.longitude = this.coords.longitude;
-		newPost.set(formData);
+		formData.dream_latitude = this.dreamCoords.latitude;
+		formData.dream_longitude = this.dreamCoords.longitude;
+		if(formData.dream_latitude === 0){
+			delete formData.dream_latitude;
+		}
+		if(formData.dream_longitude === 0){
+			delete formData.dream_longitude;
+		}
 		// debugger;
+		newPost.set(formData);
+		console.log(formData);
 		newPost.save(formData, {
 			success: function(){
 				//special cases for when on dashboard (true path) vs main feed
@@ -72,6 +87,46 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			 that.coords.latitude = result.geometry.location.k;
 			 that.coords.longitude = result.geometry.location.B;
   	});
+	},
+	
+	geocoderFillDream: function(){
+		var that = this;
+		$("#geocoderInputDream").geocomplete({details: ".post-submit"}).bind("geocode:result",
+		 function(event, result){
+			 that.dreamCoords.latitude = result.geometry.location.k;
+			 that.dreamCoords.longitude = result.geometry.location.B;
+  	});
+	},
+	
+	getGeolocation: function(){
+		var pos;
+		var that = this;
+		// Try HTML5 geolocation
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+				that.coords.latitude = position.coords.latitude;
+				that.coords.longitude = position.coords.longitude;
+				var requestLoc = "http://maps.google.com/maps/api/geocode/xml?latlng="+ position.coords.latitude  ;
+				requestLoc = requestLoc + "," + position.coords.longitude+ "&sensor=false.json";
+				setTimeout(function(){				
+					$.ajax({ 
+						url: (requestLoc), 
+						type: 'GET',
+						success: function(location){
+							var spelledLocation = $.text(location.firstChild.children[1].children[1]) + "";
+							$("#geocoderInput").attr("placeholder", spelledLocation);
+						}
+					});
+				}, 100)
+
+			}, function() {
+						pos = nil;
+			});
+			
+		} else {
+			// Browser doesn't support Geolocation
+			pos = nil;
+		}
 	},
 	
 	buildMap: function(latitude, longitude){

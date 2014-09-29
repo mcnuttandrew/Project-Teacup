@@ -1,4 +1,4 @@
-json.(@post, :id, :content, :latitude, :longitude, :user_id, :created_at, :updated_at)
+json.(@post, :id, :content, :latitude, :longitude, :dream_latitude, :dream_longitude, :user_id, :created_at, :updated_at)
 
 @user = @post.user
 json.(@user, :username)

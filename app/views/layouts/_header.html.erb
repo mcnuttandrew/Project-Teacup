@@ -12,21 +12,36 @@
     <a class="navbar-brand" href="#">Teaccup</a>
 	 <a class="navbar-brand" href="#/home">Dashboard</a>
   </div>
-
+	
+	
+	
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		<!-- Button trigger modal -->
+
     <ul class="nav navbar-nav navbar-right">
     <% if logged_in? %>
-      <li id='add-dropdown' class='dropdown'>
-        <!-- <button
-          class='dropdown-toggle navbar-btn btn btn-primary'
-          data-toggle='dropdown'><span class='glyphicon glyphicon-plus'></span>
-        </button> -->
+      <li id='search-bar'>
+			  <form class="navbar-form navbar-left" role="search">
+			         <div class="form-group">
+			           <input type="text" class="form-control" placeholder="Search for User">
+			         </div>
+			         <button type="submit" class="btn btn-primary">Submit</button>
+			       </form>
       </li>
+			<li id='find-users'>
+					<button class="btn btn-primary navbar-btn find-users"> Find Users To Follow</button>
+			</li>
       <li><%= button_to "Sign out", session_url, method: :delete, class: "btn btn-primary navbar-btn" %></li>
     <% else %>
+		
       <li><%= link_to "Log in", new_session_url %></li>
       <li><%= link_to "Sign up", new_user_url %></li>
     <% end %>
+		<li>
+			<button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#myModal">
+			  What is Teacup?
+			</button>
+		</li>
     </ul>
   </div>
 </div>
@@ -41,4 +56,39 @@
 		</div>
 		<% end %>
 		</div>
+</div>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel" style="color:black">FAQ</h4>
+      </div>
+      <div class="modal-body">
+      	 <div>
+					 <ul>
+			 			<li>
+							<h2>What is Teacup? </h2>
+							<h4><i> Teacup is an attempt to stare into the eye of the collective unconcious and to know it's thoughts. </i> </h4>
+						</li>
+			 			<li>
+							<h2>Why is Teacup a microblogging platform? </h2>
+							<h4><i>While we fully acknolwedge that dreams are usually complex and highly multi-layered much of our effort in this project is to attempt to see specific trends, and by insisting that descriptions be paired down to their most elementral we can be more confident that we are analyzing the important subjects of dreams rather than just the myriad of extraneous details that come along for the ride. </i> </h4>
+						</li>
+			 			<li>
+							<h2>Who made Teacup? </h2>
+							<h4><i>Teacup was made by Andrew McNutt, whose other work can be found <a href="https://github.com/mcnuttandrew">here</a>, <a href="https://mcnuttart.tumblr.com">here</a>, and <a href="http://www.openprocessing.org/user/35187">here</a>. He can be reached at mcnutt.andrew@gmail.com</i> </h4>
+						</li>
+					</ul>
+		 		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>

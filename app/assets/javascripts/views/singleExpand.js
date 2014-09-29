@@ -1,6 +1,6 @@
 Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 	template: JST['posts/expand'],
-	className: "col-xs-3  bg-danger",
+	className: "col-xs-3  expansion",
 
 	events: {
 		"click .mapPost": "mapModal"
@@ -67,6 +67,7 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 			title: this.model.get('content'),
 			animate: true
 		}).open();
+		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	}
 	
 })

@@ -58,12 +58,10 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	followUser: function(){
 		var that = this
 		$.ajax({ 
-			url: ('api/users/'+this.model.id+'/followship'), 
-			type: 'POST',
-			success: function(){
-				that.model.attributes.followers.push(that.currentUser);
-				that.currentUser.attributes.followed.push(that.model);
-				that.render();
+			url: ('api/main_feed/single'), 
+			type: 'GET',
+			success: function(post){
+				that.collection.add(post);
 			}
 		});
 	},

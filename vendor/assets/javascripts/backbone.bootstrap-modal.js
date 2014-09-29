@@ -34,11 +34,6 @@
     <div class="modal-body">{{content}}</div>\
     <% if (showFooter) { %>\
       <div class="modal-footer">\
-        <% if (allowCancel) { %>\
-          <% if (cancelText) { %>\
-            <a href="#" class="btn cancel">{{cancelText}}</a>\
-          <% } %>\
-        <% } %>\
         <a href="#" class="btn ok btn-primary">{{okText}}</a>\
       </div>\
     <% } %>\
@@ -63,15 +58,15 @@
           this.options.content.trigger('cancel', this);
         }
       },
-      'click .cancel': function(event) {
-        event.preventDefault();
-
-        this.trigger('cancel');
-
-        if (this.options.content && this.options.content.trigger) {
-          this.options.content.trigger('cancel', this);
-        }
-      },
+      // 'click .cancel': function(event) {
+ //        event.preventDefault();
+ //
+ //        this.trigger('cancel');
+ //
+ //        if (this.options.content && this.options.content.trigger) {
+ //          this.options.content.trigger('cancel', this);
+ //        }
+ //      },
       'click .ok': function(event) {
         event.preventDefault();
 
@@ -124,7 +119,7 @@
         okText: 'OK',
         focusOk: true,
         okCloses: true,
-        cancelText: 'Cancel',
+        // cancelText: 'Cancel',
         showFooter: true,
         allowCancel: true,
         escape: true,

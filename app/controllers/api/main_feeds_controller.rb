@@ -12,10 +12,10 @@ module Api
       end
     end
   
-    # def single
-  #     @post = Post.all.sample
-  #     render json: @post
-  #   end
+    def single
+      @post = Post.all.sample
+      render json: @post
+    end
     
     def show
       @posts = Post.all.shuffle.slice(0, 9)

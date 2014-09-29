@@ -1,10 +1,8 @@
 Teacup.Views.postView = Backbone.CompositeView.extend({
 	template: JST['posts/viewPost'],
-	// tagName: "li",
 	
 	initialize: function(options){
 		this.user = options.user;
-		// debugger;
 		this.listenTo(this.user, "sync", this.render);
 		this.listenTo(this.model.comments(), "add", this.addComment );
 		this.listenTo(this.model.comments(), "remove", this.removeComment );

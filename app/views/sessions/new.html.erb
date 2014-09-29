@@ -1,16 +1,30 @@
-<h1> Sign In </h1>
-<form action="<%= session_url%>" method="post">
-	  <label>
-	    Username
-	    <input type="text" name="user[username]" value="">
-	  </label>
+<div class="sign-in-container row">
+	<div class="text-center">
+		<h1><strong> TEACUP </strong></h1>
+		<h3><i>a microblogging platform for the collective unconscious</i></h3>
+	</div>
+</div>
+<div class="sign-in-wrapper">
+	<div class="sign-in text-center">
+		<form action="<%= session_url%>" method="post">
+			  <label>
+			    <h3>Username</h3>
+			    <input type="text" name="user[username]" value="">
+			  </label>
+				<br>
+			  <label>
+			    <h3>Password </h3>
+			    <input type="password" name="user[password]" value="">
+			  </label>
+	<br>
+				<h3>
+					<button class="button btn btn-info" value="Sign In"> Log In</button>
+					<button class="button btn btn-info" type="submit"> Guest Login </button>
+			 	</h3>			
+		</form>
 
-	  <label>
-	    Password
-	    <input type="password" name="user[password]" value="">
-	  </label>
+	</div>
+	
+</div>
 
-	  <input type="submit" value="Sign In">
-</form>
 
-<%=button_to "Sign Up", new_user_url, method: :get%>

@@ -19,10 +19,21 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		this.addSubview(".new-content", postNewView);
 		this.postSize = 1;
 		this.postCollection.each(this.addPost.bind(this));
+		var that = this;
+		setInterval(function(){
+			$.ajax({ 
+				url: ('api/main_feed/single'), 
+				type: 'GET',
+				success: function(post){
+					that.postCollection.add(post);
+				}
+			});
+		}, 3000)
 	},
 	
 	events: {
-		"click .expandPost": "postModal"
+		"click .expandPost": "postModal",
+		// "change #modal-open": "modalColor"
 	},
 	
 	render: function(){
@@ -35,7 +46,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	},
 	
 	addPost: function(post) {
-		console.log(this.subviews()[".main-posts"], this.postSize)
+		// console.log(this.subviews()[".main-posts"], this.postSize)
 		//fills up the main feed to a maximum size,
 		//at the maximum it swaps out the model of a random view
 		if(! this.subviews()[".main-posts"]
@@ -74,7 +85,10 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	},
 	
 	getColor: function(){
-		var colors = ["#FF0000", "#00FF00", "#FF00FF", "#FFFF00", "#00FFFF"];
+		var colors = ["#FD48FF", "#9B46E8", "#625AFF", "#4688E8", "#4DE6FF"]; //purple blue analogous
+		// var colors = ["#CFBE27", "#F27435", "#F02475"];
+		// var colors = ["#863BBF", "#59277F", "#B34FFF", "#2D1440", "#A147E5"]; //purple shades
+		// var colors = ["#FF42D8", "#CD3CE8", "#B34FFF", "#6F3CE8", "#4642FF"]; //purple anaogous
 		return colors[Math.floor(Math.random() * 5)];
 	},
 	
@@ -82,6 +96,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	postModal: function(event) {
 		// debugger;
 		var targetPost = event.currentTarget.getAttribute('data-id');
+		var targetColor = event.currentTarget.getAttribute('data-color');
 		var post = this.postCollection.getOrFetch(targetPost);
 		var user = this.userCollection.getOrFetch(post.user_id);
 
@@ -89,14 +104,27 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 			model: post,
 			user: user
 		});
+		
 		this.modal = new Backbone.BootstrapModal({
 			content: view,
 			title: post.get('content'),
 			animate: true
 		}).open();
+		$(this.modal.$el.children().children()[0]).css("backgroundColor", targetColor);
+	},
+	
+	modalColor: function(){
+		debugger;
 	},
 	
 	replaceSquare: function(location, model){
+		// openModal: function() {
+		//         var view = new ModalView();
+		//         var modal = new Backbone.BootstrapModal({
+		//             content: view,
+		//             title: 'modal header',
+		//             animate: true
+		//         }).open(function(){ console.log('clicked OK') });
 	}
 	
 })

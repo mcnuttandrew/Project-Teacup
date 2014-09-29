@@ -1,19 +1,31 @@
-<h1> Sign Up </h1>
-<form action="<%= users_url%>" method="post">
-	  <label>
-	    Username
-	    <input type="text" name="user[username]" value="">
-	  </label>
-		
-	  <label>
-	    Email
-	    <input type="text" name="user[email]" value="">
-	  </label>
 
-	  <label>
-	    Password
-	    <input type="password" name="user[password]" value="">
-	  </label>
-
-	  <button> Sign Up </button>
-</form>
+<div class="sign-in-container row">
+	<div class="text-center">
+		<h2>
+			<strong> SIGN UP FOR TEACUP </strong>
+		</h2>
+		<h3><i>a microblogging platform for the collective unconscious</i></h3>
+	</div>
+</div>
+<div class="row sign-up-wrapper">
+	<div class="text-center col-xs-3 col-xs-offset-4 signup">
+		<form action="<%= users_url%>" method="post">
+			  <label>
+			    <h3>Username</h3>
+			    <input type="text" name="user[username]" value="">
+			  </label>
+			<br>
+			  <label>
+			    <h3>Email</h3>
+			    <input type="text" name="user[email]" value="">
+			  </label>
+	<br>
+			  <label>
+			    <h3>Password</h3>
+			    <input type="password" name="user[password]" value="">
+			  </label>
+				<br>
+			  <button class="button btn btn-info"> Sign Up </button>
+		</form>
+	</div>
+</div>

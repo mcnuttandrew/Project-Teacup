@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   
   namespace :api, defaults: { format: 'json' } do
     resource :trend, only: [:show]
+    get "trend/:date", :to => "trends#select", :as => "trend_at_date"
+    get "trend/:start_date/:end_date", :to => "trends#over_time", :as => "trend_over_time"
+    
     resource :user_feed, only: [:show, :create]
     resource :main_feed, only: [:show, :create]
     

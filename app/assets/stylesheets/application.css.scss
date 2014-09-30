@@ -79,17 +79,11 @@ h1, h2, h3, h4, h5, h6 {
 	color: white;
 }
 
-.new-content {
-//	margin-top: 4%;
-}
-
 .removeTweet {
 	background-color: black;
 	color: #FD48FF;
 	border-radius: 10%;
 }
-
-
 
 .post-info{
 	background-color: #625AFF;
@@ -102,7 +96,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .user-info{
 	background-color: #625AFF;
-
 	display: block;
 	margin-bottom: 2%;
 	-webkit-box-shadow:0 0 20px #625AFF; 
@@ -131,10 +124,8 @@ li.expandPost:hover{
 }
 
 ul.posts, .posts {
-//	border: thin solid red;
 	list-style-type: none;
 	padding: 0 1% 0 1%;
-//	margin-top: 5%;
 	width: 350px;
 
 }
@@ -151,7 +142,7 @@ ul.posts, .posts {
 }
 
 .trending-wrapper{
-	min-height: 200px;
+	min-height: 100px;
 }
 
 .trends h1 {
@@ -295,3 +286,7 @@ h3.expandpost:hover {
 	height: 200px;
 }
 
+.trender {
+	color: white;
+	list-style-type: none;
+}

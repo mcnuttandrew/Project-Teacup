@@ -4,6 +4,7 @@ Teacup.Views.postView = Backbone.CompositeView.extend({
 	initialize: function(options){
 		this.user = options.user;
 		this.listenTo(this.user, "sync", this.render);
+		this.listenTo(this.model, "sync", this.render);
 		this.listenTo(this.model.comments(), "add", this.addComment );
 		this.listenTo(this.model.comments(), "remove", this.removeComment );
 		
@@ -31,7 +32,6 @@ Teacup.Views.postView = Backbone.CompositeView.extend({
 	
 	
 	render: function(){
-		
 		var that = this;
 		var renderedContent = that.template({
 			model: this.model

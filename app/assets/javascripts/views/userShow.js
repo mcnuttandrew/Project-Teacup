@@ -34,7 +34,14 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 		
 		this.$el.html(renderedContent);
 		this.attachSubviews();
+		this.placeGravitar();
 		return this;
+	},
+	
+	placeGravitar: function(){
+		var loccc = "http://www.gravatar.com/avatar/" + MD5("<%=this.model.username%>@google.net") 
+		loccc = loccc+ "&s=80?f=y&&d=identicon"
+		$(".userPIC").append( $("<img class='img-circle img-responsive'>").attr("src",loccc) );
 	},
 	
 	addPost: function(post){
@@ -120,6 +127,8 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			// debugger;
 		  modal.close();
 		})
+		
+		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	
 	openFollowersModal: function() {
@@ -133,6 +142,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			title: title,
 			animate: true
 		}).open();
+		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	
 	

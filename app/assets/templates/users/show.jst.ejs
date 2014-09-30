@@ -2,9 +2,13 @@
 
 <div class="row userShow">
 	<div class="col-xs-3 col-xs-offset-1 userside">
-		<div class="col-xs-8 col-xs-offset-2 ">
-			<img src="assets/placeholder_2.jpg"  class="img-circle img-responsive">
-		</div>
+		<% if(currentUserId === user.get('id')) {%>
+			<div class="col-xs-8 col-xs-offset-2">
+				<img src="assets/placeholder_2.jpg"  class="img-circle img-responsive">
+			</div>
+		<% } else { %>
+			<div class="col-xs-8 col-xs-offset-3 userPIC"></div>
+		<% } %>
 		<h1 class="text-center"> <%= user.get('username')%>
 			<br>
 		<% if(currentUserId !== user.get('id')) {%>

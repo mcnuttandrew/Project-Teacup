@@ -55,6 +55,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 			 || this.subviews()[".main-posts"].length < 9 
 			 || (this.postSize > 0 && this.postSize < 9) ) {
 				this.postSize +=1;
+
 				var poster = this.userCollection.getOrFetch(post.attributes.user_id);
 				var that = this;
 				var PostsShow = new Teacup.Views.compressedPost({
@@ -86,6 +87,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		that.removeSubview(".main-posts", subview);
 	},
 	
+	//commented out code is alternative color schemes
 	getColor: function(){
 		var colors = ["#FD48FF", "#9B46E8", "#625AFF", "#4688E8", "#4DE6FF"]; //purple blue analogous
 		// var colors = ["#CFBE27", "#F27435", "#F02475"];
@@ -112,18 +114,6 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 			animate: true
 		}).open();
 		$(this.modal.$el.children().children()[0]).css("backgroundColor", targetColor);
-	},
-	
-	getTrends: function(){
-		var that = this;
-		$.ajax({ 
-			url: ('api/trend'), 
-			type: 'GET',
-			success: function(trends){
-				that.trends = trends;
-			}
-		});
-		
 	}
 	
 })

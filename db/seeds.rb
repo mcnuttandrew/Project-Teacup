@@ -29,7 +29,7 @@ gen  = Rubystats::NormalDistribution.new(45, 25)
 500.times do |follow|
   pair = [(gen.rng).floor+1, (gen.rng).floor+1];
   if pair[0] != pair[1] && (! collect.include?(pair)) 
-    if (1..90).to_a.include?(pair[0])  && (1..90).to_a.include?(pair[1])
+    if pair[0] > 0  && pair[1] > 0 && pair[0] < 90 && pair[1] < 90
       collect << pair
     end
   end
@@ -40,19 +40,41 @@ collect.each do |pair|
   Followship.create!({followee_id: pair[0], follower_id: pair[1]})
 end
 
+latLangs = []
+CSV.foreach("db/latlang.csv") do |row|
+    latLangs << row
+end
+latLangs = latLangs.flatten
+cleanedLatLangs = []
+(latLangs.length/2).times do |index|
+  cleanedLatLangs << [latLangs[2 * index].to_f, latLangs[2 * index + 1].to_f]
+end
+
+# latLangs = latLangs.flatten
+# cleanedLatLangs = []
+# latLangs.each {|pair| cleanedLatLangs << [pair[0].to_f, pair[1].to_f]}
+
+
+
 ##posts
 results.flatten.each do |line|
   puts [line, line.length]
-  date = "2014-#{rand(11)+1}-#{rand(27)+1}"
+  date = "2014-#{rand(9)+1}-#{rand(27)+1}"
   if line.length > 4
+    loc = cleanedLatLangs.sample
+    dream_loc = cleanedLatLangs.sample
+    userid = ((gen.rng).floor+1).abs
+    if userid >= users.length
+      userid = (userid / 2).floor
+    end
     Post.create!({
-      user_id: (gen.rng).floor+1,
+      user_id: userid,
       content: line,
       date: date, 
-      longitude: Faker::Address.latitude,
-      latitude: Faker::Address.longitude,
-      dream_longitude: Faker::Address.latitude,
-      dream_latitude: Faker::Address.longitude
+      longitude: loc[1],
+      latitude: loc[0],
+      dream_longitude: dream_loc[1],
+      dream_latitude: dream_loc[0]
     })
   end
 end

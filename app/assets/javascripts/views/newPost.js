@@ -24,8 +24,7 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		"keypress #geocoderInputDream": "geocoderFillDream",
 		"click .following": "openFollowingModal",
 		"click .followers": "openFollowersModal",
-		"click .preview": "mapModal",
-		"dblclick .userPic": "picSelector"
+		"click .trending-click": "trendingModal"
 	},
 	
 	
@@ -38,13 +37,15 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		
 		this.$el.html(renderedContent);
 		this.attachSubviews();
+		
 		this.coords = {latitude: 0, longitude: 0 }
 		this.dreamCoords = {latitude: 0, longitude: 0 }
 		return this;
 	},
 	
 	
-	//This method is this bceause 
+	
+	//This method is this bceause of special casing. 
 	submit: function(event){
 		event.preventDefault();
 		var formData = $(event.currentTarget).serializeJSON();
@@ -164,7 +165,8 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			content: view,
 			title: title,
 			animate: true
-		}).open(function(){ console.log('clicked OK') });
+		}).open();
+		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	
 	openFollowersModal: function() {
@@ -178,18 +180,17 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			title: title,
 			animate: true
 		}).open();
-		
+		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	
-	picSelector: function(){
-		var view = new Teacup.Views.picSelectorView({
-			model: Teacup.Collections.users.getOrFetch($("#currentUser").data().id),
-		});
+	trendingModal: function(){
+		var view = new Teacup.Views.trendingModal();
 		var modal = new Backbone.BootstrapModal({
 			content: view,
-			title: "Select Your Prof Pic!",
+			title: "Now Trending",
 			animate: true
 		}).open();
+		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	}
 	
 	

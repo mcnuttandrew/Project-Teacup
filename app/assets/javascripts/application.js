@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.serializejson
 //= require jquery.geocomplete.js
+//= require gravtastic
 //= require underscore
 //= require backbone
 //= require backbone.bootstrap-modal

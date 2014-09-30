@@ -1,7 +1,7 @@
 Teacup.Views.trends = Backbone.View.extend({
 	template: JST['posts/trends'],
 	className: "trending-wrapper",
-	
+	//protects for cases when trends has not finished loading
 	initialize: function(options){
 		this.trends = [];
 		this.getTrends();
@@ -22,9 +22,7 @@ Teacup.Views.trends = Backbone.View.extend({
 	},
 		
 	render: function(){	
-		
 		var renderedContent = this.template({
-			// trends: this.trends
 			word: this.word
 		});
 		this.$el.html(renderedContent);

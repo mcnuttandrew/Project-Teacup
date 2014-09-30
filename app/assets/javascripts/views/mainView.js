@@ -7,6 +7,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		this.listenTo(this.postCollection, "add", this.addPost);
  		this.listenTo(this.postCollection, "remove", this.removePost);
 		
+		
 		this.listenToOnce(this.userCollection, "sync", this.render);
 		this.listenTo(this.postCollection, "sync", this.render);
 		
@@ -30,6 +31,8 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 				}
 			});
 		}, 3000)
+		 
+		
 	},
 	
 	events: {
@@ -38,7 +41,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	
 	render: function(){
 		this.postSize = 0;
-		var renderedContent = this.template({})
+		var renderedContent = this.template()
 		this.$el.html(renderedContent)
 		this.attachSubviews();
 		// debugger;
@@ -46,7 +49,6 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	},
 	
 	addPost: function(post) {
-		// console.log(this.subviews()[".main-posts"], this.postSize)
 		//fills up the main feed to a maximum size,
 		//at the maximum it swaps out the model of a random view
 		if(! this.subviews()[".main-posts"]
@@ -111,5 +113,17 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		}).open();
 		$(this.modal.$el.children().children()[0]).css("backgroundColor", targetColor);
 	},
+	
+	getTrends: function(){
+		var that = this;
+		$.ajax({ 
+			url: ('api/trend'), 
+			type: 'GET',
+			success: function(trends){
+				that.trends = trends;
+			}
+		});
+		
+	}
 	
 })

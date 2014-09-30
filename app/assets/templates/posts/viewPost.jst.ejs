@@ -1,4 +1,10 @@
 <div class="post-blowup-map">post-blowup-map</div>
+<div style="color:white">
+	
+<strong>
+	Posted by <a href="#/users/<%=this.model.get('user_id')%>"><%=this.model.get("username")%></a>
+<strong>
+</div>
 <div class="comments-list" style="height:100px;overflow:scroll">
 	<%if(this.model.comments().length === 0 ){%>	
 		<h1>No comments!</h1>

@@ -2,7 +2,6 @@ Teacup.Views.newMap = Backbone.View.extend({
 	template: JST['maps/newMap'],
 	className: "map-wrapper",
 	
-	
 	initialize: function(options){
 		view = this
 		this.latitude = options.latitude;
@@ -56,7 +55,6 @@ Teacup.Views.newMap = Backbone.View.extend({
 			that.map.setCenter(that.origin);
 		},100);
 		this.drop();
-		
 	}, 
 	
 	drop: function () {

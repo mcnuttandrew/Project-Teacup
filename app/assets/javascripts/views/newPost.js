@@ -8,9 +8,12 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		this.listenToOnce(this.userCollection, "sync", this.render);
 		
 		
-		this.coords = {latitude: 0, longitude: 0 }
-		this.dreamCoords = {latitude: Math.PI, longitude: Math.PI }
+		this.coords = {latitude: 0, longitude: 0 };
+		this.dreamCoords = {latitude: Math.PI, longitude: Math.PI };
 
+		
+		var newTrendView = new Teacup.Views.trends()
+		this.addSubview(".trends", newTrendView);
 		this.buildMap(this.coords.latitude, this.coords.longitude);
 	},
 	
@@ -21,18 +24,21 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		"keypress #geocoderInputDream": "geocoderFillDream",
 		"click .following": "openFollowingModal",
 		"click .followers": "openFollowersModal",
-		"click .preview": "mapModal"
+		"click .preview": "mapModal",
+		"dblclick .userPic": "picSelector"
 	},
 	
 	
 	
 	render: function(){
+		
 		this.getGeolocation();
 		var renderedContent = this.template({
 			user: this.model,
 		});
-		this.attachSubviews();
+		
 		this.$el.html(renderedContent);
+		this.attachSubviews();
 		this.coords = {latitude: 0, longitude: 0 }
 		this.dreamCoords = {latitude: 0, longitude: 0 }
 		return this;
@@ -172,9 +178,18 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			animate: true
 		}).open();
 		
+	},
+	
+	picSelector: function(){
+		var view = new Teacup.Views.picSelectorView({
+			model: Teacup.Collections.users.getOrFetch($("#currentUser").data().id),
+		});
+		var modal = new Backbone.BootstrapModal({
+			content: view,
+			title: "Select Your Prof Pic!",
+			animate: true
+		}).open();
 	}
-	
-	
 	
 	
 })

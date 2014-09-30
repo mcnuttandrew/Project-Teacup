@@ -137,6 +137,39 @@ ul.posts, .posts {
 
 }
 
+.trends {
+	margin-top: 1%;
+	display: block;
+
+	background: #625AFF;
+	-webkit-box-shadow:0 0 25px #625AFF; 
+	-moz-box-shadow: 0 0 25px #625AFF; 
+	box-shadow:0 0 25px #625AFF;
+	border-radius: 10%;
+}
+
+.trending-wrapper{
+	min-height: 200px;
+}
+
+.trends h1 {
+	margin: 0;
+	padding: 0;
+	color: white;
+}
+
+ul.trends-list *{
+	padding:0;
+	margin:0;
+	border: thin solid red;
+//	list-style-type: none;
+}
+
+ul.trends-list li {
+	display: inline;
+}
+
+
 .main-posts li {
 	margin: 1.5%;
 	display: inline-block;

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :new] 
   
   namespace :api, defaults: { format: 'json' } do
+    resource :trend, only: [:show]
     resource :user_feed, only: [:show, :create]
     resource :main_feed, only: [:show, :create]
     

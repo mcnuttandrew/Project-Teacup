@@ -89,6 +89,8 @@ h1, h2, h3, h4, h5, h6 {
 	border-radius: 10%;
 }
 
+
+
 .post-info{
 	background-color: #625AFF;
 	-webkit-box-shadow:0 0 20px #625AFF; 
@@ -281,11 +283,15 @@ button.cancel-button {
 }
 
 .modal .map-wrapper{
-	height: 350px;
+	height: 200px;
 	width: 100%;
 }
 
 h3.expandpost:hover {
 	color:red;
+}
+
+.post-blowup-map{
+	height: 200px;
 }
 

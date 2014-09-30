@@ -16,7 +16,7 @@ end
 
 ##users
 users = []
-92.times do |user|
+90.times do |user|
   name = Faker::Internet.user_name
   users <<  name unless users.include?(name)
   puts name
@@ -25,10 +25,13 @@ end
 
 ##follows
 collect = []
+gen  = Rubystats::NormalDistribution.new(45, 25)
 500.times do |follow|
-  pair = [rand(users.length-1)+1, rand(users.length-1)+1];
-  if pair[0] != pair[1] && (! collect.include?(pair))
-    collect << pair
+  pair = [(gen.rng).floor+1, (gen.rng).floor+1];
+  if pair[0] != pair[1] && (! collect.include?(pair)) 
+    if (1..90).to_a.include?(pair[0])  && (1..90).to_a.include?(pair[1])
+      collect << pair
+    end
   end
 end
 
@@ -40,10 +43,12 @@ end
 ##posts
 results.flatten.each do |line|
   puts [line, line.length]
+  date = "2014-#{rand(11)+1}-#{rand(27)+1}"
   if line.length > 4
     Post.create!({
-      user_id: rand(92),
+      user_id: (gen.rng).floor+1,
       content: line,
+      date: date, 
       longitude: Faker::Address.latitude,
       latitude: Faker::Address.longitude,
       dream_longitude: Faker::Address.latitude,

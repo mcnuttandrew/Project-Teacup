@@ -34,7 +34,7 @@ module Api
   
     private
     def post_params
-      params.require(:post).permit(:content, :user_id, :latitude, :longitude, :dream_latitude, :dream_longitude)
+      params.require(:post).permit(:content, :user_id, :date, :latitude, :longitude, :dream_latitude, :dream_longitude)
     end
   end
 end

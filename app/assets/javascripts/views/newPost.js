@@ -31,7 +31,6 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 	
 	
 	render: function(){
-		
 		this.getGeolocation();
 		var renderedContent = this.template({
 			user: this.model,
@@ -44,6 +43,8 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		return this;
 	},
 	
+	
+	//This method is this bceause 
 	submit: function(event){
 		event.preventDefault();
 		var formData = $(event.currentTarget).serializeJSON();
@@ -59,8 +60,8 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		if(formData.dream_longitude === 0){
 			delete formData.dream_longitude;
 		}
-		// debugger;
 		newPost.set(formData);
+		debugger;
 		console.log(formData);
 		newPost.save(formData, {
 			success: function(){

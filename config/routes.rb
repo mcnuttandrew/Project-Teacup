@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :new] 
   
   namespace :api, defaults: { format: 'json' } do
+    # get "search/:query", :to => "users#search", :as => "users_search"
+    
     resource :trend, only: [:show]
     get "trend/:date", :to => "trends#select", :as => "trend_at_date"
     get "trend/:start_date/:end_date", :to => "trends#over_time", :as => "trend_over_time"
@@ -14,7 +16,9 @@ Rails.application.routes.draw do
     
     get 'main_feed/single', :to => 'main_feeds#single'
     
+    
     resources :users, only: [:show, :index] do
+      get "search", on: :collection
       resource :followship, only: [:create, :destroy]
     end
     resources :posts, except: [:edit, :update] do

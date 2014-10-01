@@ -23,6 +23,8 @@ users = []
   User.create!({username: name, password: "pass_word"})
 end
 
+User.create!({username: "guest", password: "password"})
+
 ##follows
 collect = []
 gen  = Rubystats::NormalDistribution.new(45, 25)

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Specter</title>
+  <title>Teacup</title>
 	<%= stylesheet_link_tag 'application' %>
 	<%= javascript_include_tag  'application'%>
 	<%= csrf_meta_tags %>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3?key=AIzaSyB0Dz_g1mvSJtos_wCR27A6JK2CTQZINN0&sensor=true&amp;libraries=places"></script>
-	
+	<link rel="shortcut icon" href="assets/teacup.png"/>
 </head>
 <body>
 <div id="currentUser" data-id="<%= current_user.id unless !current_user %>"></div>

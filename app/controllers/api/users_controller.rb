@@ -25,6 +25,17 @@ module Api
       @users = User.all
       render :index
     end
+    
+    def search
+      if params[:query].present?
+        @users = User.where("username ~ ?", params[:query])
+      else
+        @users = User.none
+      end
+      # @users = User.all
+      render json: @users
+      # redirect_to api_url
+    end
 
     private
     def user_params

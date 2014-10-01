@@ -21,12 +21,14 @@
     <ul class="nav navbar-nav navbar-right">
     <% if logged_in? %>
       <li id='search-bar'>
-			  <form class="navbar-form navbar-left" role="search">
-			         <div class="form-group">
-			           <input type="text" class="form-control" placeholder="Search for User">
-			         </div>
-			         <button type="submit" class="btn btn-primary">Submit</button>
-			       </form>
+					<!-- <div class="form-group pull-right" id="users-search">
+						<form class="navbar-form navbar-left" role="search">
+			           <input type="text" class="typeahead form-control  user-drop-down" placeholder="Search for User">
+				       </form>
+				  </div> -->
+						<div id="custom-templates">
+						  <input class="typeahead" type="text" placeholder="Oscar winners for Best Picture">
+						</div>
       </li>
 			<li id='find-users'>
 					<button class="btn btn-primary navbar-btn find-users"> Find Users To Follow</button>

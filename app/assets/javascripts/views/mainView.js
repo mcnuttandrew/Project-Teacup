@@ -87,6 +87,7 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		that.removeSubview(".main-posts", subview);
 	},
 	
+	
 	//commented out code is alternative color schemes
 	getColor: function(){
 		var colors = ["#FD48FF", "#9B46E8", "#625AFF", "#4688E8", "#4DE6FF"]; //purple blue analogous

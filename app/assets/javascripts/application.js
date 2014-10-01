@@ -19,6 +19,8 @@
 //= require backbone
 //= require backbone.bootstrap-modal
 //= require bootstrap
+//= require typeahead.bundle
+//= require reflection
 //= require teacup
 //= require_tree ../templates
 //= require_tree ./utils

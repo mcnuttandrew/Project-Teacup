@@ -1,17 +1,25 @@
 <div class="sign-in-container row">
-	<div class="text-center">
+	<div class="text-center outer-wrapper" >
 		<h1><strong> TEACUP </strong></h1>
 		<h3><i>a microblogging platform for the collective unconscious</i></h3>
 	</div>
 </div>
+
+
 <div class="sign-in-wrapper">
-	<div class="sign-in text-center">
-		<form action="<%= session_url%>" method="post">
+	<div class="sign-in- text-center">
+			<form action="<%= session_url%>" method="post" id="guest-login-form">
+				    <input type="hidden" name="user[username]" value="guest">
+				    <input type="hidden" name="user[password]" value="password">
+						<button class="button btn btn-info" type="submit"> Guest Login </button>
+			</form>
+
+		<form action="<%= session_url%>" method="post" class=".true-form">
 			  <label>
 			    <h3>Username</h3>
 			    <input type="text" name="user[username]" value="">
 			  </label>
-				<br>
+				
 			  <label>
 			    <h3>Password </h3>
 			    <input type="password" name="user[password]" value="">
@@ -19,12 +27,17 @@
 	<br>
 				<h3>
 					<button class="button btn btn-info" value="Sign In"> Log In</button>
-					<button class="button btn btn-info" type="submit"> Guest Login </button>
+					
 			 	</h3>			
 		</form>
-
+				
 	</div>
 	
 </div>
 
-
+<!--<div class="col-xs-12" style="position:relative">
+	<img src="<%= asset_path('frontpage2.jpeg') %>" width="100%" class="reflect">
+	<div class="sign-in-stuff" style="position:absolute">
+		<h1> TEST </h1>
+	</div>
+</div> -->

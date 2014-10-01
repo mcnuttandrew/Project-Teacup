@@ -20,6 +20,7 @@ body {
 	margin: 0;
 	padding: 0 -45px 0 0;
 	min-height: 200%;
+	background: black;
 }
 
 
@@ -224,14 +225,15 @@ button.cancel-button {
 }
 
 .sign-in-container{
-	background-image: url('frontpage2.jpeg');
+	background-image: url('frontpage3.png');
 	background-size: cover;
   background-position: center; // or center center
   background-repeat: no-repeat;
-	height: 450px;
-	margin-top:-10%;
+	height: 100%;
+	margin-top:-5%;
 //	border: thin solid red;
 }
+
 
 .sign-in-container h1{
 	margin-top: 20%;
@@ -251,7 +253,7 @@ button.cancel-button {
 	min-height: 300px;
 }
 
-.sign-in-wrapper form{
+.sign-in-wrapper .true-form{
 	color: black;
 	min-height: 300px;
 }
@@ -289,4 +291,24 @@ h3.expandpost:hover {
 .trender {
 	color: white;
 	list-style-type: none;
+}
+
+//.user-drop-down {
+//	border: none transparent;
+//	    -webkit-box-shadow: none;
+//	            box-shadow: none;
+//}
+
+//.twitter-typeahead *{
+//	background: white;
+//}
+
+#custom-templates .empty-message {
+  padding: 5px 10px;
+ text-align: center;
+}
+
+#guest-login-form {
+	height: 25px;
+	width: 100%;
 }

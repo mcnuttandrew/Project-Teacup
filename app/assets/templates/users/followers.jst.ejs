@@ -1,22 +1,24 @@
-<%if(followedUsers.length===0){%>
-	<h4> <%= user.get('username')%> is not followed by anyone </h4>
-<%} else {%>
-	<ul>
-	<% for(var i = 0; i < followedUsers.length; i++){%>
-		<li>
-			<h2>
-				<a href="#/users/<%= followedUsers[i].get('id')%>">
-					<%= followedUsers[i].get('username')%>
-				</a>
-			</h2>
-		</li>
-		<%if (relationshipStatuses[i]){%>
-			<ul>
-				<li>
-					<%= user.get('username')%> Follows 
-				</li>
-			</ul>
-		<%}%>
-	<% }%>
-	</ul>
-<%}%>
+<div class="followers-modal">
+	<%if(followedUsers.length===0){%>
+		<h4> <%= user.get('username')%> is not followed by anyone </h4>
+	<%} else {%>
+		<ul>
+		<% for(var i = 0; i < followedUsers.length; i++){%>
+			<li>
+				<h2>
+					<a href="#/users/<%= followedUsers[i].get('id')%>">
+						<%= followedUsers[i].get('username')%>
+					</a>
+				</h2>
+			</li>
+			<%if (relationshipStatuses[i]){%>
+				<ul>
+					<li>
+						<h4><%= user.get('username')%> Follows</h4> 
+					</li>
+				</ul>
+			<%}%>
+		<% }%>
+		</ul>
+	<%}%>
+</div>

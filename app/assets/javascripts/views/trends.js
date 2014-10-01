@@ -8,14 +8,14 @@ Teacup.Views.trends = Backbone.View.extend({
 		var that = this;
 		that.word = "?";
 		setInterval(function(){
-			if(that.trends){
+			if(that.trends ){
 				if(that.word === "?"){
 					that.word = that.trends[0];
 				}	else {
 					that.word = that.trends[(that.trends.indexOf(that.word) + 1)%that.trends.length];
 				}	
 			} else {
-				that.word = "?";
+				that.word = ["?"];
 			}
 			that.render();
 		}, 3000)

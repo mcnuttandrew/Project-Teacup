@@ -2,6 +2,7 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 	template: JST["posts/new"],
 	
 	initialize: function(options){
+		
 		this.userCollection = options.userCollection
 		this.listenTo(this.model, "change", this.render);
 		this.listenToOnce(this.userCollection, "sync", this.render);
@@ -130,8 +131,10 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		var modal = new Backbone.BootstrapModal({
 			content: view,
 			title: title,
-			animate: true
+			animate: true,
+			allowCancel: true
 		}).open();
+		
 		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	
@@ -146,6 +149,7 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			title: title,
 			animate: true
 		}).open();
+		
 		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	

@@ -96,22 +96,6 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 		return colors[Math.floor(Math.random() * 5)];
 	},
 	
-	viewUsersModal: function(event){
-		var currentUser = Teacup.Collections.users.getOrFetch($("#currentUser").data().id)
-		
-		var view = new Teacup.Views.followFollowers({
-			model: currentUser,
-			collection: this.userCollection
-		});
-
-		this.modal = new Backbone.BootstrapModal({
-			content: view,
-			title: "Find Users to Follow",
-			animate: true
-		}).open();
-		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#9B46E8");
-	},
-	
 	postModal: function(event) {
 		var targetPost = event.currentTarget.getAttribute('data-id');
 		var targetColor = event.currentTarget.getAttribute('data-color');

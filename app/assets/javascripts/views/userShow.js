@@ -2,6 +2,12 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	template: JST["users/show"],
 	
 	initialize: function(options){
+		var getModal = $(".modal")
+		if(getModal){
+			getModal.remove();
+			$("body").removeClass("modal-open");
+			$(".modal-backdrop").remove();
+		}
 		this.currentUser = options.currentUser;
 		this.userCollection = options.userCollection;
 
@@ -39,7 +45,7 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 	},
 	
 	placeGravitar: function(){
-		var loccc = "http://www.gravatar.com/avatar/" + MD5("<%=this.model.username%>@google.net") 
+		var loccc = "http://www.gravatar.com/avatar/" + MD5("<%=this.model.username%>@<%=this.model.username%>.net") 
 		loccc = loccc+ "&s=80?f=y&&d=identicon"
 		$(".userPIC").append( $("<img class='img-circle img-responsive'>").attr("src",loccc) );
 	},
@@ -123,11 +129,6 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			animate: true
 		}).open();
 		
-		$('a').click(function(){
-			// debugger;
-		  modal.close();
-		})
-		
 		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	
@@ -142,6 +143,8 @@ Teacup.Views.userShow = Backbone.CompositeView.extend({
 			title: title,
 			animate: true
 		}).open();
+		
+		
 		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 	

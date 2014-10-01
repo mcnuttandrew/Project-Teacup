@@ -29,7 +29,7 @@ User.create!({username: "guest", password: "password"})
 collect = []
 gen  = Rubystats::NormalDistribution.new(45, 25)
 500.times do |follow|
-  pair = [(gen.rng).floor+1, (gen.rng).floor+1];
+  pair = [(gen.rng).floor+1, rand(90)+1];
   if pair[0] != pair[1] && (! collect.include?(pair)) 
     if pair[0] > 0  && pair[1] > 0 && pair[0] < 90 && pair[1] < 90
       collect << pair
@@ -41,6 +41,13 @@ collect.each do |pair|
   p pair
   Followship.create!({followee_id: pair[0], follower_id: pair[1]})
 end
+
+3.each do |pair|
+  Followship.create!({followee_id: 91, follower_id: rand(90)+1})
+  Followship.create!({followee_id: rand(90)+1, follower_id: 91})
+end
+
+##build lat lang data
 
 latLangs = []
 CSV.foreach("db/latlang.csv") do |row|

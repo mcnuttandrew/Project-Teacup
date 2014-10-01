@@ -5,9 +5,9 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 		// userCollection: options.userCollection;
 		this.dataset = [];
 		//maybe include aynsc code so that this always happens
-		this.listenTo(this.model, "sync", this.render);
-		this.listenTo(this.collection, "sync", this.assembleDataSet);
-		// this.assembleDataSet();
+		// this.listenTo(this.model, "sync", this.render);
+		// this.listenTo(this.collection, "sync", this.assembleDataSet);
+		this.assembleDataSet();
 	},
 
 	render: function() {		
@@ -18,28 +18,27 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 		var that = this;
 		setTimeout(function(){
 			that.buildGraphic();
-			return that;
 		},1000)
-
+		return this
 	},
 	
 	
 	assembleDataSet: function(){
 		this.dataset = []
 		var userFollows = [];
-		for(var i = 0; i < this.model.attributes.followed.length; i++){
-			userFollows.push(this.model.attributes.followed[i].id);
+		for(var i = 0; i < this.model.get('followed').length; i++){
+			userFollows.push(this.model.get('followed')[i].id);
 		}
 		var userFollowers = [];
-		for(var i = 0; i < this.model.attributes.followers.length; i++){
-			userFollowers.push(this.model.attributes.followers[i].id);
+		for(var i = 0; i < this.model.get('followers').length; i++){
+			userFollowers.push(this.model.get('followers')[i].id);
 		}
 		// debugger;
 		for(var i = 0; i < this.collection.models.length; i++){
-			var followedCount = this.collection.models[i].attributes.followed.length;
-			var followersCount = this.collection.models[i].attributes.followers.length;
-			var username = this.collection.models[i].attributes.username;
-			var id = this.collection.models[i].attributes.id;
+			var followedCount = this.collection.models[i].get('followed').length;
+			var followersCount = this.collection.models[i].get('followers').length;
+			var username = this.collection.models[i].get('username');
+			var id = this.collection.models[i].get('id');
 			// debugger;
 			var currFollows = false;	
 			if(userFollows.indexOf(this.collection.models[i].id) > 0){

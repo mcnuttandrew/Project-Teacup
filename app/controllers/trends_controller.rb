@@ -66,6 +66,9 @@ module Api
           unless common_words.include?(wrd) || wrd.length < 1
             if Date.parse(date).mjd > post.date.mjd
               val = 100/( (Date.parse(date).mjd - post.date.mjd)) 
+              if wrd.split()[0]=="#"
+                val = val * 2
+              end
               counts[wrd] ? counts[wrd] += val : counts[wrd] = val
             end
           end
@@ -73,23 +76,23 @@ module Api
       end
       
       #comments
-      @comments = Comment.all
-      @comments.each do |comment|
-        comment.content.split(/\s|\.|\,|\?/).each do |word|
-          wrd = word.downcase
-          unless common_words.include?(wrd) || wrd.length < 1
-            comment_date = comment.created_at.to_date
-            if Date.parse(date).mjd > comment_date.mjd
-              val = 100/( (Date.parse(date).mjd - comment_date.mjd)) 
-              counts[wrd] ? counts[wrd] += val : counts[wrd] = val
-            elsif
-              val = 10
-              counts[wrd] ? counts[wrd] += val : counts[wrd] = val
-            end
-          end
-        end
-      end
-      
+      # @comments = Comment.all
+ #      @comments.each do |comment|
+ #        comment.content.split(/\s|\.|\,|\?/).each do |word|
+ #          wrd = word.downcase
+ #          unless common_words.include?(wrd) || wrd.length < 1
+ #            comment_date = comment.created_at.to_date
+ #            if Date.parse(date).mjd > comment_date.mjd
+ #              val = 100/( (Date.parse(date).mjd - comment_date.mjd))
+ #              counts[wrd] ? counts[wrd] += val : counts[wrd] = val
+ #            elsif
+ #              val = 10
+ #              counts[wrd] ? counts[wrd] += val : counts[wrd] = val
+ #            end
+ #          end
+ #        end
+ #      end
+ #
       #yield
       sorted_keys = counts.sort_by{|word, score| score}.reverse
       @trending_words = sorted_keys.slice(0, 10);

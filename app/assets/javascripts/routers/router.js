@@ -43,17 +43,19 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	scatter: function(event){
 		var currentUser = Teacup.Collections.users.getOrFetch($("#currentUser").data().id)
 		Teacup.Collections.users.fetch();	
-		var view = new Teacup.Views.followFollowers({
-			model: currentUser,
-			collection: Teacup.Collections.users
-		});
-
-		this.modal = new Backbone.BootstrapModal({
-			content: view,
-			title: "Find Users to Follow",
-			animate: true
-		}).open();
-		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#9B46E8");
+		setTimeout(function(){
+			var view = new Teacup.Views.followFollowers({
+				model: currentUser,
+				collection: Teacup.Collections.users
+			});
+		
+			this.modal = new Backbone.BootstrapModal({
+				content: view,
+				title: "Find Users to Follow",
+				animate: true
+			}).open();
+			$(this.modal.$el.children().children()[0]).css("backgroundColor", "#9B46E8");
+		},100)
 	},
 
 	_swapView: function(view){

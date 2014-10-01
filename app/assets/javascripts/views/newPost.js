@@ -62,8 +62,6 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			delete formData.dream_longitude;
 		}
 		newPost.set(formData);
-		debugger;
-		console.log(formData);
 		newPost.save(formData, {
 			success: function(){
 				//special cases for when on dashboard (true path) vs main feed

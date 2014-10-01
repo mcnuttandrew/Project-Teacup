@@ -12,8 +12,24 @@ module Api
     end
     
     def over_time
+      analyze_period(nil)
+      render json: @output 
+    end
+    
+    def over_trend
+      analyze_period(params[:date])
+      render json: @output
+    end
+    
+    private
+    
+    def analyze_period(start_date)
       # dates = Date.parse(params[:start_date]).step(Date.parse(params[:end_date]) ).to_a
-      dates = (5.days.ago.to_date).step(Date.today ).to_a
+      if start_date
+        dates = (Date.parse(start_date)).step(Date.parse(start_date) + 4 ).to_a
+      else 
+        dates = (Date.today-4).step(Date.today).to_a
+      end
       top_collect = []
       word_collect = []
       dates.each do |date|
@@ -31,10 +47,8 @@ module Api
         end
       end 
       
-      render json: [top_collect, multiples.uniq]
+      @output = [top_collect, multiples.uniq]
     end
-    
-    private
     
     def get_trending(date)
       common_words = []

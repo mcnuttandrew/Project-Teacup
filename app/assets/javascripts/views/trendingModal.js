@@ -9,7 +9,8 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 	},
 		
 	events: {
-		"click #refreshColors": "getColors"
+		"click #refreshColors": "getColors",
+		"change form#date-selector": "updateStartDate"
 	},	
 		
 	render: function(){	
@@ -23,16 +24,24 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 		return this;
 	},
 	
-	getTrends: function(){
+	getTrends: function(startDate){
 		var that = this;
+		var loc;
+		if(startDate){
+			loc = 'api/trend_over_time/' + startDate			
+		} else {
+			loc = 'api/trend_over'
+		}
 		$.ajax({ 
-			url: ('api/trend_over'), 
+			url: loc, 
 			type: 'GET',
 			success: function(trends){
 				that.trends = trends[0];
 				that.multiples = trends[1];
 				that.getColors();
-				// that.render()
+			}, 
+			error: function(){
+				debugger;
 			}
 		});
 	},
@@ -43,8 +52,13 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 			this.colors.push('#' + Math.random().toString(16).substring(2, 8))
 		}	
 		this.render()
-	}
+	},
 	
+	updateStartDate: function(event){
+		this.getTrends($(event.currentTarget).serializeJSON().date);
+		// debugger;
+		
+	}
 	
 	
 })

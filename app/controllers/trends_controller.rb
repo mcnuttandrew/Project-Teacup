@@ -12,16 +12,26 @@ module Api
     end
     
     def over_time
-      dates = Date.parse(params[:start_date]).step(Date.parse(params[:end_date]) ).to_a
+      # dates = Date.parse(params[:start_date]).step(Date.parse(params[:end_date]) ).to_a
+      dates = (5.days.ago.to_date).step(Date.today ).to_a
       top_collect = []
+      word_collect = []
       dates.each do |date|
         get_trending(date.to_s)
         top_collect << [date.to_s, @trending_words]
+        word_collect << @trending_words
       end
+      word_collect = word_collect.flatten.select{|word| word.class == String}
+      multiples = [];
       
       
+      word_collect.each do |word|
+        if word_collect.count(word) > 1
+          multiples << word
+        end
+      end 
       
-      render json: top_collect
+      render json: [top_collect, multiples.uniq]
     end
     
     private

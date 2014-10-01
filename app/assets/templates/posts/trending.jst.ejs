@@ -1,5 +1,27 @@
-<ul class="trender text-center">
+<!-- <div class="dropdown">
+<select >
+	<option id="days"> Last Five Days </option>
+	<option id="weeks"> Last Five Weeks </option>
+	<option id="months"> Last Five Months </option>
+</select>
+</div> -->
+
+<div class="row trendingList" style="height:240">
 	<%for(var i = 0; i < trends.length; i++){%>
-		<li> #<%=trends[i][0]%> </li>
+		<div class="col-xs-2">
+			<ul class="trender">
+				<li style="width:60px"><%=trends[i][0].slice(5)%></li>
+				<%for(var j = 0; j < trends[i][0].length; j++){%>
+						<%if(multiples.indexOf(trends[i][1][j][0]) < 0 ){ %>
+							<li>  #<%=trends[i][1][j][0]%> </li>
+						<%} else {%>
+							<%var colorIndex = multiples.indexOf(trends[i][1][j][0])%>
+							<li style="color:<%=colors[colorIndex]%>"> #<%=trends[i][1][j][0]%> </li>
+						<%}%>
+					 
+				<%}%>
+			</ul>
+		</div>
 	<%}%>
-</ul>
+</div>
+<h4> <a id="refreshColors">Multiples of the same word are denoted by color</a> </h4>

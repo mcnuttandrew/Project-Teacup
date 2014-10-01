@@ -1,11 +1,21 @@
+
 <div class="post-blowup-map">post-blowup-map</div>
-<div style="color:white">
-	
-<strong>
-	Posted by <a href="#/users/<%=this.model.get('user_id')%>"><%=this.model.get("username")%></a>
-	on <%=this.model.get('date') %>
-<strong>
+
+<div class="row">
+	<div class="col-xs-6" style="color:white">
+		<strong>
+			Posted by <a href="#/users/<%=this.model.get('user_id')%>"><%=this.model.get("username")%></a>
+			on <%=this.model.get('date') %>
+		<strong>
+	</div>
+	<div class="col-xs-5 col-xs-offset-1">
+		<strong> 
+			<span style="color:#FD48FF">Poster Location</span>
+			<span style="color:red">Dream Location</span>
+		</strong>
+	</div>
 </div>
+
 <div class="comments-list" style="height:100px;overflow:scroll">
 	<%if(this.model.comments().length === 0 ){%>	
 		<h1>No comments!</h1>

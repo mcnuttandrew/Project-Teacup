@@ -4,7 +4,7 @@ Teacup.Collections.Comments = Backbone.Collection.extend({
 		return "/api/comments/" + this.id;
 	},
 	comparator: function(post){
-		return -post.attributes.created_at
+		return post.attributes.id
 	},
 	
 	getOrFetch: function(id){

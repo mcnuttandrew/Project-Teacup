@@ -59,7 +59,7 @@ Teacup.Views.newMap = Backbone.View.extend({
 	
 	drop: function () {
 		var that = this;
-		var pinColor = "FFFFFF";
+		var pinColor = "FF0000";
     var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor)
   
     this.markers.push(new google.maps.Marker({

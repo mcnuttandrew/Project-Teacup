@@ -23,7 +23,7 @@ Teacup.Views.newComment = Backbone.View.extend({
 		newComment.set(formData);
 		newComment.save({}, {
 			success: function(){
-				that.model.comments().add(newComment);
+				that.model.comments().add(newComment, {at: 0});
 				that.render();
 			},
 			error: function(response){

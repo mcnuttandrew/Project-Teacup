@@ -53,7 +53,7 @@ Teacup.Views.postView = Backbone.CompositeView.extend({
 	
 	addComment: function(comment) {
 		var CommentsShow = new Teacup.Views.singleComment({ model: comment });
-		this.addSubviewBefore(".comments-list", CommentsShow);
+		this.addSubviewBeforeUnshift(".comments-list", CommentsShow);
 		this.render();
 	},
 	

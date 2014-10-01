@@ -42,7 +42,7 @@ collect.each do |pair|
   Followship.create!({followee_id: pair[0], follower_id: pair[1]})
 end
 
-3.each do |pair|
+3.times do |pair|
   Followship.create!({followee_id: 91, follower_id: rand(90)+1})
   Followship.create!({followee_id: rand(90)+1, follower_id: 91})
 end

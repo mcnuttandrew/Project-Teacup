@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     get "trend_over", :to => "trends#over_time"
     get "trend_over_time/:date", :to => "trends#over_trend"
     
+    
     resource :user_feed, only: [:show, :create]
     resource :main_feed, only: [:show, :create]
     

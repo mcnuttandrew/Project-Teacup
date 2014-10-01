@@ -6,7 +6,8 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	routes: {
 		"home": "home",
 		"users/:id": "show",
-		"" : "main"
+		"" : "main",
+		"scatter": "scatter"
 	},
 	
 	home: function() {
@@ -27,7 +28,6 @@ Teacup.Routers.Router = Backbone.Router.extend({
 			postCollection: Teacup.Collections.masterPosts
 		});
 		this._swapView(anonView);
-		// setInterval(console.log("batman"), 1000);
 	}, 
 
 	show: function(id){
@@ -38,6 +38,22 @@ Teacup.Routers.Router = Backbone.Router.extend({
 			userCollection: Teacup.Collections.users,
 		});
 		this._swapView(userView);
+	},
+	
+	scatter: function(event){
+		var currentUser = Teacup.Collections.users.getOrFetch($("#currentUser").data().id)
+		Teacup.Collections.users.fetch();	
+		var view = new Teacup.Views.followFollowers({
+			model: currentUser,
+			collection: Teacup.Collections.users
+		});
+
+		this.modal = new Backbone.BootstrapModal({
+			content: view,
+			title: "Find Users to Follow",
+			animate: true
+		}).open();
+		$(this.modal.$el.children().children()[0]).css("backgroundColor", "#9B46E8");
 	},
 
 	_swapView: function(view){

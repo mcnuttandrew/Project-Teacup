@@ -323,3 +323,24 @@ h3.expandpost:hover {
 #trendpicker {
 	border-radius: 5%;
 }
+
+.scatterDiv{
+//	display: inline-block;
+}
+
+.axis text {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+	color: white;
+}
+
+.axis path,
+.axis line {
+    fill: none;
+    stroke: white;
+    shape-rendering: crispEdges;
+}
+
+.tick text {
+	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+	color: white;
+}

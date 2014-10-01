@@ -13,7 +13,7 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 		this.listenTo(this.model.comments(), "remove", this.removeComment );
 		this.model.comments().each(this.addComment.bind(this));
 		var commentNewView = new Teacup.Views.newComment({
-			collection: this.model.comments(),
+			collection: this.model.comments().sort(),
 			model: this.model
 		});
 		this.addSubview(".commment-form", commentNewView);
@@ -51,7 +51,7 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 	
 	addComment: function(comment) {
 		var CommentsShow = new Teacup.Views.singleComment({ model: comment });
-		this.addSubview(".comments-list", CommentsShow);
+		this.addSubviewBefore(".comments-list", CommentsShow);
 	},
 	
 	removeComment: function(comment){

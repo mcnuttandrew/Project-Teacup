@@ -3,18 +3,12 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 	
 	initialize: function(options){
 		this.userCollection = options.userCollection
-		
 		this.listenTo(this.model, "change", this.render);
 		this.listenToOnce(this.userCollection, "sync", this.render);
-		
-		
 		this.coords = {latitude: 0, longitude: 0 };
-		this.dreamCoords = {latitude: Math.PI, longitude: Math.PI };
-
-		
+		this.dreamCoords = {latitude: 0, longitude: 0 };
 		var newTrendView = new Teacup.Views.trends()
 		this.addSubview(".trends", newTrendView);
-		this.buildMap(this.coords.latitude, this.coords.longitude);
 	},
 	
 	events: {
@@ -27,23 +21,17 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 		"click .trending-click": "trendingModal"
 	},
 	
-	
-	
 	render: function(){
 		this.getGeolocation();
 		var renderedContent = this.template({
 			user: this.model,
 		});
-		
 		this.$el.html(renderedContent);
 		this.attachSubviews();
-		
 		this.coords = {latitude: 0, longitude: 0 }
 		this.dreamCoords = {latitude: 0, longitude: 0 }
 		return this;
 	},
-	
-	
 	
 	//This method is this bceause of special casing. 
 	submit: function(event){
@@ -68,7 +56,6 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 				if($(".main-posts").length === 0){
 					that.collection.add(newPost);
 				} else {
-					// that.collection.remove(that.collection.models[8]);
 					that.collection.add(newPost);
 				}
 				that.render();
@@ -128,29 +115,10 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			}, function() {
 						pos = nil;
 			});
-			
 		} else {
 			// Browser doesn't support Geolocation
 			pos = nil;
 		}
-	},
-	
-	buildMap: function(latitude, longitude){
-		$(".map").empty();
-		var newMapView = new Teacup.Views.newMap({latitude: latitude, longitude: longitude})
-		this.addSubview(".map", newMapView);
-	},
-	
-	mapModal: function() {
-		var view = new Teacup.Views.newMap({
-			latitude: this.coords.latitude,
-			longitude: this.coords.longitude
-		});
-		this.modal = new Backbone.BootstrapModal({
-			content: view,
-			title: $(event.currentTarget).serializeJSON().content,
-			animate: true
-		}).open();
 	},
 	
 	openFollowingModal: function() {
@@ -189,7 +157,5 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 			animate: true
 		}).open();
 		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
-	}
-	
-	
+	},
 })

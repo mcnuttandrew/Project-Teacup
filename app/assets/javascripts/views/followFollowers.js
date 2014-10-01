@@ -1,0 +1,142 @@
+Teacup.Views.followFollowers = Backbone.View.extend({
+	template: JST["users/scatter"],
+	
+	initialize: function(options){
+		// userCollection: options.userCollection;
+		this.dataset = [];
+		//maybe include aynsc code so that this always happens
+		this.listenTo(this.model, "sync", this.render);
+		this.listenTo(this.collection, "sync", this.assembleDataSet);
+		// this.assembleDataSet();
+	},
+
+	render: function() {		
+		// debugger;
+		var renderedContent = this.template();
+		
+		this.$el.html(renderedContent);
+		var that = this;
+		setTimeout(function(){
+			that.buildGraphic();
+			return that;
+		},1000)
+
+	},
+	
+	
+	assembleDataSet: function(){
+		this.dataset = []
+		var userFollows = [];
+		for(var i = 0; i < this.model.attributes.followed.length; i++){
+			userFollows.push(this.model.attributes.followed[i].id);
+		}
+		var userFollowers = [];
+		for(var i = 0; i < this.model.attributes.followers.length; i++){
+			userFollowers.push(this.model.attributes.followers[i].id);
+		}
+		// debugger;
+		for(var i = 0; i < this.collection.models.length; i++){
+			var followedCount = this.collection.models[i].attributes.followed.length;
+			var followersCount = this.collection.models[i].attributes.followers.length;
+			var username = this.collection.models[i].attributes.username;
+			var id = this.collection.models[i].attributes.id;
+			// debugger;
+			var currFollows = false;	
+			if(userFollows.indexOf(this.collection.models[i].id) > 0){
+				currFollows =  true;
+			}
+			var currFollowedBy = false;
+			if(userFollowers.indexOf(this.collection.models[i].id) > 0){
+				currFollowedBy = true;
+			}
+			 this.dataset.push([followersCount, followedCount, id, username, currFollows, currFollowedBy])
+		}
+		this.render();
+	},
+	
+	buildGraphic: function(){
+		$(".scatterDiv").empty();
+		var w = 550;
+		var h = 500;
+		var margins = {"left": 100, "right": 30, "top": 30, "bottom": 50}			
+		var colorPicker = function(dataPoint){
+			if(dataPoint[4] && dataPoint[5]){
+				return "red"
+			} else if (dataPoint[4]){
+				return "#FD48FF"
+			} else if (dataPoint[5]){
+				return "#4688E8"
+			} else {
+				return "gray"
+			};	
+		}
+		
+		var fillColor = function(dataPoint){
+			d3.select(this).style('fill', colorPicker(dataPoint));
+		}
+		
+		var removeColor = function(dataPoint){
+			d3.select(this).style('fill', 'white');
+		}		
+		// debugger;	
+		var svg = d3.select(".scatterDiv")
+								.append("svg")
+								.attr("width", w)
+								.attr("height", h)
+								.append("g")
+								.attr("transform", "translate(" + margins.left + "," + margins.top + ")");
+								
+								
+		var xScale = d3.scale.linear()
+									 .domain([0, d3.max(this.dataset, function(d){return d[1];})])
+									 .range([0, w - margins.left - margins.right]);
+ 		var yScale = d3.scale.linear()
+ 									 .domain([0,d3.max(this.dataset, function(d){return d[1];})])
+									 .range([h - margins.top - margins.bottom, 0]);
+		
+		svg.selectAll("circle").data(this.dataset).enter().append("circle")
+			.attr("cx", function(d) { return xScale(d[0]); })
+		  .attr("cy", function(d) { return yScale(d[1]); })
+			.style("fill", "white").style("stroke", colorPicker)
+			.attr("stroke-width", 4)
+			.attr("opacity", 0.8)
+		  .attr("r", 5).attr("r", function(d) {
+			    return Math.sqrt(d[0]*d[0] + d[1] * d[1]);
+			})
+			.on("mouseover", fillColor)
+			.on("mouseleave", removeColor)
+			.on("click", function(dataPoint){
+				var locationUrl = "/users/" + dataPoint[2]
+				Backbone.history.navigate(locationUrl, {trigger: true})
+			});
+		//axes
+		svg.append("g").attr("class", "x axis")
+									 .attr("transform", "translate(0," + yScale.range()[0] + ")")
+		svg.append("g").attr("class", "y axis");
+		
+	  svg.append("text")
+	         .attr("fill", "#FFFFFF")
+					  .attr("stroke", "#FFFFFF")
+	         .attr("text-anchor", "end")
+	         .attr("x", w / 2)
+	         .attr("y", h - 35)
+	         .text("Number of Followers");
+					 
+ 	  svg.append("text")
+ 	         .attr("text-anchor", "end")
+					 .attr("transform", "rotate(-90)")
+ 	         .attr("x", -h/3 )
+  	       .attr("y", -35)
+ 	         .text("Number Following")
+ 	         .attr("fill", "#FFFFFF")
+					 .attr("stroke", "#FFFFFF");
+					 
+		var xAxis = d3.svg.axis().scale(xScale).orient("bottom").tickPadding(2);
+		var yAxis = d3.svg.axis().scale(yScale).orient("left").tickPadding(2);
+		svg.selectAll("g.y.axis").call(yAxis).selectAll("text").style("stroke", "white");
+		svg.selectAll("g.x.axis").call(xAxis).selectAll("text").style("stroke", "white");
+	}
+	
+
+	
+})

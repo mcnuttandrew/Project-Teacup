@@ -21,8 +21,6 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 			that.attachSubviews();
 			that.$el.html(renderedContent);
 		}, 0);
-		
-		
 		return that;
 	},
 	

@@ -5,7 +5,7 @@ Teacup.Models.Post = Backbone.Model.extend({
 		if(!this._comments) {
 			this._comments = new Teacup.Collections.Comments([], { post: this });
 		}
-		return this._comments;
+		return this._comments.sort();
 	},
 
 	parse: function(response){

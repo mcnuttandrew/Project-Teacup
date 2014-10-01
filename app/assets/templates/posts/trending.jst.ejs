@@ -1,17 +1,10 @@
-<!-- <div class="dropdown">
-<select >
-	<option id="days"> Last Five Days </option>
-	<option id="weeks"> Last Five Weeks </option>
-	<option id="months"> Last Five Months </option>
-</select>
-</div> -->
-
 <h4>Select start date: </h4>
 <form id="date-selector" class="form-inline" role="form">
 	<div class="trendpicker-wrapper">
 		<input id="trendpicker" type="date" placeholder="2011-01-13" name="date"/>
 	</div>
 </form>
+<h4>Data takes a moment to load </h4>
 <div class="row trendingList" style="height:240">
 	<%for(var i = 0; i < trends.length; i++){%>
 		<div class="col-xs-2">

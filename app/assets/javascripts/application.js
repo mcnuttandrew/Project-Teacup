@@ -20,7 +20,7 @@
 //= require backbone.bootstrap-modal
 //= require bootstrap
 //= require typeahead.bundle
-//= require reflection
+//= require d3
 //= require teacup
 //= require_tree ../templates
 //= require_tree ./utils

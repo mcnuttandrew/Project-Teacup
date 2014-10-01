@@ -3,7 +3,7 @@ json.(@post, :id, :content, :date, :latitude, :longitude, :dream_latitude, :drea
 @user = @post.user
 json.(@user, :username)
 
-coms = (@post.comments ? @post.comments : nil)
+coms = (@post.comments ? @post.comments.reverse : nil)
 json.comments(coms) do |comment|
   json.(comment, :id, :content, :user_id, :created_at, :updated_at)
   user = comment.user

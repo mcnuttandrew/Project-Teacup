@@ -68,7 +68,7 @@ end
 ##posts
 results.flatten.each do |line|
   puts [line, line.length]
-  date = "2014-#{rand(9)+1}-#{rand(27)+1}"
+  date = "2014-#{rand(9)+3}-#{rand(27)+1}"
   if line.length > 4
     loc = cleanedLatLangs.sample
     dream_loc = cleanedLatLangs.sample

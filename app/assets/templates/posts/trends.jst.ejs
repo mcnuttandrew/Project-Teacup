@@ -1,4 +1,8 @@
 <h4 style="color:white"> <a class="trending-click">Trending</a></h4>
 <div class="trends col-xs-12 text-center ">
-	<h1> #<%= word[0] %></h1>
+	<%if (word[0]){%>
+		<h1> #<%= word[0] %></h1>
+	<%}else {%>
+		<h1> #?</h1>
+	<%}%>
 </div>

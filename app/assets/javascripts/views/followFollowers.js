@@ -86,13 +86,11 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 								.append("g")
 								.attr("transform", "translate(" + margins.left + "," + margins.top + ")");
 								
-								
-		var xScale = d3.scale.linear()
-									 .domain([0, d3.max(this.dataset, function(d){return d[1];})])
-									 .range([0, w - margins.left - margins.right]);
- 		var yScale = d3.scale.linear()
- 									 .domain([0,d3.max(this.dataset, function(d){return d[1];})])
-									 .range([h - margins.top - margins.bottom, 0]);
+		var xMax = d3.max(this.dataset, function(d){return d[0];})
+		var yMax = d3.max(this.dataset, function(d){return d[1];})
+		var largest = Math.max.apply(Math, [xMax, yMax]);
+		var xScale = d3.scale.linear().domain([0, largest]).range([0, w - margins.left - margins.right]);
+ 		var yScale = d3.scale.linear().domain([0, largest]).range([h - margins.top - margins.bottom, 0]);
 		
 		svg.selectAll("circle").data(this.dataset).enter().append("circle")
 			.attr("cx", function(d) { return xScale(d[0]); })

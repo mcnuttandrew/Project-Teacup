@@ -49,36 +49,40 @@ h1, h2, h3, h4, h5, h6 {
 	padding: 1% 1% 1% 1%;
 }
 
-.userside{
+.userside, .expansion, .post-info, .user-info, .trends{
 	background-color: #625AFF;
 	-webkit-box-shadow:0 0 20px #625AFF; 
 	-moz-box-shadow: 0 0 20px #625AFF; 
 	box-shadow:0 0 20px #625AFF;
 	border: thin solid #625AFF;
+}
+
+
+.user-info{
+	display: block;
+	margin-bottom: 2%;
+	border-radius: 5%;
+}
+
+
+.userside{
 	border-radius: 5%;
 	margin-top: 1%;
 }
 
 .expansion{
-	background-color: #625AFF;
-	-webkit-box-shadow:0 0 20px #625AFF; 
-	-moz-box-shadow: 0 0 20px #625AFF; 
-	box-shadow:0 0 20px #625AFF;
-	border: thin solid #625AFF;
 	border-radius: 3%;
 }
 
-.feedShow .expansion{
+
+.post-info{
+	border-radius: 5%;
+}
+
+.feedShow, .expansion, .userShow{
 	margin-top: 1%;
 }
 
-.userShow .expansion{
-	margin-top: 1%;
-}
-
-.expansion h1, .expansion h2, .expansion h3, .expansion h4, .expansion h5, .expansion h6{
-	color: white;
-}
 
 .removeTweet {
 	background-color: black;
@@ -86,25 +90,6 @@ h1, h2, h3, h4, h5, h6 {
 	border-radius: 10%;
 }
 
-.post-info{
-	background-color: #625AFF;
-	-webkit-box-shadow:0 0 20px #625AFF; 
-	-moz-box-shadow: 0 0 20px #625AFF; 
-	box-shadow:0 0 20px #625AFF;
-	border: thin solid #625AFF;
-	border-radius: 5%;
-}
-
-.user-info{
-	background-color: #625AFF;
-	display: block;
-	margin-bottom: 2%;
-	-webkit-box-shadow:0 0 20px #625AFF; 
-	-moz-box-shadow: 0 0 20px #625AFF; 
-	box-shadow:0 0 20px #625AFF;
-	border: thin solid #625AFF;
-	border-radius: 5%;
-}
 
 #main {
 	background-color: #000000;
@@ -132,13 +117,8 @@ ul.posts, .posts {
 }
 
 .trends {
-	margin-top: 1%;
 	display: block;
-
-	background: #625AFF;
-	-webkit-box-shadow:0 0 25px #625AFF; 
-	-moz-box-shadow: 0 0 25px #625AFF; 
-	box-shadow:0 0 25px #625AFF;
+	margin-top: 1%;
 	border-radius: 10%;
 }
 
@@ -207,7 +187,6 @@ ul.trends-list li {
 }
 
 .comment-submit-div {
-
 		margin-top: 20px;
 }
 
@@ -215,7 +194,7 @@ button.cancel-button {
 	background: rgba(0,0,0,0);
 }
 
-.sign-in{
+.sign-in, .sign-up{
 	width: 40%;
 	margin-left: auto;
 	margin-right: auto;
@@ -251,22 +230,14 @@ button.cancel-button {
 	min-height: 300px;
 }
 
-.sign-in-wrapper .true-form{
-	color: black;
-	min-height: 300px;
-}
-
-.sign-up{
-	width: 40%;
-	margin-left: auto;
-	margin-right: auto;
-	padding-top: 1%;
-	min-height: 200px;
-}
-
 .sign-up-wrapper{
 	background: black;
 	min-height: 400px;
+}
+
+.sign-in-wrapper .true-form{
+	color: black;
+	min-height: 300px;
 }
 
 .expansion .map-wrapper{
@@ -276,10 +247,6 @@ button.cancel-button {
 .modal .map-wrapper{
 	height: 200px;
 	width: 100%;
-}
-
-h3.expandpost:hover {
-	color:red;
 }
 
 .post-blowup-map{
@@ -301,20 +268,12 @@ h3.expandpost:hover {
 	width: 100%;
 }
 
-#meeting {
+#meeting, #trendpicker {
 	border-radius: 5%;
 	width: 100%;
 }
 
-#trendpicker {
-	border-radius: 5%;
-}
-
-.scatterDiv{
-//	display: inline-block;
-}
-
-.axis text {
+.axis text, .tick text {
 	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
 	color: white;
 }
@@ -326,18 +285,59 @@ h3.expandpost:hover {
     shape-rendering: crispEdges;
 }
 
-.tick text {
-	font-family: "Gill Sans", "Gill Sans MT", Calibri, sans-serif;
+.followers-modal, .following-modal{
+	height:400px;
+	overflow: scroll;
+}
+
+div.singlecomment{
+	vertical-align: bottom;
+}
+
+div#map-canvas{
+	width: 100%; 
+	height: 100%;
+}
+
+div.user-display{
+	word-wrap: break-word;
+}
+div.trendingList {
+	height: 240;
+}
+
+div.trendingList li{
+	width:60px;
+}
+
+div#username, a#loopColors {
 	color: white;
 }
 
-.followers-modal{
-	height:400px;
-	overflow: scroll;
+button#remove-comment{
+	background:rgba(0,0,0,0);
 }
 
-.following-modal{
-	height:400px;
-	overflow: scroll;
+span#poster-location, span#follow-you{
+	color: #FD48FF;
+}
+span#dream-location, span#mutual-follows, h3.expandpost:hover{
+	color: red;
 }
 
+span#you-follow{
+	color:#4688E8
+}
+
+div.comments-list{
+	height:100px;
+	overflow:scroll;	
+}
+
+div.scatterDiv{
+	background-color: black;
+}
+
+h4.modal-title, input{
+	color: black;
+}

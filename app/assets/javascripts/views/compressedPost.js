@@ -22,12 +22,14 @@ Teacup.Views.compressedPost = Backbone.CompositeView.extend({
 			});
 			that.attachSubviews();
 			that.$el.html(renderedContent);
+			$(that.$el.children()[0]).css("background-color", that.color);
+			$(that.$el.children()[0]).css("-webkit-box-shadow", "0 0 20px " + that.color);
+			$(that.$el.children()[0]).css("-moz-box-shadow", "0 0 20px " + that.color);
+			$(that.$el.children()[0]).css("box-shadow", "0 0 20px " + that.color);
 		}, 0);
-		
-		
 		return that;
 	},
-	
+
 	removeTweet: function(){
 		event.preventDefault();
 		this.model.destroy();

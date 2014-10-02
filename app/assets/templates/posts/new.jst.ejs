@@ -8,12 +8,12 @@
 		</div>
 	
 			<div class="row">
-				<div class="col-xs-12  text-center" style="word-wrap:break-word">
+				<div class="col-xs-12  text-center user-display">
 					<h1 class="text-center">
 						<a href="#/users/<%= user.get('id')%>"><%= user.get('username')%></a>
 					</h1>
 				</div>
-				<div class="col-xs-12 text-center" style="word-wrap:break-word">
+				<div class="col-xs-12 text-center user-display">
 						<div class="col-xs-6"> 
 							<button class="btn btn-info following"> Following: <%=user.followingCount()%></button>
 						</div>
@@ -31,7 +31,7 @@
 			<strong>CHARS LEFT</strong> <strong class="chars-left">250</strong>
 			<form class="post-submit" class="input-large">
 				<textarea id="content" name="content" type="text"
-				 class="form-control" placeholder="post a tweet" style="width:250px"></textarea>
+				 class="form-control" placeholder="post a tweet"></textarea>
 				<strong> WHERE WERE YOU </strong>
 				<div class = "location-subform">
 						<input id="geocoderInput" name="geocoder" type="text"

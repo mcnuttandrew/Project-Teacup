@@ -25,15 +25,25 @@
 				  <input class="typeahead" type="text" placeholder="Search forr users">
 				</div>
       </li> -->
-			
+			<li>
+				<div class="btn-group">
+				  <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown">
+				    Visualizations <span class="caret"></span>
+				  </button>
+				  <ul class="dropdown-menu" role="menu">
+				    <li><a class="btn" href="#/trends">Trends</a></li>
+				    <li><a class="btn" href="#/scatter">Users</a></li>
+				  </ul>
+				</div>
+			</li>
 			<li>
 				<div class="btn-group">
 				  <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown">
 				    Menu <span class="caret"></span>
 				  </button>
 				  <ul class="dropdown-menu" role="menu">
-				    <li><a class="btn" href="#/scatter"> Find Users To Follow</a></li>
-				    <li><a data-toggle="modal" data-target="#myModal">What is Teacup?</a></li>
+				    <li><a href="#/userhome">Go To My Page</a></li>
+				    <li><a class="btn" data-toggle="modal" data-target="#myModal">What is Teacup?</a></li>
 				    <li><%= link_to "Sign out", session_url, method: :delete %></li>
 				  </ul>
 				</div>
@@ -80,11 +90,11 @@
 					 <ul>
 			 			<li>
 							<h2>What is Teacup? </h2>
-							<h4><i> Teacup is an attempt to stare into the eye of the collective unconcious and to know it's thoughts. </i> </h4>
+							<h4><i> Teacup is an attempt to stare into the eye of the collective unconscious and to know it's thoughts.</i> </h4>
 						</li>
 			 			<li>
 							<h2>Why is Teacup a microblogging platform? </h2>
-							<h4><i>While we fully acknolwedge that dreams are usually complex and highly multi-layered much of our effort in this project is to attempt to see specific trends, and by insisting that descriptions be paired down to their most elementral we can be more confident that we are analyzing the important subjects of dreams rather than just the myriad of extraneous details that come along for the ride. </i> </h4>
+							<h4><i>While we fully acknowledge that dreams are usually complex and highly multi-layered much of our effort in this project is to attempt to see specific trends, and by insisting that descriptions be paired down to their most elemental we can be more confident that we are analyzing the important subjects of dreams rather than just the myriad of extraneous details that come along for the ride. </i> </h4>
 						</li>
 			 			<li>
 							<h2>Who made Teacup? </h2>

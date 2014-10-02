@@ -7,12 +7,21 @@ Teacup.Routers.Router = Backbone.Router.extend({
 			event.preventDefault();
 			router.scatter();
 		})
+		$('a[class="btn"][href="#/trends"]').on('click', function(event) {
+			event.preventDefault();
+			router.trends();
+		})
 	},
 	
 	routes: {
 		"home": "home",
 		"users/:id": "show",
-		"" : "main"
+		"" : "main",
+		"userhome": "userhome"
+	},
+	
+	userhome: function(){
+		Backbone.history.navigate("#/users/"+$("#currentUser").data().id, {trigger: true})
 	},
 	
 	home: function() {
@@ -68,6 +77,16 @@ Teacup.Routers.Router = Backbone.Router.extend({
 			}
 		
 		});	
+	},
+	
+	trends: function(event){
+		var view = new Teacup.Views.trendingModal();
+		var modal = new Backbone.BootstrapModal({
+			content: view,
+			title: "Now Trending",
+			animate: true
+		}).open();
+		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
 	},
 
 	_swapView: function(view){

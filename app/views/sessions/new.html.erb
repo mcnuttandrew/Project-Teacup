@@ -8,21 +8,21 @@
 
 <div class="sign-in-wrapper">
 	<div class="sign-in text-center">
-			<form action="<%= session_url%>" method="post" id="guest-login-form">
+			<!-- <form action="<%= session_url%>" method="post" id="guest-login-form">
 				    <input type="hidden" name="user[username]" value="guest">
 				    <input type="hidden" name="user[password]" value="password">
 						<button class="button btn btn-info" type="submit"> Guest Login </button>
-			</form>
+			</form> -->
 
 		<form action="<%= session_url%>" method="post" class=".true-form">
 			  <label>
 			    <h3>Username</h3>
-			    <input type="text" name="user[username]" value="">
+			    <input type="text" name="user[username]" value="" style="color:black">
 			  </label>
 				
 			  <label>
 			    <h3>Password </h3>
-			    <input type="password" name="user[password]" value="">
+			    <input type="password" name="user[password]" value="" style="color:black">
 			  </label>
 	<br>
 				<h3>

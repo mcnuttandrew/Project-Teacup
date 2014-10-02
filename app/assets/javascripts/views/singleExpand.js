@@ -11,7 +11,7 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 		this.listenTo(this.model , "sync", this.metaMap)
 		this.listenTo(this.model.comments(), "add", this.addComment );
 		this.listenTo(this.model.comments(), "remove", this.removeComment );
-		this.model.comments().each(this.addComment.bind(this));
+		this.model.comments().sort().each(this.addComment.bind(this));
 		var commentNewView = new Teacup.Views.newComment({
 			collection: this.model.comments().sort(),
 			model: this.model

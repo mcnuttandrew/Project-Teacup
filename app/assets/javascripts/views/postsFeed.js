@@ -54,7 +54,9 @@ Teacup.Views.postsFeed = Backbone.CompositeView.extend({
 	},
 	
 	expandPost: function(event){
+		$(".expansionSlot").removeClass("opened")
 		$(".expansionSlot").empty();
+		$(".expansionSlot").addClass("opened")
 		var targetPost = event.currentTarget.getAttribute('data-id');
 		var post = Teacup.Collections.posts.getOrFetch(targetPost);
 		var postExpand = new Teacup.Views.singleExpand({

@@ -10,7 +10,6 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 		
 	events: {
 		"click #refreshColors": "getColors",
-		"dblclick #refreshColors": "getColorsLoop",
 		"click #loopColors": "getColorsLoop",
 		"change form#date-selector": "updateStartDate"
 	},	

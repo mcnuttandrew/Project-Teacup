@@ -156,7 +156,6 @@ ul.trends-list *{
 	padding:0;
 	margin:0;
 	border: thin solid red;
-//	list-style-type: none;
 }
 
 ul.trends-list li {
@@ -227,11 +226,10 @@ button.cancel-button {
 .sign-in-container{
 	background-image: url('frontpage3.png');
 	background-size: cover;
-  background-position: center; // or center center
+  background-position: center;
   background-repeat: no-repeat;
 	height: 100%;
 	margin-top:-5%;
-//	border: thin solid red;
 }
 
 
@@ -293,18 +291,6 @@ h3.expandpost:hover {
 	list-style-type: none;
 }
 
-
-
-//.user-drop-down {
-//	border: none transparent;
-//	    -webkit-box-shadow: none;
-//	            box-shadow: none;
-//}
-
-//.twitter-typeahead *{
-//	background: white;
-//}
-
 #custom-templates .empty-message {
   padding: 5px 10px;
  text-align: center;
@@ -354,3 +340,4 @@ h3.expandpost:hover {
 	height:400px;
 	overflow: scroll;
 }
+

@@ -1,17 +1,11 @@
 <div class="row">
 	<div class="col-xs-12">
 		<form class="userSearch">
-			<input type="text" placeholder="Search for users" id="search" name="query" value="">
+			<input type="text" placeholder="Search..." class="user-search-bar" id="search" name="query">
 		</form>
-
 		<div class="results text-center"> 
-			<%if(users.length > 0){%>
-				<ul class="result-list">
-				<%for(var i =0; i< users.length; i++){%>
-					<li class="searchCell"><h3><a href="#/users/<%=users[i].id%>"><%=users[i].username %> </a><h3></li>
-				<%}%>
-			</ul>
-			<%}%>
+			<ul class="users-list result-list"></ul>
 		</div>
+			
 	</div>
 </div>

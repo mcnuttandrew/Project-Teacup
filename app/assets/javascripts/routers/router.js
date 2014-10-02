@@ -68,7 +68,7 @@ Teacup.Routers.Router = Backbone.Router.extend({
 				if(that.modal){ that.modal.remove();}
 				that.modal = new Backbone.BootstrapModal({
 					content: view,
-					title: "Find Users to Follow",
+					title: "Users interaction",
 					animate: true
 				})
 				that.modal.open();

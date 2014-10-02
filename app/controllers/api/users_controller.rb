@@ -22,7 +22,7 @@ module Api
     end
 
     def index
-      @users = User.all
+      @users = User.includes(:followees, :followers).all
       render :index
     end
     

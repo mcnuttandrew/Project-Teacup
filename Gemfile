@@ -13,6 +13,7 @@ gem 'pg'
 gem 'rails', '4.1.5'
 gem 'rubystats'
 gem 'sass-rails', '~> 4.0.3'
+gem 'thin'
 gem 'uglifier', '>= 1.3.0'
 
 
@@ -21,8 +22,10 @@ group :doc do
 end
 
 group :development do
-  gem 'spring'      
-  gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'bullet'
+  gem 'lol_dba'
+  gem 'pry-rails'
+  gem 'spring'      
 end 

@@ -39,7 +39,8 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 			var followersCount = this.collection.models[i].get('followers').length;
 			var username = this.collection.models[i].get('username');
 			var id = this.collection.models[i].get('id');
-			// debugger;
+			// var id = this.collection.models[i].get('id');
+			debugger;
 			var currFollows = false;	
 			if(userFollows.indexOf(this.collection.models[i].id) > 0){
 				currFollows =  true;
@@ -54,10 +55,7 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 	},
 	
 	buildGraphic: function(){
-		$(".scatterDiv").empty();
-		var w = 550;
-		var h = 500;
-		var margins = {"left": 100, "right": 30, "top": 30, "bottom": 50}			
+		//methods	
 		var colorPicker = function(dataPoint){
 			if(dataPoint[4] && dataPoint[5]){
 				return "red"
@@ -76,8 +74,21 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 		
 		var removeColor = function(dataPoint){
 			d3.select(this).style('fill', 'white');
+		}	
+		
+		var addOpac = function(dataPoint){
+			d3.select(this).style('opacity', 0);
+		}
+		
+		var removeOpac = function(dataPoint){
+			d3.select(this).style('opacity', 1);
 		}		
-		// debugger;	
+		
+		//setup
+		$(".scatterDiv").empty();
+		var w = 550;
+		var h = 500;
+		var margins = {"left": 100, "right": 30, "top": 30, "bottom": 50}		
 		var svg = d3.select(".scatterDiv")
 								.append("svg")
 								.attr("width", w)
@@ -90,7 +101,7 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 		var largest = Math.max.apply(Math, [xMax, yMax]);
 		var xScale = d3.scale.linear().domain([0, largest]).range([0, w - margins.left - margins.right]);
  		var yScale = d3.scale.linear().domain([0, largest]).range([h - margins.top - margins.bottom, 0]);
-		
+		//circles
 		svg.selectAll("circle").data(this.dataset).enter().append("circle")
 			.attr("cx", function(d) { return xScale(d[0]); })
 		  .attr("cy", function(d) { return yScale(d[1]); })
@@ -106,6 +117,20 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 				var locationUrl = "/users/" + dataPoint[2]
 				Backbone.history.navigate(locationUrl, {trigger: true})
 			});
+			//mouse over text
+		svg.selectAll("text")
+			.data(this.dataset)
+			.enter()
+			.append("text")
+			.attr("opacity", 0)
+			.text(function(d) { return d[3]; })
+			.attr("x", function(d) {return xScale(d[0]);})
+			.attr("y", function(d) {return yScale(d[1]+.5);})
+			.attr("font-size", "11px")
+			.attr("fill", "white")
+			.on("mouseover", removeOpac)
+			.on("mouseleave", addOpac);
+			
 		//axes
 		svg.append("g").attr("class", "x axis")
 									 .attr("transform", "translate(0," + yScale.range()[0] + ")")

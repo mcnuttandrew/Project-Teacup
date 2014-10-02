@@ -102,7 +102,7 @@ li.expandPost{
 	float: top;
 }
 
-li.expandPost:hover{
+li.expandPost:hover{//, li.searchCell:hover
 	-webkit-box-shadow:0 0 25px #625AFF; 
 	-moz-box-shadow: 0 0 25px #625AFF; 
 	box-shadow:0 0 25px #625AFF;
@@ -341,3 +341,25 @@ div.scatterDiv{
 h4.modal-title, input{
 	color: black;
 }
+
+li.searchCell {
+//	border: thin solid red;
+}
+
+li.searchCell *{
+	color: white;
+}
+
+div.results {
+	height: 400px;
+	overflow-y: scroll;
+}
+
+#search{
+	width: 100%;
+}
+
+.result-list{
+	list-style-type: none;	
+}
+

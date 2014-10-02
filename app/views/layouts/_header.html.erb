@@ -20,11 +20,9 @@
 
     <ul class="nav navbar-nav navbar-right">
     <% if logged_in? %>
-      <!-- <li id='search-bar'>
-				<div id="custom-templates" class="navbar-form">
-				  <input class="typeahead" type="text" placeholder="Search forr users">
-				</div>
-      </li> -->
+      <li id='search-bar'>
+					<a class="search" id="search">Search</a> 
+      </li>
 			<li>
 				<div class="btn-group">
 				  <button type="button" class="btn btn-primary navbar-btn dropdown-toggle" data-toggle="dropdown">
@@ -33,7 +31,6 @@
 				  <ul class="dropdown-menu" role="menu">
 				    <li><a class="btn" href="#/trends">Trends</a></li>
 				    <li><a class="btn" href="#/scatter">Users</a></li>
-						<!-- <li><a class="btn" data-toggle="modal" data-target="#dataModal">Note on dataset</a></li> -->
 				  </ul>
 				</div>
 			</li>

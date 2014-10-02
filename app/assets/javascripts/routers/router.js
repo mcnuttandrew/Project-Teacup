@@ -6,16 +6,21 @@ Teacup.Routers.Router = Backbone.Router.extend({
 		$('a[class="btn"][href="#/scatter"]').on('click', function(event) {
 			event.preventDefault();
 			router.scatter();
-		})
+		});
 		$('a[class="btn"][href="#/trends"]').on('click', function(event) {
 			event.preventDefault();
 			router.trends();
-		})
+		});
+		$('a[class="search"][id="search"]').on('click', function(event) {
+			event.preventDefault();
+			router.search();
+		});
 	},
 	
 	routes: {
 		"home": "home",
 		"users/:id": "show",
+		"users_search/:search": "search",
 		"" : "main",
 		"userhome": "userhome"
 	},
@@ -84,6 +89,17 @@ Teacup.Routers.Router = Backbone.Router.extend({
 		var modal = new Backbone.BootstrapModal({
 			content: view,
 			title: "Now Trending",
+			animate: true
+		}).open();
+		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");
+	},
+	
+	search: function(searchTerm){
+		var that = this;
+		var view = new Teacup.Views.searchUsers();
+		var modal = new Backbone.BootstrapModal({
+			content: view,
+			title: "Users Search",
 			animate: true
 		}).open();
 		$(modal.$el.children().children()[0]).css("backgroundColor", "#625AFF");

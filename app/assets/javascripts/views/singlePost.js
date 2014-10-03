@@ -20,7 +20,7 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 					return a[2]-b[2];
 				})
 			}
-			// that.mention
+
 			var renderedContent = that.template({
 				post: that.model,
 				user: that.user,

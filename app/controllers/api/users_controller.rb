@@ -28,13 +28,11 @@ module Api
     
     def search
       if params[:query].present?
-        @users = User.where("username ~ ?", params[:query])
+        @users = User.where("username ~ ?", params[:query].downcase)
       else
         @users = User.none
       end
-      # @users = User.all
       render json: @users
-      # redirect_to api_url
     end
 
     private

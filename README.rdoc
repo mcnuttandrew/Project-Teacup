@@ -11,7 +11,7 @@ The platform was designed to be a backdrop on top of which data analysis can be 
 
 There are a number of pieces of work to do on a more technical level, 
 
-+the newPost view should be refactored into a number of subviews.
++The newPost view should be refactored into a number of subviews.
 
 +The search bar should be an actual bar and not a modal
 
@@ -25,4 +25,6 @@ There are a number of pieces of work to do on a more technical level,
 
 +Add update-able pictures
 
-+Add notifications for mentions
++Add notifications for mentions, could be done by implementing a notion of last login
+
++See what posts are associated with each trend

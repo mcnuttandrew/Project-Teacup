@@ -16,8 +16,8 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 		var that = this;
 		setTimeout(function(){
 			if(that.mentionDetails.length > 1){
-				that.mentionDetails = that.mentionDetails.sort(function(arr){
-					return arr[2];
+				that.mentionDetails = that.mentionDetails.sort(function(a, b){
+					return a[2]-b[2];
 				})
 			}
 			// that.mention
@@ -44,21 +44,21 @@ Teacup.Views.singlePost = Backbone.CompositeView.extend({
 		if( that.splitContent.length > 1){
 			for(var i = 1; i < that.splitContent.length; i++){
 				mention = that.splitContent[i].split(" ")[0]
-				if( this.model.get('content')[this.model.get('content').indexOf(mention)-1] === "@" ){
-					$.ajax({
-						url: 'api/users/search',
-						type: 'GET',
-						data: {query: mention},
-						success: function(user){
-							if(user.length === 1){
-								var startpoint = that.model.get('content').indexOf("@" + user[0].username);
-								endpoint = startpoint + user[0].username.length +1;
-								that.mentionDetails.unshift([user[0].id, user[0].username,  startpoint, endpoint]);	
-								that.render();		
-							}
+				$.ajax({
+					url: 'api/users/search',
+					type: 'GET',
+					data: {query: mention},
+					success: function(user){
+						if(user.length === 1){
+							var startpoint = that.model.get('content').indexOf("@" + user[0].username);
+							endpoint = startpoint + user[0].username.length +1;
+							if(startpoint >= 0){
+								that.mentionDetails.unshift([user[0].id, user[0].username,  startpoint, endpoint]);
+							}	
+							that.render();		
 						}
-					});
-				}
+					}
+				});
 			}
 		} 
 	}

@@ -21,10 +21,8 @@ Teacup.Views.singleExpand = Backbone.CompositeView.extend({
 	},
 	
 	metaMap: function(){
-		// debugger;
 		if(this.model.get('latitude') && this.model.get('longitude')){
 			if(this.model.get('dream_latitude') && this.model.get('longitude')){
-				// debugger;
 				this.buildMap(
 					this.model.get('latitude'), 
 					this.model.get('longitude'),

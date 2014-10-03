@@ -1,28 +1,18 @@
-== README
+== Readme
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Teacup is web application that attempts to act as a window into the collective unconcious, it tries to achieve this by acting as a microblogging platform ala Twitter or Facebook. The overall stucture of the app takes cues from both of the aforementioned, making use of the style and vibe of twitter (user show pages, a main dash board, and (most importantly) short bite size posts), and the comment functionality of facebook. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The primary original "innovation" here is the main view which shows random posts in a fancy way. More subtly are a piar of visualizers which allow a user to graphically see trends as well as visualize how popular another user is. 
 
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+= Future Work
+
+The platform was designed to have a backdrop on top of which data analysis can be done. Naturally this means that any additional features that will come after this release will be additional visualizations. There are plans to develop a map which will show all of the relationships between poster location/dream location without points, so that the result will be something in the vein of a spaggetti diagram. Additionally with some additional work a visualization of the directed graphs described by the follower/followed table could be built. 
+
+There are a number of small pieces of work to do on a more technical level, 
+
++the newPost view should be refactored into a number of subviews.
+
++The search bar should be an actual bar and not a modal
+
++Current statistics about the data

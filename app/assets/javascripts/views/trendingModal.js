@@ -43,9 +43,6 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 				that.trends = trends[0];
 				that.multiples = trends[1];
 				that.getColors();
-			}, 
-			error: function(){
-				debugger;
 			}
 		});
 	},
@@ -59,7 +56,6 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 	},
 	
 	getColorsLoop: function(){
-		debugger;
 		var that = this
 		setInterval(function(){
 			that.getColors()	

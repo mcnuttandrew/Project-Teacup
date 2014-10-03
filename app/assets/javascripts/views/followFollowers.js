@@ -7,7 +7,6 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 	},
 
 	render: function() {		
-		// debugger;
 		var renderedContent = this.template();
 		this.$el.html(renderedContent);
 		if(this.$el.find(".scatterDiv").children().length < 1){
@@ -31,14 +30,11 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 		for(var i = 0; i < this.model.get('followers').length; i++){
 			userFollowers.push(this.model.get('followers')[i].id);
 		}
-		// debugger;
 		for(var i = 0; i < this.collection.models.length; i++){
 			var followedCount = this.collection.models[i].get('followed').length;
 			var followersCount = this.collection.models[i].get('followers').length;
 			var username = this.collection.models[i].get('username');
 			var id = this.collection.models[i].get('id');
-			// var id = this.collection.models[i].get('id');
-			// debugger;
 			var currFollows = false;	
 			if(userFollows.indexOf(this.collection.models[i].id) > 0){
 				currFollows =  true;

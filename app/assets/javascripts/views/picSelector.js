@@ -14,7 +14,6 @@ Teacup.Views.picSelectorView = Backbone.CompositeView.extend({
 	},
 	
 	upload: function () {
-		debugger
 		var that = this;
 	  filepicker.pick(function(blob) {
 	    var newImage = new Teacup.Models.Image({

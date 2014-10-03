@@ -30,8 +30,6 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 				}
 			});
 		}, 3000)
-		 
-		
 	},
 	
 	events: {
@@ -40,10 +38,12 @@ Teacup.Views.mainView = Backbone.CompositeView.extend({
 	
 	render: function(){
 		this.postSize = 0;
-		var renderedContent = this.template()
+		var renderedContent = this.template({recent: ($("#currentUser").data().id === 91)})
 		this.$el.html(renderedContent)
 		this.attachSubviews();
-		// debugger;
+		if(this.$el.find(".main-posts").children().length < 1){
+			this.$el.find(".main-posts").html("<h1 class='loading text-center'>X</h1>")
+		}
 		return this;
 	},
 	

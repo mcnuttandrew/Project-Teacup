@@ -62,7 +62,6 @@ Teacup.Views.newPost = Backbone.CompositeView.extend({
 				that.render();
 			},
 			error: function(response, request){
-				debugger;
 				$(".errors").empty();
 				$(".errors").addClass(" alert alert-danger")
 				$(".errors").append("<li> ALL FIELDS ARE REQUIRED </li>");

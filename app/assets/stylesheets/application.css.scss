@@ -382,3 +382,12 @@ div.scatterDiv{
 	min-width: 550px;
 	min-height: 500px;
 }
+
+input.user-search-bar {
+	height: 50px;
+}
+
+form input.user-search-bar[type="text"] {
+	font-size: 35px;
+	font-family: "Gill Sans";
+}

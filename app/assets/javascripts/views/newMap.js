@@ -45,7 +45,6 @@ Teacup.Views.newMap = Backbone.View.extend({
 				mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']	
 			}		
 		};
-		// debugger;
 		this.map = new google.maps.Map(this.$el.find("#map-canvas")[0], mapOptions);
 		this.map.mapTypes.set('map_style', styledMap);
 		this.map.setMapTypeId('map_style');

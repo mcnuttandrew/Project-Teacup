@@ -29,7 +29,6 @@ Teacup.Views.trends = Backbone.View.extend({
 			word: this.word
 		});
 		this.$el.html(renderedContent);
-		 // debugger;
 		return this;
 	},
 	

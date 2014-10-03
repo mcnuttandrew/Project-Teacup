@@ -16,3 +16,7 @@ There are a number of small pieces of work to do on a more technical level,
 +The search bar should be an actual bar and not a modal
 
 +Current statistics about the data
+
++Add likes
+
++Add Suggest users

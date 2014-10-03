@@ -12,7 +12,6 @@ Teacup.Collections.Users = Backbone.Collection.extend({
 	},
 	model: Teacup.Models.User,
 	
-	
 	getOrFetch: function(id){
 		var users = this;
 		var user = this.get(id);

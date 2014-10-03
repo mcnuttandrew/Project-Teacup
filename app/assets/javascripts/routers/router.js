@@ -50,7 +50,6 @@ Teacup.Routers.Router = Backbone.Router.extend({
 	}, 
 
 	show: function(id){
-		Teacup.Collections.users.fetch();
 		var userView = new Teacup.Views.userShow({
 			model: Teacup.Collections.users.getOrFetch(id),
 			currentUser: Teacup.Collections.users.getOrFetch($("#currentUser").data().id),

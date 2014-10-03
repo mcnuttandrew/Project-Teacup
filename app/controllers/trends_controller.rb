@@ -62,7 +62,7 @@ module Api
       counts = Hash.new        
       @posts.each do |post|
         post.content.split(/\s|\.|\,|\?/).each do |word|
-          wrd = word.downcase
+          wrd = word.downcase.gsub("\"", "")
           unless common_words.include?(wrd) || wrd.length < 1
             if Date.parse(date).mjd > post.date.mjd
               val = 100/( (Date.parse(date).mjd - post.date.mjd)) 

@@ -7,9 +7,9 @@ The primary original "innovation" here is the main view which shows random posts
 
 = Future Work
 
-The platform was designed to have a backdrop on top of which data analysis can be done. Naturally this means that any additional features that will come after this release will be additional visualizations. There are plans to develop a map which will show all of the relationships between poster location/dream location without points, so that the result will be something in the vein of a spaggetti diagram. Additionally with some additional work a visualization of the directed graphs described by the follower/followed table could be built. 
+The platform was designed to be a backdrop on top of which data analysis can be done. Naturally this means that any additional features that will come after this release will be additional visualizations. There are plans to develop a map which will show all of the relationships between poster location/dream location without points, so that the result will be something in the vein of a spaggetti diagram. Additionally with some additional work a visualization of the directed graphs described by the follower/followed table could be built. 
 
-There are a number of small pieces of work to do on a more technical level, 
+There are a number of pieces of work to do on a more technical level, 
 
 +the newPost view should be refactored into a number of subviews.
 
@@ -20,3 +20,9 @@ There are a number of small pieces of work to do on a more technical level,
 +Add likes
 
 +Add Suggest users
+
++inline mentions should be links
+
++Add update-able pictures
+
++Add notifications for mentions

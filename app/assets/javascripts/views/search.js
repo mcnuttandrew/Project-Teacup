@@ -23,7 +23,7 @@ Teacup.Views.searchUsers = Backbone.View.extend({
 	keypresser: function(event){
 		var that = this
 		var formData = $(event.currentTarget).serializeJSON();
-		console.log(formData["query"]);
+
 		$.ajax({
 			url: 'api/users/search',
 			type: 'GET',

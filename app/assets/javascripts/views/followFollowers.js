@@ -2,19 +2,17 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 	template: JST["users/scatter"],
 	
 	initialize: function(options){
-		// userCollection: options.userCollection;
 		this.dataset = [];
-		//maybe include aynsc code so that this always happens
-		// this.listenTo(this.model, "sync", this.render);
-		// this.listenTo(this.collection, "sync", this.assembleDataSet);
 		this.assembleDataSet();
 	},
 
 	render: function() {		
 		// debugger;
 		var renderedContent = this.template();
-		
 		this.$el.html(renderedContent);
+		if(this.$el.find(".scatterDiv").children().length < 1){
+			this.$el.find(".scatterDiv").html("<h1 class='loading text-center'>X</h1>")
+		}
 		var that = this;
 		setTimeout(function(){
 			that.buildGraphic();
@@ -40,7 +38,7 @@ Teacup.Views.followFollowers = Backbone.View.extend({
 			var username = this.collection.models[i].get('username');
 			var id = this.collection.models[i].get('id');
 			// var id = this.collection.models[i].get('id');
-			debugger;
+			// debugger;
 			var currFollows = false;	
 			if(userFollows.indexOf(this.collection.models[i].id) > 0){
 				currFollows =  true;

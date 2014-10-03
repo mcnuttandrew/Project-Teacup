@@ -22,6 +22,9 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 			colors: this.colors
 		});
 		this.$el.html(renderedContent);	
+		if(this.$el.find(".trendingList").children().length < 1){
+			this.$el.find(".trendingList").html("<h1 class='loading text-center'>X</h1>")
+		}
 		return this;
 	},
 	
@@ -64,6 +67,7 @@ Teacup.Views.trendingModal = Backbone.View.extend({
 	},
 	
 	updateStartDate: function(event){
+		this.$el.find(".trendingList").html("<h1 class='loading text-center'> X </h1>");
 		this.getTrends($(event.currentTarget).serializeJSON().date);
 	}
 	

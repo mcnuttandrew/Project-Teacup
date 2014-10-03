@@ -22,6 +22,9 @@ Teacup.Views.trends = Backbone.View.extend({
 	},
 		
 	render: function(){	
+		if(this.$el.find(".trends").children().length < 1){
+			this.$el.find(".trends").html("<h1 class='loading text-center'>X</h1>")
+		}
 		var renderedContent = this.template({
 			word: this.word
 		});

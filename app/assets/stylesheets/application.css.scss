@@ -57,7 +57,6 @@ h1, h2, h3, h4, h5, h6 {
 	border: thin solid #625AFF;
 }
 
-
 .user-info{
 	display: block;
 	margin-bottom: 2%;
@@ -363,3 +362,23 @@ div.results {
 	list-style-type: none;	
 }
 
+@-webkit-keyframes rotate {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+  to { 
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+h1.loading {
+    -webkit-animation-name:             rotate; 
+    -webkit-animation-duration:         0.5s; 
+    -webkit-animation-iteration-count:  infinite;
+    -webkit-ANIMATION-timing-function: linear;
+    }
+		
+div.scatterDiv{
+	min-width: 550px;
+	min-height: 500px;
+}

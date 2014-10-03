@@ -4,7 +4,6 @@
 		<%if(dets.length === 0 ){%>
 			<%=comment.get('content')%>
 		<%} else {%>
-			<h4>
 				<%=comment.get('content').substr(0, dets[0][2])%>
 				<%for(var i = 0; i< dets.length; i++){%>
 					<a href="#/users/<%=dets[i][0]%>"><%=comment.get("content").substring(dets[i][2], dets[i][3])%></a>
@@ -14,7 +13,6 @@
 						<%= comment.get("content").substr(dets[i][3])%>
 					<%}%>
 				<%}%>
-			
 		<%}%>
 		<br> 
 		<strong >Posted By 

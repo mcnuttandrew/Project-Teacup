@@ -21,8 +21,6 @@ There are a number of pieces of work to do on a more technical level,
 
 +Add Suggest users
 
-+inline mentions should be links
-
 +Add update-able pictures
 
 +Add notifications for mentions, could be done by implementing a notion of last login

@@ -14,6 +14,7 @@
 .text {
   font-family: Palatino-Roman;
   margin-bottom: 10%;
+  text-align: justify;
 }
 
 .top-headline {

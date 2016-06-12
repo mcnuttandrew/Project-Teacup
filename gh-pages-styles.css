@@ -1,0 +1,41 @@
+.main-container {
+  color: #333;
+  min-width: 600px;
+  padding-left: 30%;
+  padding-right: 30%;
+  padding-top: 10%;
+  width: 40%;
+}
+
+.headline {
+  font-family: GillSans-SemiBold;
+}
+
+.text {
+  font-family: Palatino-Roman;
+  margin-bottom: 10%;
+}
+
+.top-headline {
+  font-size: 144px;
+}
+
+.top-text {
+  font-size: 48px;
+}
+
+.secondary-headline {
+  font-size: 72px;
+}
+
+.secondary-text {
+  font-size: 36px;
+}
+
+.conclusion-headline {
+  font-size: 48px;
+}
+
+.conclusion-text {
+  font-size: 24px;
+}

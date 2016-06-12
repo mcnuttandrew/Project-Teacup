@@ -1,6 +1,6 @@
-# PROJECT IS DEPRECATED
+== PROJECT IS DEPRECATED
 
-After maintaining this page for a couple of years, I decided that it was time to put it to bed. The repo will live on, but support for the app will not. 
+After maintaining this page for a couple of years, I decided that it was time to put it to bed. The repo will live on, but support for the app will not.
 
 == Readme
 

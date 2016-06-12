@@ -1,15 +1,19 @@
+# PROJECT IS DEPRECATED
+
+After maintaining this page for a couple of years, I decided that it was time to put it to bed. The repo will live on, but support for the app will not. 
+
 == Readme
 
-Teacup is web application that attempts to act as a window into the collective unconcious, it tries to achieve this by acting as a microblogging platform ala Twitter or Facebook. The overall stucture of the app takes cues from both of the aforementioned, making use of the style and vibe of twitter (user show pages, a main dash board, and (most importantly) short bite size posts), and the comment functionality of facebook. 
+Teacup is web application that attempts to act as a window into the collective unconcious, it tries to achieve this by acting as a microblogging platform ala Twitter or Facebook. The overall stucture of the app takes cues from both of the aforementioned, making use of the style and vibe of twitter (user show pages, a main dash board, and (most importantly) short bite size posts), and the comment functionality of facebook.
 
-The primary original "innovation" here is the main view which shows random posts in a fancy way. More subtly are a piar of visualizers which allow a user to graphically see trends as well as visualize how popular another user is. 
+The primary original "innovation" here is the main view which shows random posts in a fancy way. More subtly are a piar of visualizers which allow a user to graphically see trends as well as visualize how popular another user is.
 
 
 = Future Work
 
-The platform was designed to be a backdrop on top of which data analysis can be done. Naturally this means that any additional features that will come after this release will be additional visualizations. There are plans to develop a map which will show all of the relationships between poster location/dream location without points, so that the result will be something in the vein of a spaggetti diagram. Additionally with some additional work a visualization of the directed graphs described by the follower/followed table could be built. 
+The platform was designed to be a backdrop on top of which data analysis can be done. Naturally this means that any additional features that will come after this release will be additional visualizations. There are plans to develop a map which will show all of the relationships between poster location/dream location without points, so that the result will be something in the vein of a spaggetti diagram. Additionally with some additional work a visualization of the directed graphs described by the follower/followed table could be built.
 
-There are a number of pieces of work to do on a more technical level, 
+There are a number of pieces of work to do on a more technical level,
 
 +The newPost view should be refactored into a number of subviews.
 
